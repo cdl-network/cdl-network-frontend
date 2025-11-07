@@ -1,59 +1,72 @@
 import { Link } from "react-router-dom";
-import { Facebook, Instagram, Linkedin } from "lucide-react";
+import { Facebook, Instagram, Linkedin, MapPin } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-[hsl(220,60%,15%)] text-white mt-16">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-          {/* Left Column */}
-          <div>
-            <h3 className="text-xl font-bold mb-4">Hire Drivers LLC</h3>
-            <p className="text-sm text-white/80 mb-4">
-              © {new Date().getFullYear()} Hire Drivers LLC. Proudly connecting CDL-A drivers with carriers across the U.S.
-            </p>
-            <p className="text-sm text-white/70">Chicago, IL, 60603</p>
-          </div>
+    <>
+      <footer className="bg-primary text-white mt-16">
+        <div className="container mx-auto px-4 py-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* Location Column */}
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Location</h4>
+              <div className="flex items-start gap-2 text-sm text-white/90">
+                <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                <p>Chicago, IL, 60603</p>
+              </div>
+            </div>
 
-          {/* Center Column - Contact */}
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Reach Us</h4>
-            <div className="space-y-2 text-sm text-white/80">
-              <p>Carriers: 1-555-CALLSERHII</p>
-              <p>Drivers: 1-555-CALLDOMINION</p>
-              <p>Email: <a href="mailto:hr@hiredriversllc.com" className="hover:text-white">hr@hiredriversllc.com</a></p>
-              <p>General: <a href="mailto:hello@hiredriversllc.com" className="hover:text-white">hello@hiredriversllc.com</a></p>
+            {/* Contacts Column */}
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Contacts</h4>
+              <div className="space-y-2 text-sm text-white/90">
+                <p>Carriers: 1-555-CALLSERHII</p>
+                <p>Drivers: 1-555-CALLDOMINION</p>
+                <p>Email: <a href="mailto:hr@hiredriversllc.com" className="hover:text-white transition-colors">hr@hiredriversllc.com</a></p>
+              </div>
+            </div>
+
+            {/* Navigation Column */}
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Navigation</h4>
+              <nav className="space-y-2 text-sm text-white/90">
+                <div><Link to="/" className="hover:text-white hover:underline transition-colors">Home</Link></div>
+                <div><Link to="/drivers" className="hover:text-white hover:underline transition-colors">Drivers</Link></div>
+                <div><Link to="/carriers" className="hover:text-white hover:underline transition-colors">Carriers</Link></div>
+                <div><Link to="/contact" className="hover:text-white hover:underline transition-colors">Contact</Link></div>
+                <div><Link to="/terms" className="hover:text-white hover:underline transition-colors">Terms of Use</Link></div>
+                <div><Link to="/privacy" className="hover:text-white hover:underline transition-colors">Privacy Policy</Link></div>
+              </nav>
+            </div>
+
+            {/* Social Networks Column */}
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Social Networks</h4>
+              <div className="flex gap-3">
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/90 hover:bg-white hover:scale-110 flex items-center justify-center transition-all text-primary">
+                  <Facebook className="h-5 w-5" />
+                </a>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/90 hover:bg-white hover:scale-110 flex items-center justify-center transition-all text-primary">
+                  <Instagram className="h-5 w-5" />
+                </a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/90 hover:bg-white hover:scale-110 flex items-center justify-center transition-all text-primary">
+                  <Linkedin className="h-5 w-5" />
+                </a>
+              </div>
             </div>
           </div>
-
-          {/* Right Column - Navigation */}
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Navigation</h4>
-            <nav className="space-y-2 text-sm text-white/80">
-              <div><Link to="/" className="hover:text-white">Home</Link></div>
-              <div><Link to="/drivers" className="hover:text-white">Drivers</Link></div>
-              <div><Link to="/carriers" className="hover:text-white">Carriers</Link></div>
-              <div><Link to="/contact" className="hover:text-white">Contact</Link></div>
-              <div><Link to="/terms" className="hover:text-white">Terms of Use</Link></div>
-              <div><Link to="/privacy" className="hover:text-white">Privacy Policy</Link></div>
-            </nav>
-          </div>
         </div>
+      </footer>
 
-        {/* Bottom Section - Social Icons */}
-        <div className="border-t border-white/10 pt-6 flex justify-center gap-4">
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors">
-            <Facebook className="h-5 w-5" />
-          </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors">
-            <Instagram className="h-5 w-5" />
-          </a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors">
-            <Linkedin className="h-5 w-5" />
-          </a>
+      {/* Copyright Line */}
+      <div className="bg-background py-6">
+        <div className="container mx-auto px-4">
+          <p className="text-center text-sm text-muted-foreground">
+            © 2026 Hire Drivers LLC. Proudly connecting CDL-A drivers with carriers across the U.S.
+          </p>
         </div>
       </div>
-    </footer>
+    </>
   );
 };
 
