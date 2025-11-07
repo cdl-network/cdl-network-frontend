@@ -8,6 +8,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { ArrowRight, Users, Target, CheckCircle2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import heroMainImage from "@/assets/hero-main.jpeg";
+import supportImage from "@/assets/hero-main-3.webp";
 
 const Index = () => {
   const { toast } = useToast();
@@ -33,12 +35,16 @@ const Index = () => {
       
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="py-20 px-4" style={{ background: 'var(--hero-gradient)' }}>
-          <div className="container mx-auto max-w-4xl text-center">
+        <section 
+          className="relative py-32 px-4 bg-cover bg-center"
+          style={{ backgroundImage: `url(${heroMainImage})` }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/85 to-primary/75"></div>
+          <div className="container mx-auto max-w-4xl text-center relative z-10">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Connecting CDL-A Drivers with the Right Carriers
             </h1>
-            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+            <p className="text-xl text-white/95 mb-8 max-w-2xl mx-auto">
               No BS. Just quality matches. We believe there are no bad drivers — only bad matches between driver and company.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -53,6 +59,7 @@ const Index = () => {
                 size="lg" 
                 variant="secondary"
                 onClick={() => navigate('/carriers')}
+                className="bg-white hover:bg-white/90 text-primary"
               >
                 Get Drivers <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
@@ -140,26 +147,32 @@ const Index = () => {
 
         {/* Who We Serve */}
         <section className="py-16 px-4 bg-muted/30">
-          <div className="container mx-auto max-w-4xl">
+          <div className="container mx-auto max-w-6xl">
             <h2 className="text-3xl font-bold text-foreground mb-12 text-center">Who We Serve</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-card border border-border rounded-lg p-6">
-                <h3 className="text-2xl font-semibold mb-3">For Drivers</h3>
-                <p className="text-muted-foreground mb-4">
-                  CDL-A drivers seeking better opportunities with companies that value their skills and respect their preferences.
-                </p>
-                <Button onClick={() => navigate('/drivers')} variant="outline">
-                  Learn More <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
+              <div className="bg-card border border-border rounded-lg overflow-hidden">
+                <div className="h-48 bg-cover bg-center" style={{ backgroundImage: `url(${supportImage})` }}></div>
+                <div className="p-6">
+                  <h3 className="text-2xl font-semibold mb-3">For Drivers</h3>
+                  <p className="text-muted-foreground mb-4">
+                    CDL-A drivers seeking better opportunities with companies that value their skills and respect their preferences.
+                  </p>
+                  <Button onClick={() => navigate('/drivers')} variant="outline">
+                    Learn More <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </div>
               </div>
-              <div className="bg-card border border-border rounded-lg p-6">
-                <h3 className="text-2xl font-semibold mb-3">For Carriers</h3>
-                <p className="text-muted-foreground mb-4">
-                  U.S. carriers looking for reliable, pre-screened CDL-A drivers who fit their operation and culture.
-                </p>
-                <Button onClick={() => navigate('/carriers')} variant="outline">
-                  Learn More <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
+              <div className="bg-card border border-border rounded-lg overflow-hidden">
+                <div className="h-48 bg-cover bg-center" style={{ backgroundImage: `url(${supportImage})` }}></div>
+                <div className="p-6">
+                  <h3 className="text-2xl font-semibold mb-3">For Carriers</h3>
+                  <p className="text-muted-foreground mb-4">
+                    U.S. carriers looking for reliable, pre-screened CDL-A drivers who fit their operation and culture.
+                  </p>
+                  <Button onClick={() => navigate('/carriers')} variant="outline">
+                    Learn More <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
