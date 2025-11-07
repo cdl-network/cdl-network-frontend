@@ -10,6 +10,7 @@ import { ArrowRight, Users, Target, CheckCircle2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import heroMainImage from "@/assets/hero-main.jpeg";
 import supportImage from "@/assets/hero-main-3.webp";
+import driversForDriversImage from "@/assets/drivers-for-drivers.jpeg";
 
 const Index = () => {
   const { toast } = useToast();
@@ -45,7 +46,7 @@ const Index = () => {
               Connecting CDL-A Drivers with the Right Carriers
             </h1>
             <p className="text-xl text-white/95 mb-8 max-w-2xl mx-auto">
-              No BS. Just quality matches. We believe there are no bad drivers — only bad matches between driver and company.
+              We help drivers and carriers find the fit that makes both succeed.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
@@ -53,7 +54,7 @@ const Index = () => {
                 onClick={() => navigate('/drivers')}
                 className="bg-accent hover:bg-accent/90 text-accent-foreground"
               >
-                Apply as Driver <ArrowRight className="ml-2 h-4 w-4" />
+                Apply as a driver <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
               <Button 
                 size="lg" 
@@ -61,7 +62,7 @@ const Index = () => {
                 onClick={() => navigate('/carriers')}
                 className="bg-white hover:bg-white/90 text-primary"
               >
-                Get Drivers <ArrowRight className="ml-2 h-4 w-4" />
+                Hire drivers <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>
           </div>
@@ -151,7 +152,7 @@ const Index = () => {
             <h2 className="text-3xl font-bold text-foreground mb-12 text-center">Who We Serve</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="bg-card border border-border rounded-lg overflow-hidden">
-                <div className="h-48 bg-cover bg-center" style={{ backgroundImage: `url(${supportImage})` }}></div>
+                <div className="h-48 bg-cover bg-center" style={{ backgroundImage: `url(${driversForDriversImage})` }}></div>
                 <div className="p-6">
                   <h3 className="text-2xl font-semibold mb-3">For Drivers</h3>
                   <p className="text-muted-foreground mb-4">
