@@ -167,14 +167,14 @@ const Index = () => {
                       aria-label={`${index + 1} of 5`}
                     >
                       <div 
-                        className={`flex flex-col min-w-0 overflow-hidden rounded-xl bg-card border border-border transition-all duration-500 ease-out ${
+                        className={`flex flex-col justify-between rounded-xl bg-card border border-border transition-all duration-500 ease-out h-[420px] sm:h-[480px] lg:h-[560px] hover:scale-[1.02] hover:shadow-[0_8px_20px_rgba(0,0,0,0.1)] ${
                           index === current 
                             ? 'scale-105 shadow-[0_24px_48px_rgba(0,0,0,0.12)]' 
                             : 'scale-100 shadow-md'
                         }`}
                         style={{ transformStyle: 'preserve-3d', transform: index === current ? 'translateZ(0) scale(1.05)' : 'translateZ(0) scale(1.0)' }}
                       >
-                        <div className="p-6">
+                        <div className="p-6 flex-shrink-0">
                           <h3 className="font-semibold mb-3" style={{ fontSize: 'clamp(1.25rem, 1.1vw + 1rem, 1.75rem)' }}>
                             {card.title}
                           </h3>
@@ -186,7 +186,7 @@ const Index = () => {
                           </p>
                         </div>
                         
-                        <div className="w-full mt-auto rounded-xl overflow-hidden" style={{ aspectRatio: '16/9' }}>
+                        <div className="w-full overflow-hidden rounded-b-xl" style={{ aspectRatio: '16/9' }}>
                           <img 
                             src={card.image} 
                             alt={card.alt}
