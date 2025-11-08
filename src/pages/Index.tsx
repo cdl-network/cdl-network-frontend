@@ -8,13 +8,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 import heroMainImage from "@/assets/hero-main.jpeg";
 import supportImage from "@/assets/hero-main-3.webp";
 import driversForDriversImage from "@/assets/drivers-for-drivers.jpeg";
@@ -91,74 +84,65 @@ const Index = () => {
           <div className="container mx-auto max-w-7xl">
             <h2 className="text-3xl font-bold text-foreground mb-12 text-center">Why choose us</h2>
             
-            <Carousel
-              opts={{
-                align: "start",
-                loop: true,
-              }}
-              className="w-full"
-            >
-              <CarouselContent className="snap-x snap-mandatory">
-                {[
-                  {
-                    title: "Personalized approach",
-                    text: "Each driver and carrier pairing is handled individually, not through automation or a script. You tell us exactly what you want, and we deliver it, or give our best options for you to consider.",
-                    image: whyChooseUs1,
-                    alt: "Two professionals shaking hands near a red truck"
-                  },
-                  {
-                    title: "Dedication",
-                    text: "Every driver and every carrier get their own recruiter who follows through until onboarding. We won't give up on challenging tasks and niche placements.",
-                    image: whyChooseUs2,
-                    alt: "Recruiter and driver reviewing documents together"
-                  },
-                  {
-                    title: "Drivers testimonials",
-                    text: "92% of placed drivers say they'd work with us again. Here are their testimonials (coming soon).",
-                    image: whyChooseUs3,
-                    alt: "Happy truck driver in the cab of their truck"
-                  },
-                  {
-                    title: "Carriers feedback",
-                    text: "Most of our carrier-partners work with us on multiple occasions. Here's what they say about us (coming soon).",
-                    image: whyChooseUs4,
-                    alt: "Carrier representative on a call in their office"
-                  },
-                  {
-                    title: "U.S. coverage",
-                    text: "We are working for every type of need — OTR, local, regional, lanes, spot-bid, day cabs. You name it, and we will find a driver to do it!",
-                    image: whyChooseUs5,
-                    alt: "Map of the United States showing nationwide coverage"
-                  }
-                ].map((card, index) => (
-                  <CarouselItem key={index} className="md:basis-4/5 lg:basis-3/4 snap-center">
-                    <div className="bg-card border border-border rounded-lg overflow-hidden shadow-md h-full">
-                      <div className="flex flex-col md:flex-row h-full">
-                        {/* Text Content - 55% */}
-                        <div className="w-full md:w-[55%] p-8 flex flex-col justify-center">
-                          <h3 className="text-2xl font-semibold mb-4">{card.title}</h3>
-                          <p className="text-muted-foreground leading-relaxed">
-                            {card.text}
-                          </p>
-                        </div>
-                        
-                        {/* Image - 45% */}
-                        <div className="w-full md:w-[45%] h-64 md:h-auto">
-                          <img 
-                            src={card.image} 
-                            alt={card.alt}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              
-              <CarouselPrevious className="hidden md:flex -left-12" />
-              <CarouselNext className="hidden md:flex -right-12" />
-            </Carousel>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-[1280px] mx-auto items-stretch">
+              {[
+                {
+                  title: "Personalized approach",
+                  text: "Each driver and carrier pairing is handled individually, not through automation or a script. You tell us exactly what you want, and we deliver it, or give our best options for you to consider.",
+                  image: whyChooseUs1,
+                  alt: "Two professionals shaking hands near a red truck"
+                },
+                {
+                  title: "Dedication",
+                  text: "Every driver and every carrier get their own recruiter who follows through until onboarding. We won't give up on challenging tasks and niche placements.",
+                  image: whyChooseUs2,
+                  alt: "Recruiter and driver reviewing documents together"
+                },
+                {
+                  title: "Drivers testimonials",
+                  text: "92% of placed drivers say they'd work with us again. Here are their testimonials (coming soon).",
+                  image: whyChooseUs3,
+                  alt: "Happy truck driver in the cab of their truck"
+                },
+                {
+                  title: "Carriers feedback",
+                  text: "Most of our carrier-partners work with us on multiple occasions. Here's what they say about us (coming soon).",
+                  image: whyChooseUs4,
+                  alt: "Carrier representative on a call in their office"
+                },
+                {
+                  title: "U.S. coverage",
+                  text: "We are working for every type of need — OTR, local, regional, lanes, spot-bid, day cabs. You name it, and we will find a driver to do it!",
+                  image: whyChooseUs5,
+                  alt: "Map of the United States showing nationwide coverage"
+                }
+              ].map((card, index) => (
+                <div 
+                  key={index} 
+                  className="flex flex-col min-w-0 overflow-hidden rounded-xl bg-card border border-border shadow-md min-h-full"
+                >
+                  <div className="p-6">
+                    <h3 className="font-semibold mb-3" style={{ fontSize: 'clamp(1.25rem, 1.1vw + 1rem, 1.75rem)' }}>
+                      {card.title}
+                    </h3>
+                    <p 
+                      className="text-muted-foreground leading-relaxed" 
+                      style={{ fontSize: 'clamp(0.95rem, 0.6vw + 0.8rem, 1.05rem)' }}
+                    >
+                      {card.text}
+                    </p>
+                  </div>
+                  
+                  <div className="w-full mt-auto" style={{ aspectRatio: '16/9' }}>
+                    <img 
+                      src={card.image} 
+                      alt={card.alt}
+                      className="w-full h-full object-cover block"
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
