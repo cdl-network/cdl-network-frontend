@@ -130,7 +130,7 @@ const Index = () => {
                   {[
                     {
                       title: "Personalized approach",
-                      text: "Each driver and carrier pairing is handled individually, not through automation or a script. You tell us exactly what you want, and we deliver it, or give our best options for you to consider.",
+                      text: "Each driver and carrier pairing is handled individually, not through automation or a script. You tell us your requirements, and we deliver!",
                       image: whyChooseUs1,
                       alt: "Two professionals shaking hands near a red truck"
                     },
@@ -177,10 +177,10 @@ const Index = () => {
                           transformStyle: 'preserve-3d',
                           transformOrigin: 'center',
                           transform: index === current ? 'translateZ(0) scale(1.02)' : 'translateZ(0) scale(1.0)',
-                          minHeight: 'clamp(360px, 44vh, 420px)'
+                          height: 'clamp(360px, 44vh, 420px)'
                         }}
                       >
-                        <div className="p-6 flex-shrink-0">
+                        <div className="p-6 flex-shrink-0 flex-1 flex flex-col">
                           <h3 className="font-semibold mb-3" style={{ fontSize: 'clamp(1.25rem, 1.1vw + 1rem, 1.75rem)' }}>
                             {card.title}
                           </h3>
