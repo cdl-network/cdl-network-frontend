@@ -11,6 +11,11 @@ import { useNavigate } from "react-router-dom";
 import heroMainImage from "@/assets/hero-main.jpeg";
 import supportImage from "@/assets/hero-main-3.webp";
 import driversForDriversImage from "@/assets/drivers-for-drivers.jpeg";
+import dryVanImage from "@/assets/dry-van.jpg";
+import reeferImage from "@/assets/reefer.jpg";
+import flatbedImage from "@/assets/flatbed.webp";
+import powerOnlyImage from "@/assets/power-only.jpg";
+import boxTruckImage from "@/assets/box-truck.jpg";
 
 const Index = () => {
   const { toast } = useToast();
@@ -149,12 +154,12 @@ const Index = () => {
         {/* Who We Serve */}
         <section className="py-16 px-4 bg-muted/30">
           <div className="container mx-auto max-w-6xl">
-            <h2 className="text-3xl font-bold text-foreground mb-12 text-center">Who We Serve</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-12 text-center">We proudly serve</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="bg-card border border-border rounded-lg overflow-hidden">
                 <div className="h-48 bg-cover bg-center" style={{ backgroundImage: `url(${driversForDriversImage})` }}></div>
                 <div className="p-6">
-                  <h3 className="text-2xl font-semibold mb-3">For Drivers</h3>
+                  <h3 className="text-2xl font-semibold mb-3">Drivers</h3>
                   <p className="text-muted-foreground mb-4">
                     CDL-A drivers seeking better opportunities with companies that value their skills and respect their preferences.
                   </p>
@@ -166,7 +171,7 @@ const Index = () => {
               <div className="bg-card border border-border rounded-lg overflow-hidden">
                 <div className="h-48 bg-cover bg-center" style={{ backgroundImage: `url(${supportImage})` }}></div>
                 <div className="p-6">
-                  <h3 className="text-2xl font-semibold mb-3">For Carriers</h3>
+                  <h3 className="text-2xl font-semibold mb-3">Carriers</h3>
                   <p className="text-muted-foreground mb-4">
                     U.S. carriers looking for reliable, pre-screened CDL-A drivers who fit their operation and culture.
                   </p>
@@ -179,8 +184,71 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Contact Form */}
+        {/* What Our Drivers and Carriers Run */}
         <section className="py-16 px-4">
+          <div className="container mx-auto max-w-6xl">
+            <h2 className="text-3xl font-bold text-foreground mb-12 text-center">What our drivers and carriers run</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {/* Dry Van */}
+              <div className="bg-card border border-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
+                <div className="h-48 bg-cover bg-center" style={{ backgroundImage: `url(${dryVanImage})` }}></div>
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold mb-2">Dry Van</h3>
+                  <p className="text-muted-foreground text-sm">
+                    Reliable year-round freight for 53′ vans — we hire experienced drivers and partner with carriers who keep America supplied.
+                  </p>
+                </div>
+              </div>
+
+              {/* Reefer */}
+              <div className="bg-card border border-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
+                <div className="h-48 bg-cover bg-center" style={{ backgroundImage: `url(${reeferImage})` }}></div>
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold mb-2">Reefer</h3>
+                  <p className="text-muted-foreground text-sm">
+                    Temperature-controlled freight across the U.S. — connecting reefer carriers and drivers who handle time-sensitive loads.
+                  </p>
+                </div>
+              </div>
+
+              {/* Flatbed */}
+              <div className="bg-card border border-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
+                <div className="h-48 bg-cover bg-center" style={{ backgroundImage: `url(${flatbedImage})` }}></div>
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold mb-2">Flatbed</h3>
+                  <p className="text-muted-foreground text-sm">
+                    Open-deck specialists wanted — from step decks to RGN trailers, we match skilled drivers with dependable flatbed carriers.
+                  </p>
+                </div>
+              </div>
+
+              {/* Power Only */}
+              <div className="bg-card border border-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
+                <div className="h-48 bg-cover bg-center" style={{ backgroundImage: `url(${powerOnlyImage})` }}></div>
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold mb-2">Power Only</h3>
+                  <p className="text-muted-foreground text-sm">
+                    For owner-operators running tractors only — we connect them with carriers and brokers needing power-only coverage.
+                  </p>
+                </div>
+              </div>
+
+              {/* Box Truck */}
+              <div className="bg-card border border-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
+                <div className="h-48 bg-cover bg-center" style={{ backgroundImage: `url(${boxTruckImage})` }}></div>
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold mb-2">Box Truck</h3>
+                  <p className="text-muted-foreground text-sm">
+                    From box trucks to Sprinter and cargo vans — we recruit reliable drivers and partner with carriers running local and regional routes.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Contact Form */}
+        <section className="py-16 px-4 bg-muted/30">
           <div className="container mx-auto max-w-2xl">
             <h2 className="text-3xl font-bold text-foreground mb-4 text-center">Get in Touch</h2>
             <p className="text-center text-muted-foreground mb-8">
