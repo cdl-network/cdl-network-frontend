@@ -101,11 +101,11 @@ const Index = () => {
         </section>
 
         {/* Why Choose Us */}
-        <section className="py-16 px-4 bg-secondary/30 overflow-hidden" role="region" aria-label="Why choose us carousel">
+        <section className="py-16 px-4 bg-secondary/30" role="region" aria-label="Why choose us carousel">
           <div className="container mx-auto max-w-7xl">
             <h2 className="text-3xl font-bold text-foreground mb-12 text-center">Why choose us</h2>
             
-            <div className="relative">
+            <div className="relative isolation-isolate">
               {/* Radial gradient backdrop for center emphasis */}
               <div className="absolute inset-0 pointer-events-none">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl"></div>
@@ -124,9 +124,9 @@ const Index = () => {
                     stopOnMouseEnter: true,
                   }),
                 ]}
-                className="w-full relative"
+                className="w-full relative overflow-y-visible py-[14px]"
               >
-                <CarouselContent className="-ml-6">
+                <CarouselContent className="-ml-6 overflow-visible">
                   {[
                     {
                       title: "Personalized approach",
@@ -161,36 +161,48 @@ const Index = () => {
                   ].map((card, index) => (
                     <CarouselItem 
                       key={index} 
-                      className="pl-6 basis-[calc(100%-32px)] sm:basis-[calc(50%-32px)] lg:basis-[calc(33.333%-32px)]"
+                      className="pl-6 basis-[calc(100%-32px)] sm:basis-[calc(50%-32px)] lg:basis-[calc(33.333%-32px)] overflow-visible relative"
                       role="group"
                       aria-roledescription="slide"
                       aria-label={`${index + 1} of 5`}
+                      style={{ zIndex: index === current ? 10 : 0 }}
                     >
                       <div 
-                        className={`flex flex-col justify-between rounded-xl bg-card border border-border transition-all duration-500 ease-out h-[420px] sm:h-[480px] lg:h-[560px] hover:scale-[1.02] hover:shadow-[0_8px_20px_rgba(0,0,0,0.1)] ${
+                        className={`flex flex-col justify-between rounded-xl bg-card border border-border transition-all duration-[250ms] ease-out hover:shadow-[0_8px_20px_rgba(0,0,0,0.1)] ${
                           index === current 
-                            ? 'scale-105 shadow-[0_24px_48px_rgba(0,0,0,0.12)]' 
-                            : 'scale-100 shadow-md'
+                            ? 'shadow-[0_16px_32px_rgba(0,0,0,0.12)]' 
+                            : 'shadow-md'
                         }`}
-                        style={{ transformStyle: 'preserve-3d', transform: index === current ? 'translateZ(0) scale(1.05)' : 'translateZ(0) scale(1.0)' }}
+                        style={{ 
+                          transformStyle: 'preserve-3d',
+                          transformOrigin: 'center',
+                          transform: index === current ? 'translateZ(0) scale(1.02)' : 'translateZ(0) scale(1.0)',
+                          minHeight: 'clamp(360px, 44vh, 420px)'
+                        }}
                       >
                         <div className="p-6 flex-shrink-0">
                           <h3 className="font-semibold mb-3" style={{ fontSize: 'clamp(1.25rem, 1.1vw + 1rem, 1.75rem)' }}>
                             {card.title}
                           </h3>
                           <p 
-                            className="text-muted-foreground leading-relaxed" 
-                            style={{ fontSize: 'clamp(0.95rem, 0.6vw + 0.8rem, 1.05rem)' }}
+                            className="text-muted-foreground leading-relaxed overflow-hidden"
+                            style={{ 
+                              fontSize: 'clamp(0.95rem, 0.6vw + 0.8rem, 1.05rem)',
+                              display: '-webkit-box',
+                              WebkitLineClamp: 5,
+                              WebkitBoxOrient: 'vertical'
+                            }}
                           >
                             {card.text}
                           </p>
                         </div>
                         
-                        <div className="w-full overflow-hidden rounded-b-xl" style={{ aspectRatio: '16/9' }}>
+                        <div className="w-full overflow-hidden rounded-b-xl max-h-[200px]" style={{ aspectRatio: '16/9' }}>
                           <img 
                             src={card.image} 
                             alt={card.alt}
                             className="w-full h-full object-cover block"
+                            style={{ borderRadius: '12px' }}
                           />
                         </div>
                       </div>
