@@ -295,6 +295,12 @@ const Index = () => {
                 <Button type="submit" className="w-full transition-all hover:scale-[1.02]">
                   Send Message
                 </Button>
+
+                <div className="pt-3 border-t border-border/50 mt-3">
+                  <p className="text-xs text-muted-foreground leading-relaxed" aria-live="off">
+                    By submitting this form, you consent to the processing and secure storage of your information in accordance with our privacy policy. Your details will only be used to respond to your inquiry.
+                  </p>
+                </div>
               </form>
 
               {/* Contact Image */}
