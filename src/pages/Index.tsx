@@ -16,6 +16,7 @@ import reeferImage from "@/assets/reefer.jpg";
 import flatbedImage from "@/assets/flatbed.webp";
 import powerOnlyImage from "@/assets/power-only.jpg";
 import boxTruckImage from "@/assets/box-truck.jpg";
+import contactUsImage from "@/assets/contact-us.jpg";
 
 const Index = () => {
   const { toast } = useToast();
@@ -249,50 +250,62 @@ const Index = () => {
 
         {/* Contact Form */}
         <section className="py-16 px-4 bg-muted/30">
-          <div className="container mx-auto max-w-2xl">
-            <h2 className="text-3xl font-bold text-foreground mb-4 text-center">Get in Touch</h2>
-            <p className="text-center text-muted-foreground mb-8">
-              Have questions? We're here to help.
+          <div className="container mx-auto max-w-6xl">
+            <h2 className="text-3xl font-bold text-foreground mb-2 text-center">Get in touch</h2>
+            <p className="text-center text-muted-foreground mb-12">
+              We reply within 24 hours.
             </p>
             
-            <form onSubmit={handleSubmit} className="space-y-6 bg-card border border-border rounded-lg p-6">
-              <div className="space-y-2">
-                <Label htmlFor="name">Name *</Label>
-                <Input 
-                  id="name" 
-                  required 
-                  value={formData.name}
-                  onChange={(e) => setFormData({...formData, name: e.target.value})}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+              {/* Contact Form */}
+              <form onSubmit={handleSubmit} className="space-y-6 bg-card border border-border rounded-lg p-8 shadow-sm">
+                <div className="space-y-2">
+                  <Label htmlFor="name">Name *</Label>
+                  <Input 
+                    id="name" 
+                    required 
+                    value={formData.name}
+                    onChange={(e) => setFormData({...formData, name: e.target.value})}
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="email">Email *</Label>
+                  <Input 
+                    id="email" 
+                    type="email" 
+                    required 
+                    value={formData.email}
+                    onChange={(e) => setFormData({...formData, email: e.target.value})}
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="message">Message *</Label>
+                  <Textarea 
+                    id="message" 
+                    required
+                    placeholder="Your message..."
+                    value={formData.message}
+                    onChange={(e) => setFormData({...formData, message: e.target.value})}
+                    rows={4}
+                  />
+                </div>
+
+                <Button type="submit" className="w-full transition-all hover:scale-[1.02]">
+                  Send Message
+                </Button>
+              </form>
+
+              {/* Contact Image */}
+              <div className="lg:order-last order-first">
+                <img 
+                  src={contactUsImage} 
+                  alt="Truck driver talking to a worker beside the rig"
+                  className="w-full h-full object-cover rounded-lg shadow-md aspect-[4/5]"
                 />
               </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="email">Email *</Label>
-                <Input 
-                  id="email" 
-                  type="email" 
-                  required 
-                  value={formData.email}
-                  onChange={(e) => setFormData({...formData, email: e.target.value})}
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="message">Message *</Label>
-                <Textarea 
-                  id="message" 
-                  required
-                  placeholder="Your message..."
-                  value={formData.message}
-                  onChange={(e) => setFormData({...formData, message: e.target.value})}
-                  rows={4}
-                />
-              </div>
-
-              <Button type="submit" className="w-full">
-                Send Message
-              </Button>
-            </form>
+            </div>
           </div>
         </section>
       </main>
