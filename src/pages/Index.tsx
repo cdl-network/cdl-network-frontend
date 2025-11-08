@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -6,8 +6,15 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  type CarouselApi,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 import heroMainImage from "@/assets/hero-main.jpeg";
 import supportImage from "@/assets/hero-main-3.webp";
 import driversForDriversImage from "@/assets/drivers-for-drivers.jpeg";
@@ -31,6 +38,20 @@ const Index = () => {
     email: "",
     message: "",
   });
+  const [carouselApi, setCarouselApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!carouselApi) return;
+
+    setCount(carouselApi.scrollSnapList().length);
+    setCurrent(carouselApi.selectedScrollSnap());
+
+    carouselApi.on("select", () => {
+      setCurrent(carouselApi.selectedScrollSnap());
+    });
+  }, [carouselApi]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -80,68 +101,140 @@ const Index = () => {
         </section>
 
         {/* Why Choose Us */}
-        <section className="py-16 px-4 bg-secondary/30">
+        <section className="py-16 px-4 bg-secondary/30 overflow-hidden" role="region" aria-label="Why choose us carousel">
           <div className="container mx-auto max-w-7xl">
             <h2 className="text-3xl font-bold text-foreground mb-12 text-center">Why choose us</h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-[1280px] mx-auto items-stretch">
-              {[
-                {
-                  title: "Personalized approach",
-                  text: "Each driver and carrier pairing is handled individually, not through automation or a script. You tell us exactly what you want, and we deliver it, or give our best options for you to consider.",
-                  image: whyChooseUs1,
-                  alt: "Two professionals shaking hands near a red truck"
-                },
-                {
-                  title: "Dedication",
-                  text: "Every driver and every carrier get their own recruiter who follows through until onboarding. We won't give up on challenging tasks and niche placements.",
-                  image: whyChooseUs2,
-                  alt: "Recruiter and driver reviewing documents together"
-                },
-                {
-                  title: "Drivers testimonials",
-                  text: "92% of placed drivers say they'd work with us again. Here are their testimonials (coming soon).",
-                  image: whyChooseUs3,
-                  alt: "Happy truck driver in the cab of their truck"
-                },
-                {
-                  title: "Carriers feedback",
-                  text: "Most of our carrier-partners work with us on multiple occasions. Here's what they say about us (coming soon).",
-                  image: whyChooseUs4,
-                  alt: "Carrier representative on a call in their office"
-                },
-                {
-                  title: "U.S. coverage",
-                  text: "We are working for every type of need — OTR, local, regional, lanes, spot-bid, day cabs. You name it, and we will find a driver to do it!",
-                  image: whyChooseUs5,
-                  alt: "Map of the United States showing nationwide coverage"
-                }
-              ].map((card, index) => (
-                <div 
-                  key={index} 
-                  className="flex flex-col min-w-0 overflow-hidden rounded-xl bg-card border border-border shadow-md min-h-full"
-                >
-                  <div className="p-6">
-                    <h3 className="font-semibold mb-3" style={{ fontSize: 'clamp(1.25rem, 1.1vw + 1rem, 1.75rem)' }}>
-                      {card.title}
-                    </h3>
-                    <p 
-                      className="text-muted-foreground leading-relaxed" 
-                      style={{ fontSize: 'clamp(0.95rem, 0.6vw + 0.8rem, 1.05rem)' }}
+            <div className="relative">
+              {/* Radial gradient backdrop for center emphasis */}
+              <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl"></div>
+              </div>
+
+              <Carousel
+                setApi={setCarouselApi}
+                opts={{
+                  align: "center",
+                  loop: true,
+                }}
+                plugins={[
+                  Autoplay({
+                    delay: 4000,
+                    stopOnInteraction: true,
+                    stopOnMouseEnter: true,
+                  }),
+                ]}
+                className="w-full relative"
+              >
+                <CarouselContent className="-ml-6">
+                  {[
+                    {
+                      title: "Personalized approach",
+                      text: "Each driver and carrier pairing is handled individually, not through automation or a script. You tell us exactly what you want, and we deliver it, or give our best options for you to consider.",
+                      image: whyChooseUs1,
+                      alt: "Two professionals shaking hands near a red truck"
+                    },
+                    {
+                      title: "Dedication",
+                      text: "Every driver and every carrier get their own recruiter who follows through until onboarding. We won't give up on challenging tasks and niche placements.",
+                      image: whyChooseUs2,
+                      alt: "Recruiter and driver reviewing documents together"
+                    },
+                    {
+                      title: "Drivers testimonials",
+                      text: "92% of placed drivers say they'd work with us again. Here are their testimonials (coming soon).",
+                      image: whyChooseUs3,
+                      alt: "Happy truck driver in the cab of their truck"
+                    },
+                    {
+                      title: "Carriers feedback",
+                      text: "Most of our carrier-partners work with us on multiple occasions. Here's what they say about us (coming soon).",
+                      image: whyChooseUs4,
+                      alt: "Carrier representative on a call in their office"
+                    },
+                    {
+                      title: "U.S. coverage",
+                      text: "We are working for every type of need — OTR, local, regional, lanes, spot-bid, day cabs. You name it, and we will find a driver to do it!",
+                      image: whyChooseUs5,
+                      alt: "Map of the United States showing nationwide coverage"
+                    }
+                  ].map((card, index) => (
+                    <CarouselItem 
+                      key={index} 
+                      className="pl-6 basis-[calc(100%-32px)] sm:basis-[calc(50%-32px)] lg:basis-[calc(33.333%-32px)]"
+                      role="group"
+                      aria-roledescription="slide"
+                      aria-label={`${index + 1} of 5`}
                     >
-                      {card.text}
-                    </p>
-                  </div>
-                  
-                  <div className="w-full mt-auto" style={{ aspectRatio: '16/9' }}>
-                    <img 
-                      src={card.image} 
-                      alt={card.alt}
-                      className="w-full h-full object-cover block"
+                      <div 
+                        className={`flex flex-col min-w-0 overflow-hidden rounded-xl bg-card border border-border transition-all duration-500 ease-out ${
+                          index === current 
+                            ? 'scale-105 shadow-[0_24px_48px_rgba(0,0,0,0.12)]' 
+                            : 'scale-100 shadow-md'
+                        }`}
+                        style={{ transformStyle: 'preserve-3d', transform: index === current ? 'translateZ(0) scale(1.05)' : 'translateZ(0) scale(1.0)' }}
+                      >
+                        <div className="p-6">
+                          <h3 className="font-semibold mb-3" style={{ fontSize: 'clamp(1.25rem, 1.1vw + 1rem, 1.75rem)' }}>
+                            {card.title}
+                          </h3>
+                          <p 
+                            className="text-muted-foreground leading-relaxed" 
+                            style={{ fontSize: 'clamp(0.95rem, 0.6vw + 0.8rem, 1.05rem)' }}
+                          >
+                            {card.text}
+                          </p>
+                        </div>
+                        
+                        <div className="w-full mt-auto rounded-xl overflow-hidden" style={{ aspectRatio: '16/9' }}>
+                          <img 
+                            src={card.image} 
+                            alt={card.alt}
+                            className="w-full h-full object-cover block"
+                          />
+                        </div>
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+
+                {/* Navigation Arrows */}
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm hover:bg-background"
+                  onClick={() => carouselApi?.scrollPrev()}
+                  aria-label="Previous slide"
+                >
+                  <ChevronLeft className="h-6 w-6" />
+                </Button>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm hover:bg-background"
+                  onClick={() => carouselApi?.scrollNext()}
+                  aria-label="Next slide"
+                >
+                  <ChevronRight className="h-6 w-6" />
+                </Button>
+
+                {/* Dots Navigation */}
+                <div className="flex justify-center gap-2 mt-8">
+                  {Array.from({ length: count }).map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => carouselApi?.scrollTo(index)}
+                      className={`h-2 rounded-full transition-all duration-300 ${
+                        index === current 
+                          ? 'w-8 bg-primary' 
+                          : 'w-2 bg-primary/30 hover:bg-primary/50'
+                      }`}
+                      aria-label={`Go to slide ${index + 1}`}
+                      aria-current={index === current ? 'true' : 'false'}
                     />
-                  </div>
+                  ))}
                 </div>
-              ))}
+              </Carousel>
             </div>
           </div>
         </section>
