@@ -6,7 +6,7 @@ const Navigation = () => {
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           <NavLink to="/" className="text-xl font-bold text-foreground hover:text-primary transition-colors">
-            Hire Drivers LLC
+            CDL Network
           </NavLink>
           
           <div className="flex gap-6">

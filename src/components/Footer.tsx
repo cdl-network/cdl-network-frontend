@@ -62,7 +62,7 @@ const Footer = () => {
       <div className="bg-background py-6">
         <div className="container mx-auto px-4">
           <p className="text-center text-sm text-muted-foreground">
-            © 2026 Hire Drivers LLC. Proudly connecting CDL-A drivers with carriers across the U.S.
+            © 2026 CDL Network LLC. Proudly connecting CDL-A drivers with carriers across the U.S.
           </p>
         </div>
       </div>

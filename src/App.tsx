@@ -7,6 +7,8 @@ import Index from "./pages/Index";
 import Drivers from "./pages/Drivers";
 import Carriers from "./pages/Carriers";
 import Contact from "./pages/Contact";
+import TermsOfUse from "./pages/TermsOfUse";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,6 +24,8 @@ const App = () => (
           <Route path="/drivers" element={<Drivers />} />
           <Route path="/carriers" element={<Carriers />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/terms" element={<TermsOfUse />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
