@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import driversHeroImage from "@/assets/drivers-hero.jpg";
@@ -21,7 +22,7 @@ const Drivers = () => {
     region: "",
     availability: "",
     truckType: "",
-    referral: "",
+    notes: "",
   });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -185,12 +186,12 @@ const Drivers = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="referral">How did you hear about us?</Label>
-                <Input 
-                  id="referral" 
-                  placeholder="e.g., Job board, Friend, Online search"
-                  value={formData.referral}
-                  onChange={(e) => setFormData({...formData, referral: e.target.value})}
+                <Label htmlFor="notes">Additional notes or special requirements</Label>
+                <Textarea 
+                  id="notes" 
+                  placeholder="e.g., home every weekend, I'm in SAP, team driver, specific regions, etc."
+                  value={formData.notes}
+                  onChange={(e) => setFormData({...formData, notes: e.target.value})}
                 />
               </div>
 
