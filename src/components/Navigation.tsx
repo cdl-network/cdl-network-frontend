@@ -13,7 +13,7 @@ const Navigation = () => {
               <img 
                 src={logo} 
                 alt="CDL Network" 
-                className="h-auto w-full max-w-[72%] xs:max-w-[68%] sm:max-w-[60%] object-contain"
+                className="h-auto max-w-[72%] xs:max-w-[68%] sm:max-w-[60%] object-contain mx-auto"
                 style={{ imageRendering: 'auto' }}
               />
             </NavLink>
