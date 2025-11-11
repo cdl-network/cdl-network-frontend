@@ -7,7 +7,7 @@ const Navigation = () => {
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           <NavLink to="/" className="flex items-center hover:opacity-80 transition-opacity">
-            <img src={logo} alt="CDL Network" className="h-8 md:h-10" />
+            <img src={logo} alt="CDL Network" className="h-6 sm:h-8 md:h-10" />
           </NavLink>
           
           <div className="flex gap-6">
