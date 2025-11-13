@@ -13,22 +13,62 @@ import carriersImage from "@/assets/carriers-1.jpg";
 const Carriers = () => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
-    name: "",
-    company: "",
+    contact_name: "",
+    company_name: "",
     phone: "",
     email: "",
-    fleetSize: "",
-    laneType: "",
-    hiringNeeds: "",
+    fleet_size: "",
+    lane_type: "",
+    hiring_needs: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{ type: 'success' | 'error', message: string } | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Inquiry Submitted",
-      description: "We'll connect you with qualified drivers soon.",
-    });
-    console.log("Carrier inquiry:", formData);
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      const payload = {
+        lead_type: "carrier",
+        contact_name: formData.contact_name,
+        company_name: formData.company_name,
+        phone: formData.phone,
+        email: formData.email,
+        fleet_size: formData.fleet_size,
+        lane_type: formData.lane_type,
+        hiring_needs: formData.hiring_needs,
+      };
+
+      const response = await fetch('https://cdlnetworkllc.vercel.app/api/lead', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (response.ok) {
+        setSubmitStatus({ type: 'success', message: "Thank you, we'll reach out shortly!" });
+        setFormData({
+          contact_name: "",
+          company_name: "",
+          phone: "",
+          email: "",
+          fleet_size: "",
+          lane_type: "",
+          hiring_needs: "",
+        });
+      } else {
+        throw new Error('Server returned non-200 response');
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setSubmitStatus({ type: 'error', message: "Something went wrong, please try again later." });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -72,24 +112,32 @@ const Carriers = () => {
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6 bg-card border border-border rounded-lg p-8 shadow-sm">
+              {submitStatus && (
+                <div className={`p-4 rounded-md ${submitStatus.type === 'success' ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'}`}>
+                  {submitStatus.message}
+                </div>
+              )}
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <Label htmlFor="name">Contact Name *</Label>
                   <Input 
-                    id="name" 
+                    id="name"
+                    name="contact_name"
                     required 
-                    value={formData.name}
-                    onChange={(e) => setFormData({...formData, name: e.target.value})}
+                    value={formData.contact_name}
+                    onChange={(e) => setFormData({...formData, contact_name: e.target.value})}
                   />
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="company">Company Name *</Label>
                   <Input 
-                    id="company" 
+                    id="company"
+                    name="company_name"
                     required 
-                    value={formData.company}
-                    onChange={(e) => setFormData({...formData, company: e.target.value})}
+                    value={formData.company_name}
+                    onChange={(e) => setFormData({...formData, company_name: e.target.value})}
                   />
                 </div>
               </div>
@@ -98,7 +146,8 @@ const Carriers = () => {
                 <div className="space-y-2">
                   <Label htmlFor="phone">Phone *</Label>
                   <Input 
-                    id="phone" 
+                    id="phone"
+                    name="phone"
                     type="tel" 
                     required 
                     value={formData.phone}
@@ -109,7 +158,8 @@ const Carriers = () => {
                 <div className="space-y-2">
                   <Label htmlFor="email">Email *</Label>
                   <Input 
-                    id="email" 
+                    id="email"
+                    name="email"
                     type="email" 
                     required 
                     value={formData.email}
@@ -121,15 +171,15 @@ const Carriers = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <Label htmlFor="fleetSize">Fleet Size *</Label>
-                  <Select value={formData.fleetSize} onValueChange={(value) => setFormData({...formData, fleetSize: value})}>
+                  <Select name="fleet_size" value={formData.fleet_size} onValueChange={(value) => setFormData({...formData, fleet_size: value})} required>
                     <SelectTrigger id="fleetSize">
                       <SelectValue placeholder="Select" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="1-10">1-10 trucks</SelectItem>
-                      <SelectItem value="11-50">11-50 trucks</SelectItem>
-                      <SelectItem value="51-200">51-200 trucks</SelectItem>
-                      <SelectItem value="200+">200+ trucks</SelectItem>
+                      <SelectItem value="1_10_trucks">1-10 trucks</SelectItem>
+                      <SelectItem value="11_50_trucks">11-50 trucks</SelectItem>
+                      <SelectItem value="51_200_trucks">51-200 trucks</SelectItem>
+                      <SelectItem value="200_plus_trucks">200+ trucks</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -137,10 +187,11 @@ const Carriers = () => {
                 <div className="space-y-2">
                   <Label htmlFor="laneType">Lane Type</Label>
                   <Input 
-                    id="laneType" 
+                    id="laneType"
+                    name="lane_type"
                     placeholder="e.g., Regional, OTR, Dedicated"
-                    value={formData.laneType}
-                    onChange={(e) => setFormData({...formData, laneType: e.target.value})}
+                    value={formData.lane_type}
+                    onChange={(e) => setFormData({...formData, lane_type: e.target.value})}
                   />
                 </div>
               </div>
@@ -148,17 +199,18 @@ const Carriers = () => {
               <div className="space-y-2">
                 <Label htmlFor="hiringNeeds">Hiring Needs *</Label>
                 <Textarea 
-                  id="hiringNeeds" 
+                  id="hiringNeeds"
+                  name="hiring_needs"
                   required
                   placeholder="Tell us about your current hiring needs, number of drivers, experience requirements, etc."
-                  value={formData.hiringNeeds}
-                  onChange={(e) => setFormData({...formData, hiringNeeds: e.target.value})}
+                  value={formData.hiring_needs}
+                  onChange={(e) => setFormData({...formData, hiring_needs: e.target.value})}
                   rows={4}
                 />
               </div>
 
-              <Button type="submit" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">
-                Get Drivers
+              <Button type="submit" disabled={isSubmitting} className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">
+                {isSubmitting ? "Submitting..." : "Get Drivers"}
               </Button>
             </form>
           </div>

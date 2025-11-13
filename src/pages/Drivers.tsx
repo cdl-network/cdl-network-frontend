@@ -13,25 +13,71 @@ import driversImage1 from "@/assets/drivers-1.jpg";
 const Drivers = () => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
-    name: "",
+    full_name: "",
     phone: "",
     email: "",
-    cdla: "",
+    cdl_class: "",
     state: "",
-    experience: "",
-    region: "",
+    years_exp: "",
+    preferred_region: "",
     availability: "",
-    truckType: "",
+    truck_type_preference: "",
     notes: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{ type: 'success' | 'error', message: string } | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Application Submitted",
-      description: "We'll review your application and get back to you soon.",
-    });
-    console.log("Driver application:", formData);
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      const payload = {
+        lead_type: "driver",
+        full_name: formData.full_name,
+        phone: formData.phone,
+        email: formData.email,
+        cdl_class: formData.cdl_class,
+        state: formData.state,
+        years_exp: formData.years_exp ? parseInt(formData.years_exp) : 0,
+        availability: formData.availability,
+        preferred_region: formData.preferred_region,
+        truck_type_preference: formData.truck_type_preference,
+        notes: formData.notes,
+      };
+
+      const response = await fetch('https://cdlnetworkllc.vercel.app/api/lead', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (response.ok) {
+        setSubmitStatus({ type: 'success', message: "Thank you, we'll reach out shortly!" });
+        setFormData({
+          full_name: "",
+          phone: "",
+          email: "",
+          cdl_class: "",
+          state: "",
+          years_exp: "",
+          preferred_region: "",
+          availability: "",
+          truck_type_preference: "",
+          notes: "",
+        });
+      } else {
+        throw new Error('Server returned non-200 response');
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setSubmitStatus({ type: 'error', message: "Something went wrong, please try again later." });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -75,21 +121,29 @@ const Drivers = () => {
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6 bg-card border border-border rounded-lg p-8 shadow-sm">
+              {submitStatus && (
+                <div className={`p-4 rounded-md ${submitStatus.type === 'success' ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'}`}>
+                  {submitStatus.message}
+                </div>
+              )}
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <Label htmlFor="name">Full Name *</Label>
                   <Input 
-                    id="name" 
+                    id="name"
+                    name="full_name"
                     required 
-                    value={formData.name}
-                    onChange={(e) => setFormData({...formData, name: e.target.value})}
+                    value={formData.full_name}
+                    onChange={(e) => setFormData({...formData, full_name: e.target.value})}
                   />
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="phone">Phone *</Label>
                   <Input 
-                    id="phone" 
+                    id="phone"
+                    name="phone"
                     type="tel" 
                     required 
                     value={formData.phone}
@@ -102,7 +156,8 @@ const Drivers = () => {
                 <div className="space-y-2">
                   <Label htmlFor="email">Email *</Label>
                   <Input 
-                    id="email" 
+                    id="email"
+                    name="email"
                     type="email" 
                     required 
                     value={formData.email}
@@ -112,7 +167,7 @@ const Drivers = () => {
 
                 <div className="space-y-2">
                   <Label htmlFor="cdla">CDL-A License *</Label>
-                  <Select value={formData.cdla} onValueChange={(value) => setFormData({...formData, cdla: value})}>
+                  <Select name="cdl_class" value={formData.cdl_class} onValueChange={(value) => setFormData({...formData, cdl_class: value})} required>
                     <SelectTrigger id="cdla">
                       <SelectValue placeholder="Select" />
                     </SelectTrigger>
@@ -128,7 +183,8 @@ const Drivers = () => {
                 <div className="space-y-2">
                   <Label htmlFor="state">State *</Label>
                   <Input 
-                    id="state" 
+                    id="state"
+                    name="state"
                     required 
                     placeholder="e.g., CA, TX, FL"
                     value={formData.state}
@@ -139,12 +195,13 @@ const Drivers = () => {
                 <div className="space-y-2">
                   <Label htmlFor="experience">Years of Experience *</Label>
                   <Input 
-                    id="experience" 
+                    id="experience"
+                    name="years_exp"
                     type="number" 
                     required 
                     min="0"
-                    value={formData.experience}
-                    onChange={(e) => setFormData({...formData, experience: e.target.value})}
+                    value={formData.years_exp}
+                    onChange={(e) => setFormData({...formData, years_exp: e.target.value})}
                   />
                 </div>
               </div>
@@ -152,24 +209,25 @@ const Drivers = () => {
               <div className="space-y-2">
                 <Label htmlFor="region">Preferred Region</Label>
                 <Input 
-                  id="region" 
+                  id="region"
+                  name="preferred_region"
                   placeholder="e.g., West Coast, Midwest, National"
-                  value={formData.region}
-                  onChange={(e) => setFormData({...formData, region: e.target.value})}
+                  value={formData.preferred_region}
+                  onChange={(e) => setFormData({...formData, preferred_region: e.target.value})}
                 />
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <Label htmlFor="availability">Availability</Label>
-                  <Select value={formData.availability} onValueChange={(value) => setFormData({...formData, availability: value})}>
+                  <Select name="availability" value={formData.availability} onValueChange={(value) => setFormData({...formData, availability: value})}>
                     <SelectTrigger id="availability">
                       <SelectValue placeholder="Select" />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="immediate">Immediate</SelectItem>
-                      <SelectItem value="2weeks">2 Weeks</SelectItem>
-                      <SelectItem value="1month">1 Month</SelectItem>
+                      <SelectItem value="2_weeks">2 Weeks</SelectItem>
+                      <SelectItem value="1_month">1 Month</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -177,10 +235,11 @@ const Drivers = () => {
                 <div className="space-y-2">
                   <Label htmlFor="truckType">Truck Type Preference</Label>
                   <Input 
-                    id="truckType" 
+                    id="truckType"
+                    name="truck_type_preference"
                     placeholder="e.g., Dry van, Flatbed, Reefer"
-                    value={formData.truckType}
-                    onChange={(e) => setFormData({...formData, truckType: e.target.value})}
+                    value={formData.truck_type_preference}
+                    onChange={(e) => setFormData({...formData, truck_type_preference: e.target.value})}
                   />
                 </div>
               </div>
@@ -188,15 +247,16 @@ const Drivers = () => {
               <div className="space-y-2">
                 <Label htmlFor="notes">Additional notes or special requirements</Label>
                 <Textarea 
-                  id="notes" 
+                  id="notes"
+                  name="notes"
                   placeholder="e.g., home every weekend, I'm in SAP, team driver, specific regions, etc."
                   value={formData.notes}
                   onChange={(e) => setFormData({...formData, notes: e.target.value})}
                 />
               </div>
 
-              <Button type="submit" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">
-                Apply
+              <Button type="submit" disabled={isSubmitting} className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">
+                {isSubmitting ? "Submitting..." : "Apply"}
               </Button>
             </form>
           </div>
