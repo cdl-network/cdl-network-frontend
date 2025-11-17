@@ -100,9 +100,9 @@ const Index = () => {
         </section>
 
         {/* Why Choose Us */}
-        <section className="py-16 px-4 bg-secondary/30" role="region" aria-label="Why choose us carousel">
+        <section className="py-8 md:py-16 px-4 bg-secondary/30" role="region" aria-label="Why choose us carousel">
           <div className="container mx-auto max-w-7xl">
-            <h2 className="text-3xl font-bold text-foreground mb-12 text-center">Why choose us</h2>
+            <h2 className="sr-only md:not-sr-only text-3xl font-bold text-foreground mb-6 md:mb-12 text-center">Why choose us</h2>
             
             <div className="relative isolation-isolate">
               {/* Radial gradient backdrop for center emphasis */}
@@ -116,9 +116,9 @@ const Index = () => {
                   align: "center",
                   loop: true,
                 }}
-                className="w-full relative overflow-y-visible py-[14px]"
+                className="w-full relative overflow-y-visible py-2 md:py-[14px]"
               >
-                <CarouselContent className="-ml-4 md:-ml-6 overflow-visible">
+                <CarouselContent className="-ml-2 md:-ml-6 overflow-visible">
                   {[
                     {
                       title: "Personalized approach",
@@ -153,7 +153,7 @@ const Index = () => {
                   ].map((card, index) => (
                     <CarouselItem 
                       key={index} 
-                      className="pl-4 md:pl-6 basis-[90%] sm:basis-[calc(50%-16px)] lg:basis-[calc(33.333%-24px)] overflow-visible relative"
+                      className="pl-2 md:pl-6 basis-[96%] sm:basis-[calc(50%-16px)] lg:basis-[calc(33.333%-24px)] overflow-visible relative"
                       role="group"
                       aria-roledescription="slide"
                       aria-label={`${index + 1} of 5`}
@@ -170,15 +170,15 @@ const Index = () => {
                           transition: 'transform 250ms ease-out, box-shadow 250ms ease-out'
                         }}
                       >
-                        <div className="p-5 md:p-6 flex-1 flex flex-col">
-                          <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3 md:mb-4 leading-tight">
+                        <div className="p-6 md:p-6 flex-1 flex flex-col">
+                          <h3 className="text-2xl md:text-2xl font-bold text-foreground mb-4 md:mb-4 leading-tight">
                             {card.title}
                           </h3>
-                          <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+                          <p className="text-base md:text-base text-muted-foreground leading-relaxed">
                             {card.text}
                           </p>
                         </div>
-                        <div className="w-full overflow-hidden rounded-b-xl max-h-[180px] md:max-h-[200px]" style={{ aspectRatio: '16/9' }}>
+                        <div className="w-full overflow-hidden rounded-b-xl h-[240px] md:max-h-[200px]" style={{ aspectRatio: '16/9' }}>
                           <img 
                             src={card.image} 
                             alt={card.alt}
@@ -195,25 +195,25 @@ const Index = () => {
                 <Button
                   variant="outline"
                   size="icon"
-                  className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-10 bg-background/95 backdrop-blur-sm border-border shadow-md hover:bg-primary hover:text-primary-foreground hover:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 transition-colors"
+                  className="absolute left-4 md:left-4 top-1/2 -translate-y-1/2 z-20 h-10 w-10 md:h-8 md:w-8 bg-background/95 backdrop-blur-sm border-border shadow-md hover:bg-primary hover:text-primary-foreground hover:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 transition-colors"
                   onClick={() => carouselApi?.scrollPrev()}
                   aria-label="Previous slide"
                 >
-                  <ChevronLeft className="h-5 w-5 md:h-6 md:w-6" />
+                  <ChevronLeft className="h-6 w-6 md:h-6 md:w-6" />
                 </Button>
                 <Button
                   variant="outline"
                   size="icon"
-                  className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-10 bg-background/95 backdrop-blur-sm border-border shadow-md hover:bg-primary hover:text-primary-foreground hover:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 transition-colors"
+                  className="absolute right-4 md:right-4 top-1/2 -translate-y-1/2 z-20 h-10 w-10 md:h-8 md:w-8 bg-background/95 backdrop-blur-sm border-border shadow-md hover:bg-primary hover:text-primary-foreground hover:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 transition-colors"
                   onClick={() => carouselApi?.scrollNext()}
                   aria-label="Next slide"
                 >
-                  <ChevronRight className="h-5 w-5 md:h-6 md:w-6" />
+                  <ChevronRight className="h-6 w-6 md:h-6 md:w-6" />
                 </Button>
 
 
                 {/* Dots Navigation */}
-                <div className="flex justify-center gap-2 mt-8">
+                <div className="flex justify-center gap-2.5 md:gap-2 mt-6 md:mt-8">
                   {Array.from({ length: count }).map((_, index) => (
                     <button
                       key={index}
