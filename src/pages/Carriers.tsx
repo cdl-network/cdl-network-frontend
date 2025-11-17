@@ -10,54 +10,6 @@ import { useToast } from "@/hooks/use-toast";
 import carriersHeroImage from "@/assets/carriers-2.jpg";
 import carriersImage from "@/assets/carriers-1.jpg";
 
-type PhoneHintTone = "neutral" | "good" | "bad";
-
-function getPhoneHint(phone: string): { message: string; tone: PhoneHintTone } {
-  const trimmed = phone.trim();
-
-  if (!trimmed) {
-    return {
-      message: "US only. Example: +1 312 555 8899",
-      tone: "neutral",
-    };
-  }
-
-  if (/[A-Za-z]/.test(trimmed)) {
-    return {
-      message: "Looks like there are letters here. We usually expect digits only.",
-      tone: "bad",
-    };
-  }
-
-  const digits = trimmed.replace(/[^\d]/g, ""); // strip spaces, (), -, etc.
-
-  if (digits.length < 10) {
-    return {
-      message: "Please include full 10-digit US number (area code + number).",
-      tone: "bad",
-    };
-  }
-
-  if (digits.length === 10 || (digits.length === 11 && digits.startsWith("1"))) {
-    return {
-      message: "Looks good. We will treat this as a US number.",
-      tone: "good",
-    };
-  }
-
-  if (digits.length > 11) {
-    return {
-      message: "This looks longer than a standard US number. If this is intentional, you can ignore this message.",
-      tone: "neutral",
-    };
-  }
-
-  return {
-    message: "US only. Example: +1 312 555 8899",
-    tone: "neutral",
-  };
-}
-
 const Carriers = () => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
@@ -193,7 +145,7 @@ const Carriers = () => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-1">
+                <div className="space-y-2">
                   <Label htmlFor="phone">Phone *</Label>
                   <Input
                     id="phone"
@@ -202,20 +154,11 @@ const Carriers = () => {
                     inputMode="tel"
                     required
                     placeholder="+1 312 555 8899"
+                    title="Use a US-style number such as: +1 312 555 8899"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   />
-                  {(() => {
-                    const hint = getPhoneHint(formData.phone);
-                    const toneClass =
-                      hint.tone === "good"
-                        ? "text-emerald-600"
-                        : hint.tone === "bad"
-                          ? "text-red-500"
-                          : "text-muted-foreground";
-
-                    return <p className={`text-xs ${toneClass}`}>{hint.message}</p>;
-                  })()}
+                  <p className="text-xs text-muted-foreground">US only. Example: +1 312 555 8899</p>
                 </div>
 
                 <div className="space-y-2">
