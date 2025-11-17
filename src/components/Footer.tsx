@@ -20,9 +20,20 @@ const Footer = () => {
             <div>
               <h4 className="text-lg font-semibold mb-4">Contacts</h4>
               <div className="space-y-2 text-sm text-white/90">
-                <p>Carriers: 1-555-CALLSERHII</p>
-                <p>Drivers: 1-555-CALLDOMINION</p>
-                <p>Email: <a href="mailto:hr@hiredriversllc.com" className="hover:text-white transition-colors">hr@hiredriversllc.com</a></p>
+                <p>Carriers: +1 (872) 327-4090</p>
+                <p>Drivers: +1 (872) 327-4090</p>
+                <p>
+                  Email:{" "}
+                  <a href="join@cdlnetworkllc.com" className="hover:text-white transition-colors">
+                    join@cdlnetworkllc.com
+                  </a>
+                </p>
+                <p>
+                  Email:{" "}
+                  <a href="info@cdlnetworkllc.com" className="hover:text-white transition-colors">
+                    info@cdlnetworkllc.com
+                  </a>
+                </p>
               </div>
             </div>
 
@@ -30,12 +41,36 @@ const Footer = () => {
             <div>
               <h4 className="text-lg font-semibold mb-4">Navigation</h4>
               <nav className="space-y-2 text-sm text-white/90">
-                <div><Link to="/" className="hover:text-white hover:underline transition-colors">Home</Link></div>
-                <div><Link to="/drivers" className="hover:text-white hover:underline transition-colors">Drivers</Link></div>
-                <div><Link to="/carriers" className="hover:text-white hover:underline transition-colors">Carriers</Link></div>
-                <div><Link to="/contact" className="hover:text-white hover:underline transition-colors">Contact</Link></div>
-                <div><Link to="/terms" className="hover:text-white hover:underline transition-colors">Terms of Use</Link></div>
-                <div><Link to="/privacy" className="hover:text-white hover:underline transition-colors">Privacy Policy</Link></div>
+                <div>
+                  <Link to="/" className="hover:text-white hover:underline transition-colors">
+                    Home
+                  </Link>
+                </div>
+                <div>
+                  <Link to="/drivers" className="hover:text-white hover:underline transition-colors">
+                    Drivers
+                  </Link>
+                </div>
+                <div>
+                  <Link to="/carriers" className="hover:text-white hover:underline transition-colors">
+                    Carriers
+                  </Link>
+                </div>
+                <div>
+                  <Link to="/contact" className="hover:text-white hover:underline transition-colors">
+                    Contact
+                  </Link>
+                </div>
+                <div>
+                  <Link to="/terms" className="hover:text-white hover:underline transition-colors">
+                    Terms of Use
+                  </Link>
+                </div>
+                <div>
+                  <Link to="/privacy" className="hover:text-white hover:underline transition-colors">
+                    Privacy Policy
+                  </Link>
+                </div>
               </nav>
             </div>
 
@@ -43,13 +78,28 @@ const Footer = () => {
             <div>
               <h4 className="text-lg font-semibold mb-4">Social Networks</h4>
               <div className="flex gap-3">
-                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/90 hover:bg-white hover:scale-110 flex items-center justify-center transition-all text-primary">
+                <a
+                  href="https://facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full bg-white/90 hover:bg-white hover:scale-110 flex items-center justify-center transition-all text-primary"
+                >
                   <Facebook className="h-5 w-5" />
                 </a>
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/90 hover:bg-white hover:scale-110 flex items-center justify-center transition-all text-primary">
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full bg-white/90 hover:bg-white hover:scale-110 flex items-center justify-center transition-all text-primary"
+                >
                   <Instagram className="h-5 w-5" />
                 </a>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/90 hover:bg-white hover:scale-110 flex items-center justify-center transition-all text-primary">
+                <a
+                  href="https://linkedin.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full bg-white/90 hover:bg-white hover:scale-110 flex items-center justify-center transition-all text-primary"
+                >
                   <Linkedin className="h-5 w-5" />
                 </a>
               </div>
