@@ -14,7 +14,6 @@ import {
   CarouselItem,
   type CarouselApi,
 } from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
 import heroMainImage from "@/assets/hero-main.jpeg";
 import supportImage from "@/assets/hero-main-3.webp";
 import driversForDriversImage from "@/assets/drivers-for-drivers.jpeg";
@@ -117,16 +116,9 @@ const Index = () => {
                   align: "center",
                   loop: true,
                 }}
-                plugins={[
-                  Autoplay({
-                    delay: 4000,
-                    stopOnInteraction: true,
-                    stopOnMouseEnter: true,
-                  }),
-                ]}
                 className="w-full relative overflow-y-visible py-[14px]"
               >
-                <CarouselContent className="-ml-6 overflow-visible">
+                <CarouselContent className="-ml-4 md:-ml-6 overflow-visible">
                   {[
                     {
                       title: "Personalized approach",
@@ -161,43 +153,32 @@ const Index = () => {
                   ].map((card, index) => (
                     <CarouselItem 
                       key={index} 
-                      className="pl-6 basis-[calc(100%-32px)] sm:basis-[calc(50%-32px)] lg:basis-[calc(33.333%-32px)] overflow-visible relative"
+                      className="pl-4 md:pl-6 basis-[90%] sm:basis-[calc(50%-16px)] lg:basis-[calc(33.333%-24px)] overflow-visible relative"
                       role="group"
                       aria-roledescription="slide"
                       aria-label={`${index + 1} of 5`}
                       style={{ zIndex: index === current ? 10 : 0 }}
                     >
                       <div 
-                        className={`flex flex-col justify-between rounded-xl bg-card border border-border transition-all duration-[250ms] ease-out hover:shadow-[0_8px_20px_rgba(0,0,0,0.1)] ${
+                        className={`flex flex-col justify-between rounded-xl bg-card border border-border transition-all duration-[250ms] ease-out hover:shadow-[0_8px_20px_rgba(0,0,0,0.1)] h-full ${
                           index === current 
                             ? 'shadow-[0_16px_32px_rgba(0,0,0,0.12)]' 
                             : 'shadow-md'
                         }`}
                         style={{ 
-                          transformStyle: 'preserve-3d',
-                          transformOrigin: 'center',
-                          transform: index === current ? 'translateZ(0) scale(1.02)' : 'translateZ(0) scale(1.0)',
-                          height: 'clamp(360px, 44vh, 420px)'
+                          transform: index === current ? 'scale(1.02)' : 'scale(1)',
+                          transition: 'transform 250ms ease-out, box-shadow 250ms ease-out'
                         }}
                       >
-                        <div className="p-6 flex-shrink-0 flex-1 flex flex-col">
-                          <h3 className="font-semibold mb-3" style={{ fontSize: 'clamp(1.25rem, 1.1vw + 1rem, 1.75rem)' }}>
+                        <div className="p-5 md:p-6 flex-1 flex flex-col">
+                          <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3 md:mb-4 leading-tight">
                             {card.title}
                           </h3>
-                          <p 
-                            className="text-muted-foreground leading-relaxed overflow-hidden"
-                            style={{ 
-                              fontSize: 'clamp(0.95rem, 0.6vw + 0.8rem, 1.05rem)',
-                              display: '-webkit-box',
-                              WebkitLineClamp: 5,
-                              WebkitBoxOrient: 'vertical'
-                            }}
-                          >
+                          <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
                             {card.text}
                           </p>
                         </div>
-                        
-                        <div className="w-full overflow-hidden rounded-b-xl max-h-[200px]" style={{ aspectRatio: '16/9' }}>
+                        <div className="w-full overflow-hidden rounded-b-xl max-h-[180px] md:max-h-[200px]" style={{ aspectRatio: '16/9' }}>
                           <img 
                             src={card.image} 
                             alt={card.alt}
@@ -210,25 +191,26 @@ const Index = () => {
                   ))}
                 </CarouselContent>
 
-                {/* Navigation Arrows */}
+                {/* Navigation Arrows - Fixed hover bug */}
                 <Button
                   variant="outline"
                   size="icon"
-                  className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm hover:bg-background"
+                  className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-10 bg-background/95 backdrop-blur-sm border-border shadow-md hover:bg-primary hover:text-primary-foreground hover:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 transition-colors"
                   onClick={() => carouselApi?.scrollPrev()}
                   aria-label="Previous slide"
                 >
-                  <ChevronLeft className="h-6 w-6" />
+                  <ChevronLeft className="h-5 w-5 md:h-6 md:w-6" />
                 </Button>
                 <Button
                   variant="outline"
                   size="icon"
-                  className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm hover:bg-background"
+                  className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-10 bg-background/95 backdrop-blur-sm border-border shadow-md hover:bg-primary hover:text-primary-foreground hover:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 transition-colors"
                   onClick={() => carouselApi?.scrollNext()}
                   aria-label="Next slide"
                 >
-                  <ChevronRight className="h-6 w-6" />
+                  <ChevronRight className="h-5 w-5 md:h-6 md:w-6" />
                 </Button>
+
 
                 {/* Dots Navigation */}
                 <div className="flex justify-center gap-2 mt-8">
@@ -236,10 +218,10 @@ const Index = () => {
                     <button
                       key={index}
                       onClick={() => carouselApi?.scrollTo(index)}
-                      className={`h-2 rounded-full transition-all duration-300 ${
+                      className={`h-2.5 md:h-2 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
                         index === current 
-                          ? 'w-8 bg-primary' 
-                          : 'w-2 bg-primary/30 hover:bg-primary/50'
+                          ? 'w-8 md:w-8 bg-primary' 
+                          : 'w-2.5 md:w-2 bg-primary/30 hover:bg-primary/50'
                       }`}
                       aria-label={`Go to slide ${index + 1}`}
                       aria-current={index === current ? 'true' : 'false'}
