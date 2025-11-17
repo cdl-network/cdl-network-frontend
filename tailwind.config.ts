@@ -13,9 +13,6 @@ export default {
       },
     },
     extend: {
-      fontFamily: {
-        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
-      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -25,8 +22,6 @@ export default {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
-          light: "hsl(var(--primary-light))",
-          lighter: "hsl(var(--primary-lighter))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -43,7 +38,6 @@ export default {
         accent: {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
-          light: "hsl(var(--accent-light))",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",
@@ -63,12 +57,6 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-      },
-      boxShadow: {
-        'sm': 'var(--shadow-sm)',
-        'md': 'var(--shadow-md)',
-        'lg': 'var(--shadow-lg)',
-        'xl': 'var(--shadow-xl)',
       },
       borderRadius: {
         lg: "var(--radius)",
