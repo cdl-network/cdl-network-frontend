@@ -99,26 +99,21 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Why Choose Us */}
-        <section className="py-8 md:py-16 px-4 bg-secondary/30" role="region" aria-label="Why choose us carousel">
-          <div className="container mx-auto max-w-7xl">
-            <h2 className="sr-only md:not-sr-only text-3xl font-bold text-foreground mb-6 md:mb-12 text-center">Why choose us</h2>
+        {/* Why Choose Us - Modern Mobile Hero Slider */}
+        <section className="py-6 md:py-16 px-0 md:px-4 bg-secondary/30" role="region" aria-label="Why choose us carousel">
+          <div className="container mx-auto max-w-7xl px-0 md:px-4">
+            <h2 className="text-3xl font-bold text-foreground mb-4 md:mb-12 text-center px-4 md:px-0">Why choose us</h2>
             
-            <div className="relative isolation-isolate">
-              {/* Radial gradient backdrop for center emphasis */}
-              <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl"></div>
-              </div>
-
+            <div className="relative">
               <Carousel
                 setApi={setCarouselApi}
                 opts={{
                   align: "center",
                   loop: true,
                 }}
-                className="w-full relative overflow-y-visible py-2 md:py-[14px]"
+                className="w-full"
               >
-                <CarouselContent className="-ml-2 md:-ml-6 overflow-visible">
+                <CarouselContent className="ml-0 md:-ml-6">
                   {[
                     {
                       title: "Personalized approach",
@@ -153,37 +148,49 @@ const Index = () => {
                   ].map((card, index) => (
                     <CarouselItem 
                       key={index} 
-                      className="pl-2 md:pl-6 basis-[96%] sm:basis-[calc(50%-16px)] lg:basis-[calc(33.333%-24px)] overflow-visible relative"
+                      className="pl-0 md:pl-6 basis-full sm:basis-[calc(50%-16px)] lg:basis-[calc(33.333%-24px)]"
                       role="group"
                       aria-roledescription="slide"
                       aria-label={`${index + 1} of 5`}
-                      style={{ zIndex: index === current ? 10 : 0 }}
                     >
-                      <div 
-                        className={`flex flex-col justify-between rounded-xl bg-card border border-border transition-all duration-[250ms] ease-out hover:shadow-[0_8px_20px_rgba(0,0,0,0.1)] h-full ${
-                          index === current 
-                            ? 'shadow-[0_16px_32px_rgba(0,0,0,0.12)]' 
-                            : 'shadow-md'
-                        }`}
-                        style={{ 
-                          transform: index === current ? 'scale(1.02)' : 'scale(1)',
-                          transition: 'transform 250ms ease-out, box-shadow 250ms ease-out'
-                        }}
-                      >
-                        <div className="p-6 md:p-6 flex-1 flex flex-col">
-                          <h3 className="text-2xl md:text-2xl font-bold text-foreground mb-4 md:mb-4 leading-tight">
-                            {card.title}
-                          </h3>
-                          <p className="text-base md:text-base text-muted-foreground leading-relaxed">
-                            {card.text}
-                          </p>
-                        </div>
-                        <div className="w-full overflow-hidden rounded-b-xl h-[240px] md:max-h-[200px]" style={{ aspectRatio: '16/9' }}>
+                      {/* Mobile: Full-width modern hero slider */}
+                      <div className="relative md:hidden overflow-hidden">
+                        <div className="relative w-full aspect-[4/5]">
                           <img 
                             src={card.image} 
                             alt={card.alt}
-                            className="w-full h-full object-cover block"
-                            style={{ borderRadius: '12px' }}
+                            className="w-full h-full object-cover"
+                          />
+                          {/* Gradient overlay for text readability */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent" />
+                          
+                          {/* Text overlay on bottom */}
+                          <div className="absolute bottom-0 left-0 right-0 p-6">
+                            <h3 className="text-2xl font-bold text-white mb-3 leading-tight">
+                              {card.title}
+                            </h3>
+                            <p className="text-[15px] text-white/95 leading-relaxed">
+                              {card.text}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Desktop: Traditional card layout */}
+                      <div className="hidden md:flex flex-col rounded-xl bg-card border border-border hover:shadow-xl transition-all duration-300 h-full overflow-hidden">
+                        <div className="p-6 flex-1 flex flex-col">
+                          <h3 className="text-2xl font-bold text-foreground mb-4 leading-tight">
+                            {card.title}
+                          </h3>
+                          <p className="text-base text-muted-foreground leading-relaxed">
+                            {card.text}
+                          </p>
+                        </div>
+                        <div className="w-full h-[200px] overflow-hidden">
+                          <img 
+                            src={card.image} 
+                            alt={card.alt}
+                            className="w-full h-full object-cover"
                           />
                         </div>
                       </div>
@@ -191,37 +198,36 @@ const Index = () => {
                   ))}
                 </CarouselContent>
 
-                {/* Navigation Arrows - Fixed hover bug */}
+                {/* Navigation Arrows */}
                 <Button
                   variant="outline"
                   size="icon"
-                  className="absolute left-4 md:left-4 top-1/2 -translate-y-1/2 z-20 h-10 w-10 md:h-8 md:w-8 bg-background/95 backdrop-blur-sm border-border shadow-md hover:bg-primary hover:text-primary-foreground hover:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 transition-colors"
+                  className="absolute left-3 md:left-4 top-1/2 -translate-y-1/2 z-20 h-10 w-10 md:h-8 md:w-8 bg-white/95 hover:bg-white text-foreground border-0 md:border md:border-border shadow-lg backdrop-blur-sm focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                   onClick={() => carouselApi?.scrollPrev()}
                   aria-label="Previous slide"
                 >
-                  <ChevronLeft className="h-6 w-6 md:h-6 md:w-6" />
+                  <ChevronLeft className="h-5 w-5 md:h-4 md:w-4" />
                 </Button>
                 <Button
                   variant="outline"
                   size="icon"
-                  className="absolute right-4 md:right-4 top-1/2 -translate-y-1/2 z-20 h-10 w-10 md:h-8 md:w-8 bg-background/95 backdrop-blur-sm border-border shadow-md hover:bg-primary hover:text-primary-foreground hover:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 transition-colors"
+                  className="absolute right-3 md:right-4 top-1/2 -translate-y-1/2 z-20 h-10 w-10 md:h-8 md:w-8 bg-white/95 hover:bg-white text-foreground border-0 md:border md:border-border shadow-lg backdrop-blur-sm focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                   onClick={() => carouselApi?.scrollNext()}
                   aria-label="Next slide"
                 >
-                  <ChevronRight className="h-6 w-6 md:h-6 md:w-6" />
+                  <ChevronRight className="h-5 w-5 md:h-4 md:w-4" />
                 </Button>
 
-
                 {/* Dots Navigation */}
-                <div className="flex justify-center gap-2.5 md:gap-2 mt-6 md:mt-8">
+                <div className="flex justify-center gap-2 mt-5 md:mt-8 px-4">
                   {Array.from({ length: count }).map((_, index) => (
                     <button
                       key={index}
                       onClick={() => carouselApi?.scrollTo(index)}
-                      className={`h-2.5 md:h-2 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
+                      className={`h-2 rounded-full transition-all duration-300 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
                         index === current 
-                          ? 'w-8 md:w-8 bg-primary' 
-                          : 'w-2.5 md:w-2 bg-primary/30 hover:bg-primary/50'
+                          ? 'w-8 bg-primary' 
+                          : 'w-2 bg-foreground/30 hover:bg-foreground/50'
                       }`}
                       aria-label={`Go to slide ${index + 1}`}
                       aria-current={index === current ? 'true' : 'false'}
