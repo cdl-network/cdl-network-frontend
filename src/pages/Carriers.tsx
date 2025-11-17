@@ -158,7 +158,6 @@ const Carriers = () => {
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   />
-                  <p className="text-xs text-muted-foreground">US only. Example: +1 312 555 8899</p>
                 </div>
 
                 <div className="space-y-2">
