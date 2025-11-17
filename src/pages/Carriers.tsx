@@ -22,7 +22,7 @@ const Carriers = () => {
     hiring_needs: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<{ type: 'success' | 'error', message: string } | null>(null);
+  const [submitStatus, setSubmitStatus] = useState<{ type: "success" | "error"; message: string } | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -41,16 +41,16 @@ const Carriers = () => {
         hiring_needs: formData.hiring_needs,
       };
 
-      const response = await fetch('https://cdlnetworkllc.vercel.app/api/lead', {
-        method: 'POST',
+      const response = await fetch("https://cdlnetworkllc.vercel.app/api/lead", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(payload),
       });
 
       if (response.ok) {
-        setSubmitStatus({ type: 'success', message: "Thank you, we'll reach out shortly!" });
+        setSubmitStatus({ type: "success", message: "Thank you, we'll reach out shortly!" });
         setFormData({
           contact_name: "",
           company_name: "",
@@ -61,11 +61,11 @@ const Carriers = () => {
           hiring_needs: "",
         });
       } else {
-        throw new Error('Server returned non-200 response');
+        throw new Error("Server returned non-200 response");
       }
     } catch (error) {
-      console.error('Form submission error:', error);
-      setSubmitStatus({ type: 'error', message: "Something went wrong, please try again later." });
+      console.error("Form submission error:", error);
+      setSubmitStatus({ type: "error", message: "Something went wrong, please try again later." });
     } finally {
       setIsSubmitting(false);
     }
@@ -74,10 +74,10 @@ const Carriers = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navigation />
-      
+
       <main className="flex-1">
         {/* Hero Section */}
-        <section 
+        <section
           className="relative py-24 px-4 bg-cover bg-center"
           style={{ backgroundImage: `url(${carriersHeroImage})` }}
         >
@@ -85,8 +85,8 @@ const Carriers = () => {
           <div className="container mx-auto max-w-3xl text-center relative z-10">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">Carrier Inquiry</h1>
             <p className="text-xl text-white/95 max-w-2xl mx-auto">
-              Looking for reliable, pre-screened CDL-A drivers? We deliver quality matches — not just resumes. 
-              Tell us what you need and we'll connect you with drivers who fit.
+              Looking for reliable, pre-screened CDL-A drivers? We deliver quality matches — not just resumes. Tell us
+              what you need and we'll connect you with drivers who fit.
             </p>
           </div>
         </section>
@@ -98,14 +98,14 @@ const Carriers = () => {
               <div className="order-2 md:order-1">
                 <h2 className="text-2xl font-bold text-foreground mb-4">Find Your Next Driver</h2>
                 <p className="text-muted-foreground">
-                  Fill out the inquiry form below. We'll match you with qualified CDL-A drivers who meet your 
+                  Fill out the inquiry form below. We'll match you with qualified CDL-A drivers who meet your
                   operational needs and company culture.
                 </p>
               </div>
               <div className="order-1 md:order-2">
-                <img 
-                  src={carriersImage} 
-                  alt="Professional truck fleet" 
+                <img
+                  src={carriersImage}
+                  alt="Professional truck fleet"
                   className="rounded-lg shadow-lg w-full h-auto object-cover"
                 />
               </div>
@@ -113,7 +113,9 @@ const Carriers = () => {
 
             <form onSubmit={handleSubmit} className="space-y-6 bg-card border border-border rounded-lg p-8 shadow-sm">
               {submitStatus && (
-                <div className={`p-4 rounded-md ${submitStatus.type === 'success' ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'}`}>
+                <div
+                  className={`p-4 rounded-md ${submitStatus.type === "success" ? "bg-green-50 text-green-800" : "bg-red-50 text-red-800"}`}
+                >
                   {submitStatus.message}
                 </div>
               )}
@@ -121,23 +123,23 @@ const Carriers = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <Label htmlFor="name">Contact Name *</Label>
-                  <Input 
+                  <Input
                     id="name"
                     name="contact_name"
-                    required 
+                    required
                     value={formData.contact_name}
-                    onChange={(e) => setFormData({...formData, contact_name: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, contact_name: e.target.value })}
                   />
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="company">Company Name *</Label>
-                  <Input 
+                  <Input
                     id="company"
                     name="company_name"
-                    required 
+                    required
                     value={formData.company_name}
-                    onChange={(e) => setFormData({...formData, company_name: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, company_name: e.target.value })}
                   />
                 </div>
               </div>
@@ -145,25 +147,29 @@ const Carriers = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <Label htmlFor="phone">Phone *</Label>
-                  <Input 
+                  <Input
                     id="phone"
                     name="phone"
-                    type="tel" 
-                    required 
+                    type="tel"
+                    inputMode="tel"
+                    required
+                    placeholder="+1 312 555 8899"
+                    title="Use a US-style number such as: +1 312 555 8899"
                     value={formData.phone}
-                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   />
+                  <p className="text-xs text-muted-foreground">US only. Example: +1 312 555 8899</p>
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="email">Email *</Label>
-                  <Input 
+                  <Input
                     id="email"
                     name="email"
-                    type="email" 
-                    required 
+                    type="email"
+                    required
                     value={formData.email}
-                    onChange={(e) => setFormData({...formData, email: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   />
                 </div>
               </div>
@@ -171,7 +177,12 @@ const Carriers = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <Label htmlFor="fleetSize">Fleet Size *</Label>
-                  <Select name="fleet_size" value={formData.fleet_size} onValueChange={(value) => setFormData({...formData, fleet_size: value})} required>
+                  <Select
+                    name="fleet_size"
+                    value={formData.fleet_size}
+                    onValueChange={(value) => setFormData({ ...formData, fleet_size: value })}
+                    required
+                  >
                     <SelectTrigger id="fleetSize">
                       <SelectValue placeholder="Select" />
                     </SelectTrigger>
@@ -186,30 +197,34 @@ const Carriers = () => {
 
                 <div className="space-y-2">
                   <Label htmlFor="laneType">Lane Type</Label>
-                  <Input 
+                  <Input
                     id="laneType"
                     name="lane_type"
                     placeholder="e.g., Regional, OTR, Dedicated"
                     value={formData.lane_type}
-                    onChange={(e) => setFormData({...formData, lane_type: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, lane_type: e.target.value })}
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="hiringNeeds">Hiring Needs *</Label>
-                <Textarea 
+                <Textarea
                   id="hiringNeeds"
                   name="hiring_needs"
                   required
                   placeholder="Tell us about your current hiring needs, number of drivers, experience requirements, etc."
                   value={formData.hiring_needs}
-                  onChange={(e) => setFormData({...formData, hiring_needs: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, hiring_needs: e.target.value })}
                   rows={4}
                 />
               </div>
 
-              <Button type="submit" disabled={isSubmitting} className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full bg-accent hover:bg-accent/90 text-accent-foreground"
+              >
                 {isSubmitting ? "Submitting..." : "Get Drivers"}
               </Button>
             </form>
