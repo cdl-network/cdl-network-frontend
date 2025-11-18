@@ -87,7 +87,7 @@ const Drivers = () => {
       <main className="flex-1">
         {/* Hero Section */}
         <section
-          className="relative min-h-screen flex items-center justify-center px-4 bg-cover bg-center"
+          className="relative py-24 px-4 bg-cover bg-center"
           style={{ backgroundImage: `url(${driversHeroImage})` }}
         >
           <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(11, 31, 59, 0.80) 0%, rgba(11, 31, 59, 0.45) 100%)' }}></div>
