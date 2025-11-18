@@ -12,6 +12,11 @@ All colors MUST be HSL.
     --color-logo-navy: 205 50% 21%;
     --color-logo-orange: 14 100% 60%;
 
+    /* UI Brand colors for buttons and CTAs */
+    --brand-orange: 25 95% 53%;       /* #F97316 - UI orange */
+    --brand-orange-dark: 21 93% 48%;  /* #EA580C - hover/active */
+    --brand-navy: 224 64% 33%;        /* #1E3A8A - UI navy */
+
     /* Page structure */
     --color-page-bg: 214 33% 97%;
     --color-surface: 0 0% 100%;
@@ -20,12 +25,12 @@ All colors MUST be HSL.
     --color-border: 214 20% 89%;
 
     /* Button tokens */
-    --color-btn-primary-bg: var(--color-logo-orange);
+    --color-btn-primary-bg: var(--brand-orange);
     --color-btn-primary-text: 0 0% 100%;
-    --color-btn-primary-hover: 14 100% 54%;
+    --color-btn-primary-hover: var(--brand-orange-dark);
     --color-btn-secondary-bg: transparent;
-    --color-btn-secondary-text: var(--color-logo-navy);
-    --color-btn-secondary-border: var(--color-logo-navy);
+    --color-btn-secondary-text: var(--brand-navy);
+    --color-btn-secondary-border: var(--brand-navy);
 
     /* Mapped to existing tokens for compatibility */
     --background: var(--color-page-bg);
@@ -37,20 +42,20 @@ All colors MUST be HSL.
     --popover: var(--color-surface);
     --popover-foreground: var(--color-text-main);
 
-    --primary: var(--color-logo-navy);
+    --primary: var(--brand-orange);
     --primary-foreground: 0 0% 100%;
-    --primary-light: 205 50% 30%;
-    --primary-lighter: 205 50% 95%;
+    --primary-light: var(--brand-orange-dark);
+    --primary-lighter: 25 95% 95%;
 
     --secondary: 214 20% 96%;
-    --secondary-foreground: var(--color-logo-navy);
+    --secondary-foreground: var(--brand-navy);
 
     --muted: 214 20% 94%;
     --muted-foreground: var(--color-text-muted);
 
-    --accent: var(--color-logo-orange);
+    --accent: var(--brand-orange);
     --accent-foreground: 0 0% 100%;
-    --accent-light: var(--color-btn-primary-hover);
+    --accent-light: var(--brand-orange-dark);
 
     --destructive: 0 85% 58%;
     --destructive-foreground: 0 0% 100%;
