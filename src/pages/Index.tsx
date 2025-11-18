@@ -83,7 +83,7 @@ const Index = () => {
               <Button 
                 size="lg" 
                 onClick={() => navigate('/drivers')}
-                className="bg-accent hover:bg-accent/90 text-accent-foreground"
+                className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0"
               >
                 Apply as a driver <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
@@ -91,7 +91,7 @@ const Index = () => {
                 size="lg" 
                 variant="secondary"
                 onClick={() => navigate('/carriers')}
-                className="bg-white hover:bg-white/90 text-primary"
+                className="bg-white hover:bg-white/90 text-primary shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0"
               >
                 Hire drivers <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
