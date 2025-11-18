@@ -22,21 +22,19 @@ const Footer = () => {
               <div className="space-y-2 text-sm text-white/90">
                 <p>Phone: +1 (872) 327-4090</p>
 
-                <p className="font-medium">Email:</p>
-                <ul className="space-y-1 ml-4 list-disc text-white/90">
-                  <li>
-                    Drivers:{" "}
-                    <a href="mailto:join@cdlnetworkllc.com" className="hover:text-white transition-colors">
-                      join@cdlnetworkllc.com
-                    </a>
-                  </li>
-                  <li>
-                    Carriers:{" "}
-                    <a href="mailto:info@cdlnetworkllc.com" className="hover:text-white transition-colors">
-                      info@cdlnetworkllc.com
-                    </a>
-                  </li>
-                </ul>
+                <p>
+                  Drivers:{" "}
+                  <a href="mailto:join@cdlnetworkllc.com" className="hover:text-white transition-colors">
+                    join@cdlnetworkllc.com
+                  </a>
+                </p>
+
+                <p>
+                  Carriers:{" "}
+                  <a href="mailto:info@cdlnetworkllc.com" className="hover:text-white transition-colors">
+                    info@cdlnetworkllc.com
+                  </a>
+                </p>
               </div>
             </div>
 
