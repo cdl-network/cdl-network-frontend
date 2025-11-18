@@ -17,6 +17,13 @@ export default {
         sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
       },
       colors: {
+        "brand-navy": "hsl(var(--color-logo-navy))",
+        "brand-orange": "hsl(var(--color-logo-orange))",
+        "page-bg": "hsl(var(--color-page-bg))",
+        "surface": "hsl(var(--color-surface))",
+        "text-main": "hsl(var(--color-text-main))",
+        "text-muted": "hsl(var(--color-text-muted))",
+        
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
