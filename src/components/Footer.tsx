@@ -20,17 +20,18 @@ const Footer = () => {
             <div>
               <h4 className="text-lg font-semibold mb-4">Contacts</h4>
               <div className="space-y-2 text-sm text-white/90">
-                <p>Carriers: +1 (872) 327-4090</p>
-                <p>Drivers: +1 (872) 327-4090</p>
+                <p>Phone: +1 (872) 327-4090</p>
 
                 <p className="font-medium">Email:</p>
                 <ul className="space-y-1 ml-4 list-disc text-white/90">
                   <li>
+                    Drivers:{" "}
                     <a href="mailto:join@cdlnetworkllc.com" className="hover:text-white transition-colors">
                       join@cdlnetworkllc.com
                     </a>
                   </li>
                   <li>
+                    Carriers:{" "}
                     <a href="mailto:info@cdlnetworkllc.com" className="hover:text-white transition-colors">
                       info@cdlnetworkllc.com
                     </a>
