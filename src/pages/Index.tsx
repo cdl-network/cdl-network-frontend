@@ -71,7 +71,7 @@ const Index = () => {
           className="relative py-32 px-4 bg-cover bg-center"
           style={{ backgroundImage: `url(${heroMainImage})` }}
         >
-          <div className="absolute inset-0" style={{ background: 'rgba(15, 23, 42, 0.65)' }}></div>
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(11, 31, 59, 0.80) 0%, rgba(11, 31, 59, 0.45) 100%)' }}></div>
           <div className="container mx-auto max-w-4xl text-center relative z-10">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Connecting CDL-A Drivers with the Right Carriers
