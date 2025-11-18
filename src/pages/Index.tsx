@@ -461,16 +461,29 @@ const Index = () => {
         </section>
 
         {/* Contact Form */}
-        <section className="py-16 px-4 bg-muted/30">
-          <div className="container mx-auto max-w-6xl">
-            <h2 className="text-3xl font-bold text-foreground mb-2 text-center">Get in touch</h2>
-            <p className="text-center text-muted-foreground mb-12">
+        <section className="py-6 md:py-16 px-0 md:px-4 bg-muted/30">
+          <div className="container mx-auto max-w-6xl px-0 md:px-4">
+            <h2 className="text-3xl font-bold text-foreground mb-2 text-center px-4 md:px-0">Get in touch</h2>
+            <p className="text-center text-muted-foreground mb-6 md:mb-12 px-4 md:px-0">
               We reply within 24 hours.
             </p>
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-              {/* Contact Form */}
-              <form onSubmit={handleSubmit} className="space-y-6 bg-card border border-border rounded-lg p-8 shadow-sm">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 md:gap-8 items-start">
+              {/* Mobile: Image First with Modern Styling */}
+              <div className="lg:hidden order-first mb-0">
+                <div className="relative w-full aspect-[4/5] overflow-hidden">
+                  <img 
+                    src={contactUsImage} 
+                    alt="Truck driver talking to a worker beside the rig"
+                    className="w-full h-full object-cover"
+                  />
+                  {/* Gradient overlay for cohesion */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+                </div>
+              </div>
+
+              {/* Contact Form - Mobile: Full-width modern style, Desktop: Traditional card */}
+              <form onSubmit={handleSubmit} className="space-y-5 bg-card border-0 md:border md:border-border rounded-none md:rounded-lg p-6 md:p-8 shadow-none md:shadow-sm">
                 <div className="space-y-2">
                   <Label htmlFor="name">Name *</Label>
                   <Input 
@@ -478,6 +491,7 @@ const Index = () => {
                     required 
                     value={formData.name}
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
+                    className="h-12"
                   />
                 </div>
 
@@ -489,6 +503,7 @@ const Index = () => {
                     required 
                     value={formData.email}
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
+                    className="h-12"
                   />
                 </div>
 
@@ -501,10 +516,15 @@ const Index = () => {
                     value={formData.message}
                     onChange={(e) => setFormData({...formData, message: e.target.value})}
                     rows={4}
+                    className="resize-none"
                   />
                 </div>
 
-                <Button type="submit" className="w-full transition-all hover:scale-[1.02]">
+                <Button 
+                  type="submit" 
+                  variant="accent"
+                  className="w-full h-12 transition-all hover:scale-[1.02]"
+                >
                   Send Message
                 </Button>
 
@@ -515,8 +535,8 @@ const Index = () => {
                 </div>
               </form>
 
-              {/* Contact Image */}
-              <div className="lg:order-last order-first">
+              {/* Desktop: Contact Image */}
+              <div className="hidden lg:block lg:order-last">
                 <img 
                   src={contactUsImage} 
                   alt="Truck driver talking to a worker beside the rig"
