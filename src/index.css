@@ -86,7 +86,6 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    overflow-x: hidden;
     max-width: 100vw;
     font-feature-settings: 'cv11', 'ss01';
     text-rendering: optimizeLegibility;
@@ -95,7 +94,6 @@ All colors MUST be HSL.
   }
 
   html {
-    overflow-x: hidden;
     max-width: 100vw;
   }
 
