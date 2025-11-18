@@ -90,7 +90,7 @@ const Drivers = () => {
           className="relative py-24 px-4 bg-cover bg-center"
           style={{ backgroundImage: `url(${driversHeroImage})` }}
         >
-          <div className="absolute inset-0 bg-gradient-to-b from-primary/90 to-primary/80"></div>
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(11, 31, 59, 0.80) 0%, rgba(11, 31, 59, 0.45) 100%)' }}></div>
           <div className="container mx-auto max-w-3xl text-center relative z-10">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">Driver Application</h1>
             <p className="text-xl text-white/95 max-w-2xl mx-auto">

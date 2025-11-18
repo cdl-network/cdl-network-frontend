@@ -9,13 +9,13 @@ All colors MUST be HSL.
 @layer base {
   :root {
     /* Logo colors - canonical brand colors */
-    --color-logo-navy: 205 50% 21%;
-    --color-logo-orange: 14 100% 60%;
+    --color-logo-navy: 208 69% 14%;    /* #0B1F3B - canonical navy */
+    --color-logo-orange: 28 91% 54%;   /* #F58220 - logo orange */
 
     /* UI Brand colors for buttons and CTAs */
-    --brand-orange: 25 95% 53%;       /* #F97316 - UI orange */
-    --brand-orange-dark: 21 93% 48%;  /* #EA580C - hover/active */
-    --brand-navy: 224 64% 33%;        /* #1E3A8A - UI navy */
+    --brand-orange: 28 91% 54%;        /* #F58220 - logo orange */
+    --brand-orange-dark: 28 91% 48%;   /* darker shade for hover */
+    --brand-navy: 208 69% 14%;         /* #0B1F3B - canonical navy */
 
     /* Page structure */
     --color-page-bg: 214 33% 97%;
@@ -67,8 +67,8 @@ All colors MUST be HSL.
     --radius: 0.625rem;
 
     /* Custom design tokens */
-    --hero-gradient: linear-gradient(135deg, hsl(var(--color-logo-navy)) 0%, hsl(205 50% 28%) 50%, hsl(var(--color-logo-navy)) 100%);
-    --hero-gradient-overlay: linear-gradient(135deg, hsl(var(--color-logo-navy) / 0.92) 0%, hsl(205 50% 28% / 0.88) 50%, hsl(var(--color-logo-navy) / 0.85) 100%);
+    --hero-gradient: linear-gradient(135deg, hsl(var(--brand-navy) / 0.80) 0%, hsl(var(--brand-navy) / 0.45) 100%);
+    --hero-gradient-overlay: linear-gradient(135deg, hsl(var(--brand-navy) / 0.80) 0%, hsl(var(--brand-navy) / 0.45) 100%);
     --gradient-subtle: linear-gradient(180deg, hsl(var(--color-page-bg)) 0%, hsl(214 30% 98%) 100%);
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --shadow-sm: 0 1px 2px 0 hsl(var(--color-logo-navy) / 0.04);
