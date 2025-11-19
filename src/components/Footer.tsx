@@ -4,13 +4,13 @@ import { Facebook, Instagram, Linkedin, MapPin } from "lucide-react";
 const Footer = () => {
   return (
     <>
-      <footer className="mt-16" style={{ background: 'hsl(var(--brand-navy))', color: '#FFFFFF' }}>
+      <footer className="mt-16" style={{ background: "hsl(var(--brand-navy))", color: "#FFFFFF" }}>
         <div className="container mx-auto px-4 py-12">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Location Column */}
             <div>
               <h4 className="text-lg font-semibold mb-4">Location</h4>
-              <div className="flex items-start gap-2 text-sm" style={{ color: '#F8FAFC' }}>
+              <div className="flex items-start gap-2 text-sm" style={{ color: "#F8FAFC" }}>
                 <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
                 <p>Chicago, IL, 60603</p>
               </div>
@@ -19,7 +19,7 @@ const Footer = () => {
             {/* Contacts Column */}
             <div>
               <h4 className="text-lg font-semibold mb-4">Contacts</h4>
-              <div className="space-y-2 text-sm" style={{ color: '#F8FAFC' }}>
+              <div className="space-y-2 text-sm" style={{ color: "#F8FAFC" }}>
                 <p>Phone: +1 (872) 327-4090</p>
 
                 <p>
@@ -41,7 +41,7 @@ const Footer = () => {
             {/* Navigation Column */}
             <div>
               <h4 className="text-lg font-semibold mb-4">Navigation</h4>
-              <nav className="space-y-2 text-sm" style={{ color: '#F8FAFC' }}>
+              <nav className="space-y-2 text-sm" style={{ color: "#F8FAFC" }}>
                 <div>
                   <Link to="/" className="hover:text-white hover:underline transition-colors">
                     Home
@@ -84,7 +84,7 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-white/90 hover:bg-white hover:scale-110 flex items-center justify-center transition-all"
-                  style={{ color: 'hsl(var(--brand-orange))' }}
+                  style={{ color: "hsl(var(--brand-orange))" }}
                 >
                   <Facebook className="h-5 w-5" />
                 </a>
@@ -93,16 +93,16 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-white/90 hover:bg-white hover:scale-110 flex items-center justify-center transition-all"
-                  style={{ color: 'hsl(var(--brand-orange))' }}
+                  style={{ color: "hsl(var(--brand-orange))" }}
                 >
                   <Instagram className="h-5 w-5" />
                 </a>
                 <a
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/company/cdl-network"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-white/90 hover:bg-white hover:scale-110 flex items-center justify-center transition-all"
-                  style={{ color: 'hsl(var(--brand-orange))' }}
+                  style={{ color: "hsl(var(--brand-orange))" }}
                 >
                   <Linkedin className="h-5 w-5" />
                 </a>
