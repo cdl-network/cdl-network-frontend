@@ -6,7 +6,6 @@ import driversHeroImage from "@/assets/drivers-hero.jpg";
 import DriverApplicationQuiz from "@/components/DriverApplicationQuiz";
 
 const Drivers = () => {
-
   return (
     <div className="min-h-screen flex flex-col">
       <Navigation />
@@ -21,15 +20,13 @@ const Drivers = () => {
           <div className="container mx-auto max-w-4xl relative z-10">
             <div className="flex flex-col items-center text-center space-y-6 md:space-y-8">
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
-                Get CDL Job Matches Today — Free & Fast.
+                Get CDL Job Matches Today.
               </h1>
-              <p className="text-lg sm:text-xl md:text-2xl text-white/95 max-w-3xl">
-                No BS. No spam. Just real trucking jobs that fit your life.
-              </p>
-              <Button 
+
+              <Button
                 size="lg"
                 className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold px-8 py-6 text-lg shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5"
-                onClick={() => document.getElementById('application-form')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => document.getElementById("application-form")?.scrollIntoView({ behavior: "smooth" })}
               >
                 Get Matches
               </Button>
