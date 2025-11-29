@@ -107,49 +107,52 @@ const Drivers = () => {
               >
                 Get Matches
               </Button>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-4">
-                <div className="inline-flex items-center px-4 py-2 rounded-full border-2 border-white/40 bg-white/10 backdrop-blur-sm">
-                  <span className="text-white font-medium text-sm">Free for Drivers</span>
-                </div>
-                <div className="inline-flex items-center px-4 py-2 rounded-full border-2 border-white/40 bg-white/10 backdrop-blur-sm">
-                  <span className="text-white font-medium text-sm">Private & Secure</span>
-                </div>
-                <div className="inline-flex items-center px-4 py-2 rounded-full border-2 border-white/40 bg-white/10 backdrop-blur-sm">
-                  <span className="text-white font-medium text-sm">Vetted Carriers Only</span>
-                </div>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 pt-4">
+                <span className="text-white/90 text-sm flex items-center gap-1.5">
+                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-white/70"></span>
+                  Free for Drivers
+                </span>
+                <span className="text-white/90 text-sm flex items-center gap-1.5">
+                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-white/70"></span>
+                  Private & Secure
+                </span>
+                <span className="text-white/90 text-sm flex items-center gap-1.5">
+                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-white/70"></span>
+                  Vetted Carriers Only
+                </span>
               </div>
             </div>
           </div>
         </section>
 
         {/* Benefits Section */}
-        <section className="py-12 md:py-16 px-4 bg-background">
+        <section className="py-8 md:py-10 px-4 bg-background">
           <div className="container mx-auto max-w-5xl">
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-x-6 gap-y-8">
-              <div className="flex flex-col items-center text-center space-y-2">
-                <Clock className="w-8 h-8 text-accent" strokeWidth={1.5} />
-                <span className="font-semibold text-foreground">Fast Placement</span>
-                <p className="text-sm text-muted-foreground">Get matched quickly</p>
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-x-4 gap-y-6">
+              <div className="flex flex-col items-center text-center space-y-1.5">
+                <Clock className="w-7 h-7 text-accent" strokeWidth={1.5} />
+                <span className="font-semibold text-foreground text-sm">Fast Placement</span>
+                <p className="text-xs text-muted-foreground">Get matched quickly</p>
               </div>
-              <div className="flex flex-col items-center text-center space-y-2">
-                <DollarSign className="w-8 h-8 text-accent" strokeWidth={1.5} />
-                <span className="font-semibold text-foreground">Stronger Pay</span>
-                <p className="text-sm text-muted-foreground">Better compensation</p>
+              <div className="flex flex-col items-center text-center space-y-1.5">
+                <DollarSign className="w-7 h-7 text-accent" strokeWidth={1.5} />
+                <span className="font-semibold text-foreground text-sm">Stronger Pay</span>
+                <p className="text-xs text-muted-foreground">Better compensation</p>
               </div>
-              <div className="flex flex-col items-center text-center space-y-2">
-                <MapPin className="w-8 h-8 text-accent" strokeWidth={1.5} />
-                <span className="font-semibold text-foreground">Route Choice</span>
-                <p className="text-sm text-muted-foreground">Pick your lanes</p>
+              <div className="flex flex-col items-center text-center space-y-1.5">
+                <MapPin className="w-7 h-7 text-accent" strokeWidth={1.5} />
+                <span className="font-semibold text-foreground text-sm">Route Choice</span>
+                <p className="text-xs text-muted-foreground">Pick your lanes</p>
               </div>
-              <div className="flex flex-col items-center text-center space-y-2">
-                <Heart className="w-8 h-8 text-accent" strokeWidth={1.5} />
-                <span className="font-semibold text-foreground">Free for Drivers</span>
-                <p className="text-sm text-muted-foreground">No cost to apply</p>
+              <div className="flex flex-col items-center text-center space-y-1.5">
+                <Heart className="w-7 h-7 text-accent" strokeWidth={1.5} />
+                <span className="font-semibold text-foreground text-sm">Free for Drivers</span>
+                <p className="text-xs text-muted-foreground">No cost to apply</p>
               </div>
-              <div className="flex flex-col items-center text-center space-y-2 col-span-2 md:col-span-1">
-                <Phone className="w-8 h-8 text-accent" strokeWidth={1.5} />
-                <span className="font-semibold text-foreground">Human Support</span>
-                <p className="text-sm text-muted-foreground">Real people helping</p>
+              <div className="flex flex-col items-center text-center space-y-1.5 col-span-2 md:col-span-1">
+                <Phone className="w-7 h-7 text-accent" strokeWidth={1.5} />
+                <span className="font-semibold text-foreground text-sm">Human Support</span>
+                <p className="text-xs text-muted-foreground">Real people helping</p>
               </div>
             </div>
           </div>
