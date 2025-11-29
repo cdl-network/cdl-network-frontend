@@ -87,21 +87,42 @@ const Drivers = () => {
       <main className="flex-1">
         {/* Hero Section */}
         <section
-          className="relative py-24 px-4 bg-cover bg-center"
+          className="relative min-h-[70vh] flex items-center justify-center px-4 bg-cover bg-center"
           style={{ backgroundImage: `url(${driversHeroImage})` }}
         >
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(11, 31, 59, 0.80) 0%, rgba(11, 31, 59, 0.45) 100%)' }}></div>
-          <div className="container mx-auto max-w-3xl text-center relative z-10">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">Driver Application</h1>
-            <p className="text-xl text-white/95 max-w-2xl mx-auto">
-              We focus on matching drivers with the right company fit — not just the first available seat. Apply below
-              and let's find your next great opportunity.
-            </p>
+          <div className="absolute inset-0 bg-gradient-to-br from-[rgba(11,31,59,0.85)] via-[rgba(11,31,59,0.75)] to-[rgba(11,31,59,0.60)] animate-[pulse_8s_ease-in-out_infinite]"></div>
+          <div className="container mx-auto max-w-4xl relative z-10">
+            <div className="flex flex-col items-center text-center space-y-6 md:space-y-8">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+                Get CDL Job Matches Today — Free & Fast.
+              </h1>
+              <p className="text-lg sm:text-xl md:text-2xl text-white/95 max-w-3xl">
+                No BS. No spam. Just real trucking jobs that fit your life.
+              </p>
+              <Button 
+                size="lg"
+                className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold px-8 py-6 text-lg shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5"
+                onClick={() => document.getElementById('application-form')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                Get Matches
+              </Button>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-4">
+                <div className="inline-flex items-center px-4 py-2 rounded-full border-2 border-white/40 bg-white/10 backdrop-blur-sm">
+                  <span className="text-white font-medium text-sm">Free for Drivers</span>
+                </div>
+                <div className="inline-flex items-center px-4 py-2 rounded-full border-2 border-white/40 bg-white/10 backdrop-blur-sm">
+                  <span className="text-white font-medium text-sm">Private & Secure</span>
+                </div>
+                <div className="inline-flex items-center px-4 py-2 rounded-full border-2 border-white/40 bg-white/10 backdrop-blur-sm">
+                  <span className="text-white font-medium text-sm">Vetted Carriers Only</span>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
         {/* Application Form Section */}
-        <section className="py-16 px-4">
+        <section id="application-form" className="py-16 px-4">
           <div className="container mx-auto max-w-4xl">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-12">
               <div>
