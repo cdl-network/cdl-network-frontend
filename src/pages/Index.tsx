@@ -67,11 +67,27 @@ const Index = () => {
       
       <main className="flex-1">
         {/* Hero Section */}
-        <section 
-          className="relative min-h-[calc(100vh+8rem)] flex items-center px-4 bg-cover bg-center"
-          style={{ backgroundImage: `url(${heroMainImage})` }}
-        >
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(11, 31, 59, 0.80) 0%, rgba(11, 31, 59, 0.45) 100%)' }}></div>
+        <section className="relative min-h-[calc(100vh+8rem)] flex items-center px-4 overflow-hidden">
+          {/* Video background - desktop only */}
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="hidden md:block absolute inset-0 w-full h-full object-cover"
+          >
+            <source src="/videos/truck_1080p_loop.mp4" type="video/mp4" />
+          </video>
+          
+          {/* Static background - mobile only */}
+          <div 
+            className="md:hidden absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${heroMainImage})` }}
+          ></div>
+          
+          {/* Dark gradient overlay */}
+          <div className="absolute inset-0 z-[1]" style={{ background: 'linear-gradient(135deg, rgba(11, 31, 59, 0.80) 0%, rgba(11, 31, 59, 0.45) 100%)' }}></div>
+          
           <div className="container mx-auto max-w-4xl text-center relative z-10">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Connecting CDL-A Drivers with the Right Carriers
