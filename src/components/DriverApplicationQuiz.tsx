@@ -3,8 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Checkbox } from "@/components/ui/checkbox";
 import { ChevronRight, ChevronLeft, Check } from "lucide-react";
 
 interface FormData {
@@ -12,13 +10,9 @@ interface FormData {
   phone: string;
   email: string;
   cdl_class: string;
-  state: string;
-  years_exp: string;
-  preferred_region: string;
-  availability: string;
-  truck_type_preference: string;
+  years_exp: number;
+  truck_types: string[];
   notes: string;
-  routes: string[];
 }
 
 const DriverApplicationQuiz = () => {
@@ -30,30 +24,29 @@ const DriverApplicationQuiz = () => {
     phone: "",
     email: "",
     cdl_class: "",
-    state: "",
-    years_exp: "",
-    preferred_region: "",
-    availability: "",
-    truck_type_preference: "",
+    years_exp: 0,
+    truck_types: [],
     notes: "",
-    routes: [],
   });
 
-  const totalSteps = 4;
+  const getTotalSteps = () => {
+    if (formData.cdl_class === "has_cdl") return 4; // CDL question + truck type + years + contact
+    if (formData.cdl_class === "training") return 3; // CDL question + message + contact
+    if (formData.cdl_class === "no_cdl") return 3; // CDL question + textarea + contact
+    return 1; // Just CDL question
+  };
 
-  const handleRouteToggle = (route: string) => {
+  const handleTruckTypeToggle = (type: string) => {
     setFormData((prev) => ({
       ...prev,
-      routes: prev.routes.includes(route)
-        ? prev.routes.filter((r) => r !== route)
-        : [...prev.routes, route],
+      truck_types: prev.truck_types.includes(type)
+        ? prev.truck_types.filter((t) => t !== type)
+        : [...prev.truck_types, type],
     }));
   };
 
   const handleNext = () => {
-    if (currentStep < totalSteps) {
-      setCurrentStep((prev) => prev + 1);
-    }
+    setCurrentStep((prev) => prev + 1);
   };
 
   const handleBack = () => {
@@ -72,11 +65,11 @@ const DriverApplicationQuiz = () => {
         phone: formData.phone,
         email: formData.email,
         cdl_class: formData.cdl_class,
-        state: formData.state,
-        years_exp: formData.years_exp ? parseInt(formData.years_exp) : 0,
-        availability: formData.availability,
-        preferred_region: formData.preferred_region,
-        truck_type_preference: formData.truck_type_preference,
+        years_exp: formData.cdl_class === "has_cdl" ? formData.years_exp : 0,
+        state: "",
+        availability: "",
+        preferred_region: "",
+        truck_type_preference: formData.cdl_class === "has_cdl" ? formData.truck_types.join(", ") : "",
         notes: formData.notes,
       };
 
@@ -126,158 +119,181 @@ const DriverApplicationQuiz = () => {
     );
   }
 
+  const totalSteps = getTotalSteps();
+  const isLastStep = currentStep === totalSteps;
+
   return (
     <div className="w-full max-w-2xl mx-auto px-4 py-8">
       {/* Progress Indicator */}
-      <div className="mb-8">
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-sm font-medium text-muted-foreground">
-            Step {currentStep} of {totalSteps}
-          </span>
-          <span className="text-sm font-medium text-accent">{Math.round((currentStep / totalSteps) * 100)}%</span>
+      {totalSteps > 1 && (
+        <div className="mb-8">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-sm font-medium text-muted-foreground">
+              Step {currentStep} of {totalSteps}
+            </span>
+            <span className="text-sm font-medium text-accent">{Math.round((currentStep / totalSteps) * 100)}%</span>
+          </div>
+          <div className="h-2 bg-muted rounded-full overflow-hidden">
+            <div
+              className="h-full bg-accent transition-all duration-300 ease-out"
+              style={{ width: `${(currentStep / totalSteps) * 100}%` }}
+            />
+          </div>
         </div>
-        <div className="h-2 bg-muted rounded-full overflow-hidden">
-          <div
-            className="h-full bg-accent transition-all duration-300 ease-out"
-            style={{ width: `${(currentStep / totalSteps) * 100}%` }}
-          />
-        </div>
-      </div>
+      )}
 
       {/* Step Content */}
       <div className="bg-card border border-border rounded-2xl p-6 sm:p-8 shadow-sm min-h-[400px]">
-        {/* Step 1: Job Preferences */}
+        {/* Step 1: CDL Status */}
         {currentStep === 1 && (
           <div className="space-y-6 animate-fade-in">
             <div>
-              <h2 className="text-2xl font-bold text-foreground mb-2">Which routes are you open to?</h2>
-              <p className="text-sm text-muted-foreground">Select all that apply</p>
+              <h2 className="text-2xl font-bold text-foreground mb-2">Do you have a CDL?</h2>
+              <p className="text-sm text-muted-foreground">Select one option</p>
             </div>
 
-            <div className="grid grid-cols-2 gap-3">
-              {["Local", "Regional", "OTR", "Not sure yet"].map((route) => (
+            <div className="grid gap-3">
+              {[
+                { value: "has_cdl", label: "Yes, I have a CDL-A" },
+                { value: "training", label: "Still in training" },
+                { value: "no_cdl", label: "No CDL — looking for non-CDL work" },
+              ].map((option) => (
                 <button
-                  key={route}
+                  key={option.value}
                   type="button"
-                  onClick={() => handleRouteToggle(route)}
-                  className={`p-4 rounded-xl border-2 transition-all text-left ${
-                    formData.routes.includes(route)
+                  onClick={() => {
+                    setFormData({ ...formData, cdl_class: option.value });
+                    setTimeout(handleNext, 300);
+                  }}
+                  className={`p-5 rounded-xl border-2 transition-all text-left hover:border-accent/70 ${
+                    formData.cdl_class === option.value
                       ? "border-accent bg-accent/10 text-foreground"
-                      : "border-border bg-background text-foreground hover:border-accent/50"
+                      : "border-border bg-background text-foreground"
                   }`}
                 >
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-3">
                     <div
-                      className={`w-5 h-5 rounded-md border-2 flex items-center justify-center ${
-                        formData.routes.includes(route) ? "border-accent bg-accent" : "border-muted-foreground"
+                      className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
+                        formData.cdl_class === option.value ? "border-accent bg-accent" : "border-muted-foreground"
                       }`}
                     >
-                      {formData.routes.includes(route) && <Check className="w-3 h-3 text-accent-foreground" />}
+                      {formData.cdl_class === option.value && <div className="w-2.5 h-2.5 rounded-full bg-accent-foreground" />}
                     </div>
-                    <span className="font-semibold">{route}</span>
+                    <span className="font-semibold text-base">{option.label}</span>
                   </div>
                 </button>
               ))}
             </div>
+          </div>
+        )}
 
-            <div className="space-y-2">
-              <Label htmlFor="region">Preferred region?</Label>
-              <Input
-                id="region"
-                placeholder="e.g., West Coast, Midwest, Southeast, Nationwide"
-                value={formData.preferred_region}
-                onChange={(e) => setFormData({ ...formData, preferred_region: e.target.value })}
-                autoFocus
-              />
+        {/* Step 2A: Truck Type (has_cdl only) */}
+        {currentStep === 2 && formData.cdl_class === "has_cdl" && (
+          <div className="space-y-6 animate-fade-in">
+            <div>
+              <h2 className="text-2xl font-bold text-foreground mb-2">Truck type preference?</h2>
+              <p className="text-sm text-muted-foreground">Select all that apply</p>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              {[
+                { value: "DV", label: "DV" },
+                { value: "Flat", label: "Flat" },
+                { value: "Reef", label: "Reef" },
+                { value: "PO", label: "PO" },
+                { value: "Other", label: "Other" },
+              ].map((type) => (
+                <button
+                  key={type.value}
+                  type="button"
+                  onClick={() => handleTruckTypeToggle(type.value)}
+                  className={`p-4 rounded-xl border-2 transition-all text-center ${
+                    formData.truck_types.includes(type.value)
+                      ? "border-accent bg-accent/10 text-foreground"
+                      : "border-border bg-background text-foreground hover:border-accent/50"
+                  }`}
+                >
+                  <div className="flex items-center justify-center gap-2">
+                    <div
+                      className={`w-5 h-5 rounded-md border-2 flex items-center justify-center ${
+                        formData.truck_types.includes(type.value) ? "border-accent bg-accent" : "border-muted-foreground"
+                      }`}
+                    >
+                      {formData.truck_types.includes(type.value) && <Check className="w-3 h-3 text-accent-foreground" />}
+                    </div>
+                    <span className="font-semibold">{type.label}</span>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Step 2B: Training Message (training only) */}
+        {currentStep === 2 && formData.cdl_class === "training" && (
+          <div className="space-y-6 animate-fade-in flex items-center justify-center min-h-[300px]">
+            <div className="text-center max-w-md space-y-4">
+              <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto">
+                <Check className="w-8 h-8 text-accent" />
+              </div>
+              <p className="text-lg text-foreground font-medium">
+                We will be glad to work with you once you receive your CDL.
+              </p>
+            </div>
+          </div>
+        )}
+
+        {/* Step 2C: Non-CDL Job Description (no_cdl only) */}
+        {currentStep === 2 && formData.cdl_class === "no_cdl" && (
+          <div className="space-y-6 animate-fade-in">
+            <div>
+              <h2 className="text-2xl font-bold text-foreground mb-2">Tell us more</h2>
+              <p className="text-sm text-muted-foreground">
+                We work with non-CDL positions on an irregular basis. Please tell us more about the type of position you are looking for.
+              </p>
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="truckType">Truck type preference?</Label>
-              <Input
-                id="truckType"
-                placeholder="e.g., Dry Van, Flatbed, Reefer, Tanker, No preference"
-                value={formData.truck_type_preference}
-                onChange={(e) => setFormData({ ...formData, truck_type_preference: e.target.value })}
+              <Label htmlFor="job-description">What type of position are you looking for?</Label>
+              <Textarea
+                id="job-description"
+                placeholder="e.g., warehouse work, dispatch, dock loading, logistics coordinator..."
+                value={formData.notes}
+                onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+                rows={6}
+                className="resize-none"
+                autoFocus
               />
             </div>
           </div>
         )}
 
-        {/* Step 2: Driver Profile */}
-        {currentStep === 2 && (
+        {/* Step 3A: Years of Experience (has_cdl only) */}
+        {currentStep === 3 && formData.cdl_class === "has_cdl" && (
           <div className="space-y-6 animate-fade-in">
             <div>
-              <h2 className="text-2xl font-bold text-foreground mb-2">Driver Profile</h2>
-              <p className="text-sm text-muted-foreground">Tell us about your experience</p>
+              <h2 className="text-2xl font-bold text-foreground mb-2">Years of Experience</h2>
+              <p className="text-sm text-muted-foreground">How long have you been driving?</p>
             </div>
 
             <div className="space-y-2">
-              <Label>CDL-A License?</Label>
-              <RadioGroup value={formData.cdl_class} onValueChange={(value) => setFormData({ ...formData, cdl_class: value })}>
-                <div className="flex gap-4">
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="yes" id="cdl-yes" />
-                    <Label htmlFor="cdl-yes" className="font-normal cursor-pointer">
-                      Yes
-                    </Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="no" id="cdl-no" />
-                    <Label htmlFor="cdl-no" className="font-normal cursor-pointer">
-                      No
-                    </Label>
-                  </div>
-                </div>
-              </RadioGroup>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="experience">Years of Experience</Label>
+              <Label htmlFor="experience">Years</Label>
               <Input
                 id="experience"
                 type="number"
                 min="0"
+                max="100"
                 placeholder="0"
-                value={formData.years_exp}
-                onChange={(e) => setFormData({ ...formData, years_exp: e.target.value })}
+                value={formData.years_exp || ""}
+                onChange={(e) => setFormData({ ...formData, years_exp: parseInt(e.target.value) || 0 })}
                 autoFocus
               />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="state">State</Label>
-              <Input
-                id="state"
-                placeholder="e.g., TX, CA, FL"
-                value={formData.state}
-                onChange={(e) => setFormData({ ...formData, state: e.target.value })}
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label>Availability</Label>
-              <RadioGroup value={formData.availability} onValueChange={(value) => setFormData({ ...formData, availability: value })}>
-                <div className="space-y-2">
-                  {[
-                    { value: "immediate", label: "Immediate" },
-                    { value: "2_weeks", label: "2 Weeks" },
-                    { value: "1_month", label: "1 Month" },
-                  ].map((option) => (
-                    <div key={option.value} className="flex items-center space-x-2">
-                      <RadioGroupItem value={option.value} id={`avail-${option.value}`} />
-                      <Label htmlFor={`avail-${option.value}`} className="font-normal cursor-pointer">
-                        {option.label}
-                      </Label>
-                    </div>
-                  ))}
-                </div>
-              </RadioGroup>
             </div>
           </div>
         )}
 
-        {/* Step 3: Contact Info */}
-        {currentStep === 3 && (
+        {/* Final Step: Contact Info (all paths) */}
+        {isLastStep && (
           <div className="space-y-6 animate-fade-in">
             <div>
               <h2 className="text-2xl font-bold text-foreground mb-2">Contact Info</h2>
@@ -316,35 +332,27 @@ const DriverApplicationQuiz = () => {
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               />
             </div>
-          </div>
-        )}
 
-        {/* Step 4: Extra Details */}
-        {currentStep === 4 && (
-          <div className="space-y-6 animate-fade-in">
-            <div>
-              <h2 className="text-2xl font-bold text-foreground mb-2">Anything else?</h2>
-              <p className="text-sm text-muted-foreground">Optional — but helps us match you better</p>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="notes">Anything we should know?</Label>
-              <Textarea
-                id="notes"
-                placeholder="Examples: home weekly, SAP, team driver, specific lanes…"
-                value={formData.notes}
-                onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                rows={6}
-                className="resize-none"
-                autoFocus
-              />
-            </div>
+            {/* Notes textarea - only for has_cdl path */}
+            {formData.cdl_class === "has_cdl" && (
+              <div className="space-y-2">
+                <Label htmlFor="notes">Anything we should know? (Optional)</Label>
+                <Textarea
+                  id="notes"
+                  placeholder="Examples: home weekly, SAP, team driver, specific lanes…"
+                  value={formData.notes}
+                  onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+                  rows={4}
+                  className="resize-none"
+                />
+              </div>
+            )}
           </div>
         )}
       </div>
 
       {/* Navigation Buttons - Sticky on mobile */}
-      <div className="fixed bottom-0 left-0 right-0 bg-background border-t border-border p-4 sm:relative sm:border-0 sm:bg-transparent sm:p-0 sm:mt-6">
+      <div className="fixed bottom-0 left-0 right-0 bg-background border-t border-border p-4 sm:relative sm:border-0 sm:bg-transparent sm:p-0 sm:mt-6 z-50">
         <div className="max-w-2xl mx-auto flex gap-3">
           {currentStep > 1 && (
             <Button
@@ -358,11 +366,12 @@ const DriverApplicationQuiz = () => {
             </Button>
           )}
 
-          {currentStep < totalSteps ? (
+          {!isLastStep ? (
             <Button
               type="button"
               onClick={handleNext}
               className="flex-1 bg-accent hover:bg-accent/90 text-accent-foreground"
+              disabled={currentStep === 1 && !formData.cdl_class}
             >
               Next
               <ChevronRight className="w-4 h-4 ml-1" />
