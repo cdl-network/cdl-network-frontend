@@ -293,7 +293,7 @@ const DriverApplicationQuiz = () => {
         )}
 
         {/* Final Step: Contact Info (all paths) */}
-        {isLastStep && (
+        {isLastStep && formData.cdl_class && (
           <div className="space-y-6 animate-fade-in">
             <div>
               <h2 className="text-2xl font-bold text-foreground mb-2">Contact Info</h2>
