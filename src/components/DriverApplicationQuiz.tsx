@@ -197,10 +197,10 @@ const DriverApplicationQuiz = () => {
 
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
               {[
-                { value: "DV", label: "DV" },
-                { value: "Flat", label: "Flat" },
-                { value: "Reef", label: "Reef" },
-                { value: "PO", label: "PO" },
+                { value: "Dry van", label: "Dry van" },
+                { value: "Flat bed", label: "Flat bed" },
+                { value: "Reefer", label: "Reefer" },
+                { value: "Power only", label: "Power only" },
                 { value: "Other", label: "Other" },
               ].map((type) => (
                 <button
