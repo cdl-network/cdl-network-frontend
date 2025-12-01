@@ -178,17 +178,17 @@ const DriverFAQ = () => {
 
         {/* Mobile: Accordion */}
         <div className="md:hidden">
-          <Accordion type="single" collapsible className="w-full space-y-3">
+          <Accordion type="single" collapsible className="w-full space-y-4">
             {faqData.map((faq, index) => (
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="bg-card border border-border rounded-lg px-5 shadow-sm"
+                className="bg-card border-2 border-border rounded-xl overflow-hidden shadow-sm data-[state=open]:border-accent data-[state=open]:shadow-md transition-all duration-300"
               >
-                <AccordionTrigger className="text-left font-semibold text-foreground hover:text-primary">
+                <AccordionTrigger className="text-left font-semibold text-foreground px-5 py-4 hover:no-underline hover:bg-muted/50 data-[state=open]:bg-accent/5 data-[state=open]:text-accent transition-colors [&[data-state=open]>svg]:text-accent">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed">
+                <AccordionContent className="text-muted-foreground leading-relaxed px-5 pb-4">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
