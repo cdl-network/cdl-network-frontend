@@ -6,6 +6,14 @@ import { Textarea } from "@/components/ui/textarea";
 import { ChevronRight, ChevronLeft, Check } from "lucide-react";
 import { useEffect, useRef } from "react";
 
+// Declare fbq for Facebook Pixel
+declare global {
+  interface Window {
+    fbq?: (...args: any[]) => void;
+  }
+}
+const fbq = typeof window !== 'undefined' ? window.fbq : undefined;
+
 interface FormData {
   full_name: string;
   phone: string;
@@ -307,10 +315,10 @@ const DriverApplicationQuiz = () => {
         {/* Step 3A: Years of Experience (has_cdl only) */}
         {currentStep === 3 && formData.cdl_class === "has_cdl" && (
           <div className="space-y-6 animate-fade-in">
-            <div>
-              <h2 className="text-2xl font-bold text-foreground mb-2">Years of Experience</h2>
-              <p className="text-sm text-muted-foreground">How long have you been driving?</p>
-            </div>
+          <div>
+            <h2 className="text-2xl font-bold text-foreground mb-2">Years of CDL experience</h2>
+            <p className="text-sm text-muted-foreground">How long have you been driving?</p>
+          </div>
 
             <div className="space-y-2">
               <Label htmlFor="experience">Years</Label>
@@ -375,7 +383,7 @@ const DriverApplicationQuiz = () => {
                 <Label htmlFor="notes">Anything we should know? (Optional)</Label>
                 <Textarea
                   id="notes"
-                  placeholder="Examples: home weekly, SAP, team driver, specific lanes…"
+                  placeholder="I want to be home weekly, ready to OTR, going through SAP, drive with a partner/dog..."
                   value={formData.notes}
                   onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                   rows={4}
