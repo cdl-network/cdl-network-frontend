@@ -148,15 +148,15 @@ const DriverApplicationQuiz = () => {
         {currentStep === 1 && (
           <div className="space-y-6 animate-fade-in">
             <div>
-              <h2 className="text-2xl font-bold text-foreground mb-2">Do you have a CDL?</h2>
+              <h2 className="text-2xl font-bold text-foreground mb-2">Do you have a valid CDL-A?</h2>
               <p className="text-sm text-muted-foreground">Select one option</p>
             </div>
 
             <div className="grid gap-3">
               {[
-                { value: "has_cdl", label: "Yes, I have a CDL-A" },
+                { value: "has_cdl", label: "Yes" },
                 { value: "training", label: "Still in training" },
-                { value: "no_cdl", label: "No CDL — looking for non-CDL work" },
+                { value: "no_cdl", label: "No" },
               ].map((option) => (
                 <button
                   key={option.value}

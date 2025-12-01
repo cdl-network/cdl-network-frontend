@@ -13,19 +13,19 @@ const faqData = [
   },
   {
     question: "How fast will I hear back?",
-    answer: "Usually within 1–3 hours. Always same day.",
+    answer: "Our recruiters do their best to contact everyone within 8 business hours.",
   },
   {
     question: "Do you sell my info?",
-    answer: "No. Your details stay with us — we don't send your number to random recruiters or spam lists.",
+    answer: "No. We use Google Analytics (GA4) to understand behavior on our website, but we don't sell or share your personal information with anyone else.",
   },
   {
     question: "Who can apply?",
-    answer: "Anyone. CDL-A drivers, new drivers, and people exploring their options — the quiz filters everything on our side.",
+    answer: "CDL-A drivers mostly, but we also have some non-CDL-A jobs like cargo van driver or box truck driver.",
   },
   {
     question: "What happens after I submit?",
-    answer: "We call you to confirm your details. If everything looks good, we start matching you with carriers and job options.",
+    answer: "Short screening call to confirm your details and choose the offer. We start matching right away!",
   },
   {
     question: "Why apply now?",
