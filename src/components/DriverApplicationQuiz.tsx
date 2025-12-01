@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { ChevronRight, ChevronLeft, Check } from "lucide-react";
+import { useEffect, useRef } from "react";
 
 interface FormData {
   full_name: string;
@@ -28,6 +29,24 @@ const DriverApplicationQuiz = () => {
     truck_types: [],
     notes: "",
   });
+
+  // ---- META PIXEL QUIZ START TRACKING ----
+  const quizStartedRef = useRef(false);
+
+  useEffect(() => {
+    // fire only when user moves from Step 1 → Step 2 (true quiz start)
+    if (currentStep !== 1 && !quizStartedRef.current) {
+      quizStartedRef.current = true;
+
+      if (typeof fbq === "function") {
+        fbq("trackCustom", "DriverQuizStart", {
+          step: currentStep,
+          cdl_class: formData.cdl_class || "",
+        });
+      }
+    }
+  }, [currentStep]);
+  // ---- END META TRACKING ----
 
   const getTotalSteps = () => {
     if (formData.cdl_class === "has_cdl") return 4; // CDL question + truck type + years + contact
@@ -82,6 +101,16 @@ const DriverApplicationQuiz = () => {
       });
 
       if (response.ok) {
+        // --- META LEAD EVENT ---
+        if (typeof fbq === "function") {
+          fbq("track", "Lead", {
+            cdl_class: formData.cdl_class,
+            years_exp: formData.years_exp,
+            truck_types: formData.truck_types.join(", "),
+          });
+        }
+        // -------------------------
+
         setIsSubmitted(true);
       } else {
         throw new Error("Server returned non-200 response");
@@ -177,7 +206,9 @@ const DriverApplicationQuiz = () => {
                         formData.cdl_class === option.value ? "border-accent bg-accent" : "border-muted-foreground"
                       }`}
                     >
-                      {formData.cdl_class === option.value && <div className="w-2.5 h-2.5 flex-shrink-0 rounded-full bg-accent-foreground" />}
+                      {formData.cdl_class === option.value && (
+                        <div className="w-2.5 h-2.5 flex-shrink-0 rounded-full bg-accent-foreground" />
+                      )}
                     </div>
                     <span className="font-semibold text-base">{option.label}</span>
                   </div>
@@ -216,10 +247,14 @@ const DriverApplicationQuiz = () => {
                   <div className="flex items-center justify-center gap-2">
                     <div
                       className={`w-5 h-5 flex-shrink-0 rounded-md border-2 flex items-center justify-center ${
-                        formData.truck_types.includes(type.value) ? "border-accent bg-accent" : "border-muted-foreground"
+                        formData.truck_types.includes(type.value)
+                          ? "border-accent bg-accent"
+                          : "border-muted-foreground"
                       }`}
                     >
-                      {formData.truck_types.includes(type.value) && <Check className="w-3 h-3 flex-shrink-0 text-accent-foreground" />}
+                      {formData.truck_types.includes(type.value) && (
+                        <Check className="w-3 h-3 flex-shrink-0 text-accent-foreground" />
+                      )}
                     </div>
                     <span className="font-semibold">{type.label}</span>
                   </div>
@@ -249,7 +284,8 @@ const DriverApplicationQuiz = () => {
             <div>
               <h2 className="text-2xl font-bold text-foreground mb-2">Tell us more</h2>
               <p className="text-sm text-muted-foreground">
-                We work with non-CDL positions on an irregular basis. Please tell us more about the type of position you are looking for.
+                We work with non-CDL positions on an irregular basis. Please tell us more about the type of position you
+                are looking for.
               </p>
             </div>
 
@@ -355,12 +391,7 @@ const DriverApplicationQuiz = () => {
       <div className="fixed bottom-0 left-0 right-0 bg-background border-t border-border p-4 sm:relative sm:border-0 sm:bg-transparent sm:p-0 sm:mt-6 z-50">
         <div className="max-w-2xl mx-auto flex gap-3">
           {currentStep > 1 && (
-            <Button
-              type="button"
-              variant="outline"
-              onClick={handleBack}
-              className="flex-1 sm:flex-none"
-            >
+            <Button type="button" variant="outline" onClick={handleBack} className="flex-1 sm:flex-none">
               <ChevronLeft className="w-4 h-4 mr-1" />
               Back
             </Button>
