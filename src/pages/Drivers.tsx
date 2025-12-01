@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Clock, DollarSign, MapPin, Heart, Phone } from "lucide-react";
 import driversHeroImage from "@/assets/drivers-hero.jpg";
 import DriverApplicationQuiz from "@/components/DriverApplicationQuiz";
+import DriverFAQ from "@/components/DriverFAQ";
 
 const Drivers = () => {
   return (
@@ -93,6 +94,9 @@ const Drivers = () => {
             <DriverApplicationQuiz />
           </div>
         </section>
+
+        {/* FAQ Section */}
+        <DriverFAQ />
       </main>
 
       <Footer />
