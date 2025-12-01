@@ -1,7 +1,7 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Clock, DollarSign, MapPin, Heart, Phone } from "lucide-react";
+import { Clock, DollarSign, MapPin, Package, Headset } from "lucide-react";
 import driversHeroImage from "@/assets/drivers-hero.jpg";
 import DriverApplicationQuiz from "@/components/DriverApplicationQuiz";
 import DriverFAQ from "@/components/DriverFAQ";
@@ -55,28 +55,28 @@ const Drivers = () => {
             <div className="grid grid-cols-2 md:grid-cols-5 gap-x-4 gap-y-6">
               <div className="flex flex-col items-center text-center space-y-1.5">
                 <Clock className="w-7 h-7 text-accent" strokeWidth={1.5} />
-                <span className="font-semibold text-foreground text-sm">Fast Placement</span>
+                <span className="font-semibold text-foreground text-sm">Fast placement</span>
                 <p className="text-xs text-muted-foreground">Get matched quickly</p>
               </div>
               <div className="flex flex-col items-center text-center space-y-1.5">
                 <DollarSign className="w-7 h-7 text-accent" strokeWidth={1.5} />
-                <span className="font-semibold text-foreground text-sm">Stronger Pay</span>
+                <span className="font-semibold text-foreground text-sm">Stronger pay</span>
                 <p className="text-xs text-muted-foreground">Better compensation</p>
               </div>
               <div className="flex flex-col items-center text-center space-y-1.5">
                 <MapPin className="w-7 h-7 text-accent" strokeWidth={1.5} />
-                <span className="font-semibold text-foreground text-sm">Route Choice</span>
+                <span className="font-semibold text-foreground text-sm">Route choice</span>
                 <p className="text-xs text-muted-foreground">Pick your lanes</p>
               </div>
               <div className="flex flex-col items-center text-center space-y-1.5">
-                <Heart className="w-7 h-7 text-accent" strokeWidth={1.5} />
-                <span className="font-semibold text-foreground text-sm">Free for Drivers</span>
+                <Package className="w-7 h-7 text-accent" strokeWidth={1.5} />
+                <span className="font-semibold text-foreground text-sm">Free for drivers</span>
                 <p className="text-xs text-muted-foreground">No cost to apply</p>
               </div>
               <div className="flex flex-col items-center text-center space-y-1.5 col-span-2 md:col-span-1">
-                <Phone className="w-7 h-7 text-accent" strokeWidth={1.5} />
-                <span className="font-semibold text-foreground text-sm">Human Support</span>
-                <p className="text-xs text-muted-foreground">Real people helping</p>
+                <Headset className="w-7 h-7 text-accent" strokeWidth={1.5} />
+                <span className="font-semibold text-foreground text-sm">24/7 support</span>
+                <p className="text-xs text-muted-foreground">Human recruiters only</p>
               </div>
             </div>
           </div>
