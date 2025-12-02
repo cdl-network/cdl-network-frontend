@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import HowItWorks from "@/components/HowItWorks";
+import TruckTypesSection from "@/components/TruckTypesSection";
 import { useNavigate } from "react-router-dom";
 import {
   Carousel,
@@ -362,81 +363,7 @@ const Index = () => {
         </section>
 
         {/* What Our Drivers and Carriers Run */}
-        <section className="py-6 md:py-16 px-0 md:px-4">
-          <div className="container mx-auto max-w-6xl px-0 md:px-4">
-            <h2 className="text-3xl font-bold text-foreground mb-4 md:mb-12 text-center px-4 md:px-0">What our drivers and carriers run</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 md:gap-6">
-              {[
-                {
-                  title: "Dry Van",
-                  text: "Reliable year-round freight for 53′ vans — we hire experienced drivers and partner with carriers who keep America supplied.",
-                  image: dryVanImage,
-                  alt: "53-foot dry van trailer on the highway"
-                },
-                {
-                  title: "Reefer",
-                  text: "Temperature-controlled freight across the U.S. — connecting reefer carriers and drivers who handle time-sensitive loads.",
-                  image: reeferImage,
-                  alt: "Refrigerated trailer carrying temperature-sensitive cargo"
-                },
-                {
-                  title: "Flatbed",
-                  text: "Open-deck specialists wanted — from step decks to RGN trailers, we match skilled drivers with dependable flatbed carriers.",
-                  image: flatbedImage,
-                  alt: "Flatbed trailer carrying construction materials"
-                },
-                {
-                  title: "Power Only",
-                  text: "For owner-operators running tractors only — we connect them with carriers and brokers needing power-only coverage.",
-                  image: powerOnlyImage,
-                  alt: "Truck cab pulling a customer-owned trailer"
-                },
-                {
-                  title: "Box Truck",
-                  text: "From box trucks to Sprinter and cargo vans — we recruit reliable drivers and partner with carriers running local and regional routes.",
-                  image: boxTruckImage,
-                  alt: "Box truck making local delivery"
-                }
-              ].map((truck, index) => (
-                <div key={index}>
-                  {/* Mobile: Full-width modern hero style */}
-                  <div className="relative md:hidden overflow-hidden">
-                    <div className="relative w-full aspect-[4/5]">
-                      <img 
-                        src={truck.image} 
-                        alt={truck.alt}
-                        className="w-full h-full object-cover"
-                      />
-                      {/* Gradient overlay for text readability */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent" />
-                      
-                      {/* Text overlay on bottom */}
-                      <div className="absolute bottom-0 left-0 right-0 p-6">
-                        <h3 className="text-2xl font-bold text-white mb-3 leading-tight">
-                          {truck.title}
-                        </h3>
-                        <p className="text-[15px] text-white/95 leading-relaxed">
-                          {truck.text}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Desktop: Traditional card */}
-                  <div className="hidden md:block bg-card border border-border rounded-[var(--radius)] overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-                    <div className="h-48 bg-cover bg-center" style={{ backgroundImage: `url(${truck.image})` }}></div>
-                    <div className="p-6">
-                      <h3 className="text-xl font-semibold mb-2">{truck.title}</h3>
-                      <p className="text-muted-foreground text-sm">
-                        {truck.text}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <TruckTypesSection />
 
         {/* Contact Form */}
         <section className="py-6 md:py-16 px-0 md:px-4 bg-muted/30">
