@@ -85,12 +85,6 @@ const Drivers = () => {
         {/* Application Form Section */}
         <section id="application-form" className="py-16 px-4 bg-muted/30">
           <div className="container mx-auto">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-foreground mb-3">Start Your Application</h2>
-              <p className="text-muted-foreground max-w-xl mx-auto">
-                Answer a few quick questions and we'll connect you with carriers that match your needs.
-              </p>
-            </div>
             <DriverApplicationQuiz />
           </div>
         </section>
