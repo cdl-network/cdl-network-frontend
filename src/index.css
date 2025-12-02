@@ -121,3 +121,81 @@ All colors MUST be HSL.
     line-height: 1.6;
   }
 }
+
+/* Scroll-triggered animations */
+@layer utilities {
+  /* Section fade-in */
+  .animate-section-reveal {
+    animation: sectionReveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  /* Card entrance with staggered delays */
+  .animate-card-enter {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: cardEnter 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .animate-card-enter-delay-1 { animation-delay: 0.1s; }
+  .animate-card-enter-delay-2 { animation-delay: 0.2s; }
+  .animate-card-enter-delay-3 { animation-delay: 0.3s; }
+  .animate-card-enter-delay-4 { animation-delay: 0.4s; }
+  .animate-card-enter-delay-5 { animation-delay: 0.5s; }
+
+  /* Slow image zoom for depth */
+  .animate-image-zoom {
+    animation: imageZoom 8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  /* Text reveal with delay */
+  .animate-text-reveal {
+    opacity: 0;
+    transform: translateY(8px);
+    animation: textReveal 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation-delay: 0.3s;
+  }
+
+  .animate-text-reveal-late {
+    animation-delay: 0.45s;
+  }
+}
+
+@keyframes sectionReveal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes cardEnter {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes imageZoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.06);
+  }
+}
+
+@keyframes textReveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
