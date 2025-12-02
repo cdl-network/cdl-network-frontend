@@ -161,6 +161,15 @@ const DriverApplicationQuiz = () => {
 
   return (
     <div className="w-full max-w-2xl mx-auto px-4 py-8">
+      {/* Heading - only show when not submitted */}
+      {!isSubmitted && (
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold text-foreground mb-3">Start Your Application</h2>
+          <p className="text-muted-foreground max-w-xl mx-auto">
+            Answer a few quick questions and we'll connect you with carriers that match your needs.
+          </p>
+        </div>
+      )}
       {/* Progress Indicator */}
       {totalSteps > 1 && (
         <div className="mb-8">
