@@ -149,18 +149,19 @@ const TruckTypesSection = () => {
               {duplicatedTrucks.map((truck, index) => (
                 <div 
                   key={index}
-                  className="flex-[0_0_320px] min-w-0 pl-6"
+                  className="flex-[0_0_340px] min-w-0 pl-6"
                 >
-                  <div className="bg-card border border-border rounded-[var(--radius)] overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 group h-full">
-                    <div className="h-48 overflow-hidden">
+                  <div className="bg-card border border-border rounded-2xl overflow-hidden shadow-md shadow-black/8 hover:shadow-xl hover:shadow-black/12 transition-all duration-300 group h-full">
+                    <div className="h-56 overflow-hidden relative">
                       <div 
                         className="w-full h-full bg-cover bg-center transition-transform duration-500 ease-out group-hover:scale-105"
                         style={{ backgroundImage: `url(${truck.image})` }}
                       />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-black/5" />
                     </div>
-                    <div className="p-6">
-                      <h3 className="text-xl font-semibold mb-2">{truck.title}</h3>
-                      <p className="text-muted-foreground text-sm">{truck.text}</p>
+                    <div className="p-6 pt-5">
+                      <h3 className="text-[1.35rem] font-bold mb-3 text-foreground">{truck.title}</h3>
+                      <p className="text-muted-foreground text-sm leading-relaxed">{truck.text}</p>
                     </div>
                   </div>
                 </div>
