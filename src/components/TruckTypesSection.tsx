@@ -94,12 +94,7 @@ const TruckTypesSection = () => {
                   <img 
                     src={truck.image} 
                     alt={truck.alt}
-                    className={`w-full h-full object-cover transition-transform duration-[8000ms] ease-out ${
-                      isVisible ? "scale-105" : "scale-100"
-                    }`}
-                    style={{ 
-                      transitionDelay: isVisible ? `${index * 100 + 200}ms` : "0ms"
-                    }}
+                    className="w-full h-full object-cover"
                   />
                   {/* Gradient overlay for text readability */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent" />
@@ -134,13 +129,8 @@ const TruckTypesSection = () => {
               <div className="hidden md:block bg-card border border-border rounded-[var(--radius)] overflow-hidden shadow-sm hover:shadow-md transition-shadow group">
                 <div className="h-48 overflow-hidden">
                   <div 
-                    className={`w-full h-full bg-cover bg-center transition-transform duration-[6000ms] ease-out group-hover:scale-110 ${
-                      isVisible ? "scale-105" : "scale-100"
-                    }`}
-                    style={{ 
-                      backgroundImage: `url(${truck.image})`,
-                      transitionDelay: isVisible ? `${index * 100}ms` : "0ms"
-                    }}
+                    className="w-full h-full bg-cover bg-center transition-transform duration-300 ease-out group-hover:scale-105"
+                    style={{ backgroundImage: `url(${truck.image})` }}
                   />
                 </div>
                 <div className="p-6">
