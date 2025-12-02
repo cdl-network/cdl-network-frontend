@@ -70,6 +70,19 @@
     </script>
 
     <!-- End Meta Pixel Code -->
+
+    <!-- FB ad anchor-scroll fix -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const target = document.querySelector("#application-form");
+        if (window.location.hash === "#application-form" && target) {
+          setTimeout(() => {
+            target.scrollIntoView({ behavior: "smooth" });
+          }, 300);
+        }
+      });
+    </script>
+    <!-- End Fix -->
   </head>
 
   <body>
