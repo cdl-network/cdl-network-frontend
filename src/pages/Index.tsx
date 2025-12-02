@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, ClipboardList, Search, Handshake } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import {
   Carousel,
@@ -256,39 +256,103 @@ const Index = () => {
         </section>
 
         {/* How It Works */}
-        <section className="py-16 px-4">
-          <div className="container mx-auto max-w-4xl">
-            <h2 className="text-3xl font-bold text-foreground mb-12 text-center">How It Works</h2>
-            <div className="space-y-8">
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold">
-                  1
+        <section className="py-20 px-4 bg-muted/30">
+          <div className="container mx-auto max-w-6xl">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-16 text-center">How It Works</h2>
+            
+            {/* Desktop Timeline */}
+            <div className="hidden md:block">
+              <div className="relative">
+                {/* Connecting Line */}
+                <div className="absolute top-16 left-[16.67%] right-[16.67%] h-0.5 bg-gradient-to-r from-primary/30 via-primary to-primary/30" />
+                
+                <div className="grid grid-cols-3 gap-8">
+                  {/* Step 1 */}
+                  <div className="relative flex flex-col items-center text-center">
+                    <div className="w-32 h-32 rounded-2xl bg-card border border-border shadow-lg flex flex-col items-center justify-center mb-6 relative z-10">
+                      <ClipboardList className="w-10 h-10 text-primary mb-2" />
+                      <span className="text-2xl font-bold text-primary">1</span>
+                    </div>
+                    <h3 className="text-xl font-semibold mb-3 text-foreground">Submit Your Information</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
+                      Drivers apply with their experience and preferences. Carriers tell us their hiring needs.
+                    </p>
+                  </div>
+                  
+                  {/* Step 2 */}
+                  <div className="relative flex flex-col items-center text-center">
+                    <div className="w-32 h-32 rounded-2xl bg-card border border-border shadow-lg flex flex-col items-center justify-center mb-6 relative z-10">
+                      <Search className="w-10 h-10 text-primary mb-2" />
+                      <span className="text-2xl font-bold text-primary">2</span>
+                    </div>
+                    <h3 className="text-xl font-semibold mb-3 text-foreground">We Match & Vet</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
+                      Our team analyzes compatibility and verifies qualifications to ensure the right fit.
+                    </p>
+                  </div>
+                  
+                  {/* Step 3 */}
+                  <div className="relative flex flex-col items-center text-center">
+                    <div className="w-32 h-32 rounded-2xl bg-card border border-border shadow-lg flex flex-col items-center justify-center mb-6 relative z-10">
+                      <Handshake className="w-10 h-10 text-primary mb-2" />
+                      <span className="text-2xl font-bold text-primary">3</span>
+                    </div>
+                    <h3 className="text-xl font-semibold mb-3 text-foreground">Connect & Succeed</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
+                      We facilitate the introduction and support both parties through the process.
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">Submit Your Information</h3>
-                  <p className="text-muted-foreground">
+              </div>
+            </div>
+            
+            {/* Mobile Timeline */}
+            <div className="md:hidden space-y-6">
+              {/* Step 1 */}
+              <div className="relative flex gap-4">
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 rounded-xl bg-card border border-border shadow-md flex flex-col items-center justify-center">
+                    <ClipboardList className="w-6 h-6 text-primary" />
+                    <span className="text-sm font-bold text-primary">1</span>
+                  </div>
+                  <div className="w-0.5 h-full bg-gradient-to-b from-primary to-primary/30 mt-2" />
+                </div>
+                <div className="flex-1 pb-6">
+                  <h3 className="text-lg font-semibold mb-2 text-foreground">Submit Your Information</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">
                     Drivers apply with their experience and preferences. Carriers tell us their hiring needs.
                   </p>
                 </div>
               </div>
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold">
-                  2
+              
+              {/* Step 2 */}
+              <div className="relative flex gap-4">
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 rounded-xl bg-card border border-border shadow-md flex flex-col items-center justify-center">
+                    <Search className="w-6 h-6 text-primary" />
+                    <span className="text-sm font-bold text-primary">2</span>
+                  </div>
+                  <div className="w-0.5 h-full bg-gradient-to-b from-primary to-primary/30 mt-2" />
                 </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">We Match & Vet</h3>
-                  <p className="text-muted-foreground">
+                <div className="flex-1 pb-6">
+                  <h3 className="text-lg font-semibold mb-2 text-foreground">We Match & Vet</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">
                     Our team analyzes compatibility and verifies qualifications to ensure the right fit.
                   </p>
                 </div>
               </div>
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold">
-                  3
+              
+              {/* Step 3 */}
+              <div className="relative flex gap-4">
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 rounded-xl bg-card border border-border shadow-md flex flex-col items-center justify-center">
+                    <Handshake className="w-6 h-6 text-primary" />
+                    <span className="text-sm font-bold text-primary">3</span>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">Connect & Succeed</h3>
-                  <p className="text-muted-foreground">
+                <div className="flex-1">
+                  <h3 className="text-lg font-semibold mb-2 text-foreground">Connect & Succeed</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">
                     We facilitate the introduction and support both parties through the process.
                   </p>
                 </div>
