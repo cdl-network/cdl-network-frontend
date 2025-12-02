@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState, useCallback } from "react";
+import { useRef, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import AutoScroll from "embla-carousel-auto-scroll";
 import dryVanImage from "@/assets/dry-van.jpg";
@@ -49,7 +49,6 @@ const LogisticsBackground = () => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    {/* US outline simplified */}
     <path
       d="M150 180 Q200 140 280 150 Q350 130 420 145 Q500 120 580 140 Q650 125 720 150 Q800 135 880 160 Q950 145 1020 170 L1050 200 Q1020 240 950 250 Q880 270 800 255 Q720 280 640 260 Q560 285 480 265 Q400 290 320 270 Q240 295 180 275 Q120 260 100 220 Q130 195 150 180Z"
       stroke="currentColor"
@@ -57,43 +56,16 @@ const LogisticsBackground = () => (
       className="text-foreground"
       strokeDasharray="4 6"
     />
-    
-    {/* Route dots and connections */}
     {[
-      { cx: 200, cy: 200 },
-      { cx: 350, cy: 180 },
-      { cx: 500, cy: 190 },
-      { cx: 650, cy: 175 },
-      { cx: 800, cy: 195 },
-      { cx: 950, cy: 185 },
-      { cx: 280, cy: 240 },
-      { cx: 450, cy: 250 },
-      { cx: 600, cy: 235 },
-      { cx: 750, cy: 245 },
-      { cx: 900, cy: 230 },
+      { cx: 200, cy: 200 }, { cx: 350, cy: 180 }, { cx: 500, cy: 190 },
+      { cx: 650, cy: 175 }, { cx: 800, cy: 195 }, { cx: 950, cy: 185 },
+      { cx: 280, cy: 240 }, { cx: 450, cy: 250 }, { cx: 600, cy: 235 },
+      { cx: 750, cy: 245 }, { cx: 900, cy: 230 },
     ].map((dot, i) => (
-      <g key={i}>
-        <circle cx={dot.cx} cy={dot.cy} r="3" fill="currentColor" className="text-foreground" />
-      </g>
+      <circle key={i} cx={dot.cx} cy={dot.cy} r="3" fill="currentColor" className="text-foreground" />
     ))}
-    
-    {/* Connecting dotted lines */}
-    <path
-      d="M200 200 Q275 190 350 180 Q425 185 500 190 Q575 182 650 175 Q725 185 800 195 Q875 190 950 185"
-      stroke="currentColor"
-      strokeWidth="1"
-      className="text-foreground"
-      strokeDasharray="2 8"
-    />
-    <path
-      d="M280 240 Q365 245 450 250 Q525 242 600 235 Q675 240 750 245 Q825 237 900 230"
-      stroke="currentColor"
-      strokeWidth="1"
-      className="text-foreground"
-      strokeDasharray="2 8"
-    />
-    
-    {/* Cross connections */}
+    <path d="M200 200 Q275 190 350 180 Q425 185 500 190 Q575 182 650 175 Q725 185 800 195 Q875 190 950 185" stroke="currentColor" strokeWidth="1" className="text-foreground" strokeDasharray="2 8" />
+    <path d="M280 240 Q365 245 450 250 Q525 242 600 235 Q675 240 750 245 Q825 237 900 230" stroke="currentColor" strokeWidth="1" className="text-foreground" strokeDasharray="2 8" />
     <path d="M350 180 L280 240" stroke="currentColor" strokeWidth="0.5" className="text-foreground" strokeDasharray="3 6" />
     <path d="M500 190 L450 250" stroke="currentColor" strokeWidth="0.5" className="text-foreground" strokeDasharray="3 6" />
     <path d="M650 175 L600 235" stroke="currentColor" strokeWidth="0.5" className="text-foreground" strokeDasharray="3 6" />
@@ -105,23 +77,31 @@ const LogisticsBackground = () => (
 const TruckTypesSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
 
-  // Embla carousel with auto-scroll plugin
-  const [emblaRef, emblaApi] = useEmblaCarousel(
+  // Desktop carousel with auto-scroll
+  const [desktopRef, desktopApi] = useEmblaCarousel(
     { 
       loop: true, 
       align: "start",
       dragFree: true,
+      containScroll: false,
     },
     [
       AutoScroll({ 
-        speed: 0.8, 
+        speed: 1,
+        startDelay: 0,
         stopOnInteraction: false,
         stopOnMouseEnter: true,
       })
     ]
   );
+
+  // Mobile carousel - swipeable only
+  const [mobileRef] = useEmblaCarousel({ 
+    loop: true, 
+    align: "start",
+    dragFree: true,
+  });
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -141,18 +121,8 @@ const TruckTypesSection = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Pause/resume auto-scroll on hover
-  useEffect(() => {
-    if (!emblaApi) return;
-    const autoScroll = emblaApi.plugins().autoScroll as any;
-    if (!autoScroll) return;
-
-    if (isHovered) {
-      autoScroll.stop();
-    } else {
-      autoScroll.play();
-    }
-  }, [emblaApi, isHovered]);
+  // Duplicate items for seamless infinite loop
+  const duplicatedTrucks = [...truckTypes, ...truckTypes, ...truckTypes];
 
   return (
     <section 
@@ -161,12 +131,11 @@ const TruckTypesSection = () => {
         isVisible ? "opacity-100" : "opacity-0"
       }`}
     >
-      {/* Logistics background */}
       <LogisticsBackground />
       
-      <div className="container mx-auto max-w-7xl px-4">
+      <div className="mx-auto max-w-[100vw]">
         <h2 
-          className={`text-3xl font-bold text-foreground mb-6 md:mb-10 text-center transition-all duration-700 ${
+          className={`text-3xl font-bold text-foreground mb-6 md:mb-10 text-center px-4 transition-all duration-700 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
@@ -174,25 +143,13 @@ const TruckTypesSection = () => {
         </h2>
 
         {/* Desktop: Auto-scrolling carousel */}
-        <div 
-          className="hidden md:block"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
-          <div className="overflow-hidden" ref={emblaRef}>
-            <div className="flex gap-6">
-              {/* Duplicate items for seamless loop */}
-              {[...truckTypes, ...truckTypes].map((truck, index) => (
+        <div className="hidden md:block">
+          <div className="overflow-hidden" ref={desktopRef}>
+            <div className="flex">
+              {duplicatedTrucks.map((truck, index) => (
                 <div 
                   key={index}
-                  className={`flex-none w-[320px] transition-all duration-600 ${
-                    isVisible 
-                      ? "opacity-100 translate-y-0" 
-                      : "opacity-0 translate-y-6"
-                  }`}
-                  style={{ 
-                    transitionDelay: isVisible ? `${(index % 5) * 100 + 150}ms` : "0ms"
-                  }}
+                  className="flex-[0_0_320px] min-w-0 pl-6"
                 >
                   <div className="bg-card border border-border rounded-[var(--radius)] overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 group h-full">
                     <div className="h-48 overflow-hidden">
@@ -202,12 +159,8 @@ const TruckTypesSection = () => {
                       />
                     </div>
                     <div className="p-6">
-                      <h3 className="text-xl font-semibold mb-2">
-                        {truck.title}
-                      </h3>
-                      <p className="text-muted-foreground text-sm">
-                        {truck.text}
-                      </p>
+                      <h3 className="text-xl font-semibold mb-2">{truck.title}</h3>
+                      <p className="text-muted-foreground text-sm">{truck.text}</p>
                     </div>
                   </div>
                 </div>
@@ -218,19 +171,12 @@ const TruckTypesSection = () => {
 
         {/* Mobile: Swipeable carousel */}
         <div className="md:hidden">
-          <div className="overflow-hidden" ref={emblaRef}>
+          <div className="overflow-hidden" ref={mobileRef}>
             <div className="flex">
               {truckTypes.map((truck, index) => (
                 <div 
                   key={index}
-                  className={`flex-none w-[85vw] pr-4 transition-all duration-600 ${
-                    isVisible 
-                      ? "opacity-100 translate-y-0" 
-                      : "opacity-0 translate-y-6"
-                  }`}
-                  style={{ 
-                    transitionDelay: isVisible ? `${index * 100 + 150}ms` : "0ms"
-                  }}
+                  className="flex-[0_0_85%] min-w-0 pl-4"
                 >
                   <div className="relative overflow-hidden rounded-xl">
                     <div className="relative w-full aspect-[4/5] overflow-hidden">
@@ -240,14 +186,9 @@ const TruckTypesSection = () => {
                         className="w-full h-full object-cover"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent" />
-                      
                       <div className="absolute bottom-0 left-0 right-0 p-5">
-                        <h3 className="text-xl font-bold text-white mb-2 leading-tight">
-                          {truck.title}
-                        </h3>
-                        <p className="text-sm text-white/90 leading-relaxed">
-                          {truck.text}
-                        </p>
+                        <h3 className="text-xl font-bold text-white mb-2 leading-tight">{truck.title}</h3>
+                        <p className="text-sm text-white/90 leading-relaxed">{truck.text}</p>
                       </div>
                     </div>
                   </div>
