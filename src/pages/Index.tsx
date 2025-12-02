@@ -265,7 +265,7 @@ const Index = () => {
             <h2 className="text-3xl font-bold text-foreground mb-4 md:mb-12 text-center px-4 md:px-0">We proudly serve</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-8">
               {/* Drivers Card */}
-              <div>
+              <div className="h-full">
                 {/* Mobile: Full-width modern hero style */}
                 <div className="relative md:hidden overflow-hidden">
                   <div className="relative w-full aspect-[4/5]">
@@ -297,11 +297,11 @@ const Index = () => {
                 </div>
 
                 {/* Desktop: Traditional card */}
-                <div className="hidden md:block bg-card border border-border rounded-[var(--radius)] overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                <div className="hidden md:flex md:flex-col h-full bg-card border border-border rounded-[var(--radius)] overflow-hidden shadow-sm hover:shadow-md transition-shadow">
                   <div className="h-48 bg-cover bg-center" style={{ backgroundImage: `url(${driversForDriversImage})` }}></div>
-                  <div className="p-6">
+                  <div className="p-6 flex flex-col flex-grow">
                     <h3 className="text-2xl font-semibold mb-3">Drivers</h3>
-                    <p className="text-muted-foreground mb-4">
+                    <p className="text-muted-foreground mb-4 flex-grow">
                       CDL-A drivers seeking better opportunities with companies that value their skills and respect their preferences.
                     </p>
                     <Button onClick={() => navigate('/drivers')} variant="outline">
@@ -312,7 +312,7 @@ const Index = () => {
               </div>
 
               {/* Carriers Card */}
-              <div>
+              <div className="h-full">
                 {/* Mobile: Full-width modern hero style */}
                 <div className="relative md:hidden overflow-hidden">
                   <div className="relative w-full aspect-[4/5]">
@@ -344,11 +344,11 @@ const Index = () => {
                 </div>
 
                 {/* Desktop: Traditional card */}
-                <div className="hidden md:block bg-card border border-border rounded-[var(--radius)] overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                <div className="hidden md:flex md:flex-col h-full bg-card border border-border rounded-[var(--radius)] overflow-hidden shadow-sm hover:shadow-md transition-shadow">
                   <div className="h-48 bg-cover bg-center" style={{ backgroundImage: `url(${supportImage})` }}></div>
-                  <div className="p-6">
+                  <div className="p-6 flex flex-col flex-grow">
                     <h3 className="text-2xl font-semibold mb-3">Carriers</h3>
-                    <p className="text-muted-foreground mb-4">
+                    <p className="text-muted-foreground mb-4 flex-grow">
                       U.S. carriers looking for reliable, pre-screened CDL-A drivers who fit their operation and culture.
                     </p>
                     <Button onClick={() => navigate('/carriers')} variant="outline">
