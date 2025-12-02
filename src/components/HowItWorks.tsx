@@ -185,7 +185,7 @@ export default function HowItWorks() {
                     {/* Card */}
                     <div 
                       className={`
-                        relative w-28 h-28 rounded-3xl mb-8 flex flex-col items-center justify-center
+                        relative w-24 h-24 rounded-3xl mb-8 flex items-center justify-center
                         bg-card/80 backdrop-blur-sm border border-border/50
                         transition-all duration-500 ease-out cursor-pointer
                         ${isHovered ? 'shadow-xl shadow-primary/10 scale-105 -translate-y-2' : 'shadow-md'}
@@ -202,20 +202,11 @@ export default function HowItWorks() {
                       
                       <Icon 
                         className={`
-                          w-9 h-9 mb-1 relative z-10
+                          w-10 h-10 relative z-10
                           transition-all duration-500
                           ${isHovered ? 'text-primary scale-110' : 'text-primary/70'}
                         `}
                       />
-                      <span 
-                        className={`
-                          text-lg font-semibold relative z-10
-                          transition-colors duration-500
-                          ${isHovered ? 'text-primary' : 'text-muted-foreground'}
-                        `}
-                      >
-                        {step.number}
-                      </span>
                     </div>
 
                     {/* Text content */}
@@ -254,9 +245,8 @@ export default function HowItWorks() {
               <div key={step.number} className="relative flex gap-5">
                 {/* Left side: Icon + Line */}
                 <div className="flex flex-col items-center">
-                  <div className="w-14 h-14 rounded-2xl bg-card/80 backdrop-blur-sm border border-border/50 shadow-md flex flex-col items-center justify-center">
+                  <div className="w-12 h-12 rounded-2xl bg-card/80 backdrop-blur-sm border border-border/50 shadow-md flex items-center justify-center">
                     <Icon className="w-5 h-5 text-primary/80" />
-                    <span className="text-xs font-semibold text-muted-foreground">{step.number}</span>
                   </div>
                   {!isLast && (
                     <div className="w-px flex-1 mt-3 bg-gradient-to-b from-primary/30 to-transparent min-h-[40px]" />
