@@ -115,6 +115,19 @@ const Index = () => {
               </Button>
             </div>
           </div>
+          
+          {/* Bottom curved edge for smooth transition */}
+          <div className="absolute -bottom-1 left-0 right-0 h-12 overflow-hidden">
+            <svg
+              viewBox="0 0 1440 48"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-full h-full"
+              preserveAspectRatio="none"
+            >
+              <path d="M0 48h1440V24c-240 16-480 24-720 24S240 40 0 24v24z" fill="hsl(var(--secondary))" />
+            </svg>
+          </div>
         </section>
 
         {/* Why Choose Us - Modern Mobile Hero Slider */}
