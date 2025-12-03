@@ -213,75 +213,140 @@ const HeroSection = () => {
   return (
     <section
       ref={heroRef}
-      className="relative py-24 md:py-32 lg:py-36 px-4 overflow-hidden min-h-[420px] md:min-h-[480px] flex items-start pt-28 md:pt-36"
+      className="relative px-4 overflow-hidden min-h-[calc(100vh-80px)] flex items-center justify-center"
     >
       {/* Parallax Background */}
       <div 
-        className="absolute inset-0 bg-cover bg-center transition-transform duration-100 ease-out scale-105"
+        className="absolute inset-0 bg-cover bg-center transition-transform duration-100 ease-out scale-110"
         style={{ 
           backgroundImage: `url(${carriersHeroImage})`,
-          transform: `translateY(${scrollY}px) scale(1.05)`
+          transform: `translateY(${scrollY}px) scale(1.1)`
         }}
       />
       
-      {/* Main Gradient Overlay */}
+      {/* Main Gradient Overlay - stronger for readability */}
       <div 
         className="absolute inset-0 transition-opacity duration-1000"
         style={{ 
-          background: 'linear-gradient(135deg, rgba(11, 31, 59, 0.88) 0%, rgba(11, 31, 59, 0.55) 100%)',
+          background: 'linear-gradient(135deg, rgba(11, 31, 59, 0.92) 0%, rgba(11, 31, 59, 0.75) 50%, rgba(11, 31, 59, 0.85) 100%)',
           opacity: isVisible ? 1 : 0.7
         }}
       />
       
-      {/* Bottom gradient for text readability and smooth transition */}
-      <div 
-        className="absolute inset-x-0 bottom-0 h-40 pointer-events-none"
-        style={{ 
-          background: 'linear-gradient(to bottom, transparent 0%, rgba(11, 31, 59, 0.3) 40%, rgba(11, 31, 59, 0.6) 70%, rgba(11, 31, 59, 0.85) 100%)'
-        }}
-      />
-      
-      {/* Subtle animated particles/dots overlay */}
-      <div className="absolute inset-0 opacity-[0.04]">
+      {/* Animated accent lines */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div 
-          className="absolute w-1 h-1 bg-white rounded-full animate-pulse"
-          style={{ top: '20%', left: '15%', animationDelay: '0s', animationDuration: '3s' }}
+          className={`absolute top-1/4 -left-20 w-96 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent transition-all duration-1500 ease-out ${
+            isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'
+          }`}
+          style={{ transitionDelay: '600ms' }}
         />
         <div 
-          className="absolute w-1.5 h-1.5 bg-white rounded-full animate-pulse"
-          style={{ top: '60%', left: '80%', animationDelay: '1s', animationDuration: '4s' }}
+          className={`absolute top-1/3 -right-20 w-80 h-px bg-gradient-to-l from-transparent via-accent/30 to-transparent transition-all duration-1500 ease-out ${
+            isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-20'
+          }`}
+          style={{ transitionDelay: '800ms' }}
         />
         <div 
-          className="absolute w-1 h-1 bg-white rounded-full animate-pulse"
-          style={{ top: '75%', left: '25%', animationDelay: '2s', animationDuration: '3.5s' }}
-        />
-        <div 
-          className="absolute w-1.5 h-1.5 bg-white rounded-full animate-pulse"
-          style={{ top: '30%', left: '70%', animationDelay: '0.5s', animationDuration: '4.5s' }}
+          className={`absolute bottom-1/3 -left-10 w-64 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent transition-all duration-1500 ease-out ${
+            isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'
+          }`}
+          style={{ transitionDelay: '1000ms' }}
         />
       </div>
+      
+      {/* Subtle floating particles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(6)].map((_, i) => (
+          <div 
+            key={i}
+            className={`absolute w-1 h-1 bg-white/20 rounded-full animate-float ${
+              isVisible ? 'opacity-100' : 'opacity-0'
+            }`}
+            style={{ 
+              top: `${20 + (i * 12)}%`, 
+              left: `${10 + (i * 15)}%`,
+              animationDelay: `${i * 0.5}s`,
+              animationDuration: `${3 + (i * 0.5)}s`
+            }}
+          />
+        ))}
+      </div>
 
-      {/* Content - positioned higher with more breathing room */}
-      <div className="container mx-auto max-w-3xl text-center relative z-10">
+      {/* Content - centered with strong presence */}
+      <div className="container mx-auto max-w-4xl text-center relative z-10 py-20">
+        {/* Accent badge */}
+        <div 
+          className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 border border-accent/30 mb-8 transition-all duration-700 ease-out ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          }`}
+          style={{ transitionDelay: '100ms' }}
+        >
+          <div className="w-2 h-2 bg-accent rounded-full animate-pulse" />
+          <span className="text-sm font-medium text-white/90 tracking-wide">For Carriers & Fleet Operators</span>
+        </div>
+        
         <h1 
-          className={`text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 transition-all duration-700 ease-out ${
+          className={`text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-8 leading-tight transition-all duration-700 ease-out ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
+          style={{ 
+            transitionDelay: '200ms',
+            textShadow: '0 4px 30px rgba(0,0,0,0.4)'
+          }}
         >
-          Carrier Inquiry
+          Find Qualified CDL-A Drivers
         </h1>
+        
         <p 
-          className={`text-lg md:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed transition-all duration-700 ease-out delay-200 ${
+          className={`text-lg md:text-xl lg:text-2xl text-white/90 max-w-2xl mx-auto leading-relaxed mb-10 transition-all duration-700 ease-out ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
+          style={{ 
+            transitionDelay: '400ms',
+            textShadow: '0 2px 20px rgba(0,0,0,0.3)'
+          }}
         >
-          Looking for reliable, pre-screened CDL-A drivers? We deliver quality matches — not just resumes. Tell us
-          what you need and we'll connect you with drivers who fit.
+          We deliver quality matches — not just resumes. Tell us what you need and we'll connect you with drivers who fit.
         </p>
+        
+        {/* Trust indicators */}
+        <div 
+          className={`flex flex-wrap justify-center gap-6 md:gap-10 text-white/70 text-sm transition-all duration-700 ease-out ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          }`}
+          style={{ transitionDelay: '600ms' }}
+        >
+          <span className="flex items-center gap-2">
+            <Users className="w-4 h-4 text-accent" />
+            Pre-screened drivers
+          </span>
+          <span className="flex items-center gap-2">
+            <Clock className="w-4 h-4 text-accent" />
+            Fast placement
+          </span>
+          <span className="flex items-center gap-2">
+            <MapPin className="w-4 h-4 text-accent" />
+            Route-matched
+          </span>
+        </div>
+      </div>
+      
+      {/* Scroll indicator */}
+      <div 
+        className={`absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 transition-all duration-700 ${
+          isVisible ? 'opacity-60' : 'opacity-0'
+        }`}
+        style={{ transitionDelay: '1200ms' }}
+      >
+        <span className="text-white/60 text-xs tracking-widest uppercase">Scroll</span>
+        <div className="w-5 h-8 border border-white/30 rounded-full flex justify-center pt-2">
+          <div className="w-1 h-2 bg-white/60 rounded-full animate-bounce" />
+        </div>
       </div>
       
       {/* Bottom curved edge for smooth transition */}
-      <div className="absolute -bottom-1 left-0 right-0 h-8 overflow-hidden">
+      <div className="absolute -bottom-1 left-0 right-0 h-12 overflow-hidden">
         <svg 
           viewBox="0 0 1440 48" 
           fill="none" 
