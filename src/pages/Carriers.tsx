@@ -213,7 +213,7 @@ const HeroSection = () => {
   return (
     <section
       ref={heroRef}
-      className="relative py-20 md:py-28 px-4 overflow-hidden min-h-[340px] md:min-h-[400px] flex items-center"
+      className="relative py-24 md:py-32 lg:py-36 px-4 overflow-hidden min-h-[420px] md:min-h-[480px] flex items-start pt-28 md:pt-36"
     >
       {/* Parallax Background */}
       <div 
@@ -224,12 +224,20 @@ const HeroSection = () => {
         }}
       />
       
-      {/* Gradient Overlay with subtle animation */}
+      {/* Main Gradient Overlay */}
       <div 
         className="absolute inset-0 transition-opacity duration-1000"
         style={{ 
-          background: 'linear-gradient(135deg, rgba(11, 31, 59, 0.85) 0%, rgba(11, 31, 59, 0.50) 100%)',
+          background: 'linear-gradient(135deg, rgba(11, 31, 59, 0.88) 0%, rgba(11, 31, 59, 0.55) 100%)',
           opacity: isVisible ? 1 : 0.7
+        }}
+      />
+      
+      {/* Bottom gradient for text readability and smooth transition */}
+      <div 
+        className="absolute inset-x-0 bottom-0 h-40 pointer-events-none"
+        style={{ 
+          background: 'linear-gradient(to bottom, transparent 0%, rgba(11, 31, 59, 0.3) 40%, rgba(11, 31, 59, 0.6) 70%, rgba(11, 31, 59, 0.85) 100%)'
         }}
       />
       
@@ -253,10 +261,10 @@ const HeroSection = () => {
         />
       </div>
 
-      {/* Content */}
+      {/* Content - positioned higher with more breathing room */}
       <div className="container mx-auto max-w-3xl text-center relative z-10">
         <h1 
-          className={`text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-5 transition-all duration-700 ease-out ${
+          className={`text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 transition-all duration-700 ease-out ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
@@ -270,6 +278,22 @@ const HeroSection = () => {
           Looking for reliable, pre-screened CDL-A drivers? We deliver quality matches — not just resumes. Tell us
           what you need and we'll connect you with drivers who fit.
         </p>
+      </div>
+      
+      {/* Bottom curved edge for smooth transition */}
+      <div className="absolute -bottom-1 left-0 right-0 h-8 overflow-hidden">
+        <svg 
+          viewBox="0 0 1440 48" 
+          fill="none" 
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-full"
+          preserveAspectRatio="none"
+        >
+          <path 
+            d="M0 48h1440V24c-240 16-480 24-720 24S240 40 0 24v24z" 
+            fill="hsl(var(--background))"
+          />
+        </svg>
       </div>
     </section>
   );
