@@ -74,7 +74,7 @@ const Drivers = () => {
             src={cdlSampleImage}
             alt=""
             aria-hidden="true"
-            className="absolute -bottom-2 -left-2 w-[280px] opacity-75 pointer-events-none hidden lg:block select-none"
+            className="absolute -bottom-3 -left-3 w-[300px] opacity-60 blur-[0.5px] pointer-events-none hidden lg:block select-none"
             style={{ zIndex: 1 }}
           />
           {/* Mobile/Tablet: smaller (~140px), 35% opacity */}
