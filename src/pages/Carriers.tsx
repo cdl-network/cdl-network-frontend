@@ -54,31 +54,42 @@ const WhyCarriersSection = () => {
 
   return (
     <section ref={sectionRef} className="relative py-16 md:py-20 px-4 overflow-hidden bg-background">
-      {/* Subtle logistics background pattern */}
-      <div className="absolute inset-0 opacity-[0.03]">
-        {/* Dotted grid pattern */}
+      {/* Enhanced logistics background pattern */}
+      <div className="absolute inset-0 opacity-[0.04]">
         <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="dotGrid" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-              <circle cx="20" cy="20" r="1" fill="currentColor" className="text-foreground" />
+              <circle cx="20" cy="20" r="1.5" fill="currentColor" className="text-foreground" />
             </pattern>
-            <pattern id="routeLines" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+            <pattern id="routeLines" x="0" y="0" width="300" height="300" patternUnits="userSpaceOnUse">
               <path 
-                d="M0 100 Q 50 80, 100 100 T 200 100" 
+                d="M0 150 Q 75 100, 150 150 T 300 150" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="1.5" 
+                strokeDasharray="6 6"
+                className="text-foreground"
+              />
+              <path 
+                d="M0 75 Q 100 50, 200 75 T 300 60" 
                 fill="none" 
                 stroke="currentColor" 
                 strokeWidth="1" 
-                strokeDasharray="4 4"
+                strokeDasharray="4 8"
                 className="text-foreground"
               />
               <path 
-                d="M0 150 Q 80 130, 150 150 T 200 140" 
+                d="M0 225 Q 50 200, 100 225 T 200 210 T 300 230" 
                 fill="none" 
                 stroke="currentColor" 
-                strokeWidth="0.5" 
-                strokeDasharray="2 4"
+                strokeWidth="0.75" 
+                strokeDasharray="3 6"
                 className="text-foreground"
               />
+              {/* Additional route dots */}
+              <circle cx="75" cy="125" r="3" fill="currentColor" className="text-foreground" opacity="0.5" />
+              <circle cx="225" cy="175" r="2" fill="currentColor" className="text-foreground" opacity="0.4" />
+              <circle cx="150" cy="100" r="2.5" fill="currentColor" className="text-foreground" opacity="0.3" />
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#dotGrid)" />
@@ -95,39 +106,82 @@ const WhyCarriersSection = () => {
           Why carriers choose us
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-          {benefits.map((benefit, index) => (
-            <div
-              key={benefit.title}
-              className={`bg-card border border-border rounded-2xl p-6 md:p-8 shadow-md shadow-black/5 transition-all duration-700 ease-out ${
-                isVisible 
-                  ? 'opacity-100 translate-y-0' 
-                  : 'opacity-0 translate-y-8'
-              }`}
-              style={{ 
-                transitionDelay: isVisible ? `${150 + index * 100}ms` : '0ms'
-              }}
-            >
-              <div 
-                className={`mb-5 transition-transform duration-700 ease-out ${
-                  isVisible ? 'scale-100' : 'scale-90'
-                }`}
+        {/* Cards container with connector */}
+        <div className="relative">
+          {/* Connector line between cards - desktop only */}
+          <div className="hidden md:block absolute top-1/2 left-0 right-0 -translate-y-1/2 z-0 px-16">
+            <svg className="w-full h-8" viewBox="0 0 100 10" preserveAspectRatio="none">
+              {/* Main connector line with draw animation */}
+              <line 
+                x1="8" y1="5" x2="92" y2="5" 
+                stroke="hsl(var(--accent))" 
+                strokeWidth="0.3"
+                strokeDasharray="100"
+                strokeDashoffset={isVisible ? "0" : "100"}
+                className="transition-all duration-1500 ease-out"
+                style={{ transitionDelay: '400ms' }}
+              />
+              {/* Pulsing nodes */}
+              <circle 
+                cx="8" cy="5" r="1.2" 
+                fill="hsl(var(--accent))"
+                className={`${isVisible ? 'animate-pulse' : 'opacity-0'}`}
+                style={{ animationDuration: '2s' }}
+              />
+              <circle 
+                cx="50" cy="5" r="1.2" 
+                fill="hsl(var(--accent))"
+                className={`${isVisible ? 'animate-pulse' : 'opacity-0'}`}
+                style={{ animationDuration: '2s', animationDelay: '0.5s' }}
+              />
+              <circle 
+                cx="92" cy="5" r="1.2" 
+                fill="hsl(var(--accent))"
+                className={`${isVisible ? 'animate-pulse' : 'opacity-0'}`}
+                style={{ animationDuration: '2s', animationDelay: '1s' }}
+              />
+            </svg>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 relative z-10">
+            {benefits.map((benefit, index) => (
+              <div
+                key={benefit.title}
+                className={`group bg-card border border-border rounded-2xl p-6 md:p-8 shadow-md shadow-black/5 
+                  transition-all duration-500 ease-out cursor-default
+                  hover:shadow-xl hover:shadow-black/10 hover:-translate-y-1 hover:border-accent/20
+                  ${isVisible 
+                    ? 'opacity-100 translate-y-0' 
+                    : 'opacity-0 translate-y-8'
+                  }`}
                 style={{ 
-                  transitionDelay: isVisible ? `${250 + index * 100}ms` : '0ms'
+                  transitionDelay: isVisible ? `${150 + index * 150}ms` : '0ms'
                 }}
               >
-                <benefit.icon 
-                  className="w-10 h-10 text-accent stroke-[1.5]" 
-                />
+                {/* Icon with micro-motion */}
+                <div 
+                  className={`mb-5 transition-all duration-700 ease-out ${
+                    isVisible ? 'scale-100 opacity-100' : 'scale-75 opacity-0'
+                  }`}
+                  style={{ 
+                    transitionDelay: isVisible ? `${300 + index * 150}ms` : '0ms'
+                  }}
+                >
+                  <div className={`inline-block ${isVisible ? 'animate-float' : ''}`} style={{ animationDelay: `${index * 200}ms` }}>
+                    <benefit.icon 
+                      className="w-10 h-10 text-accent stroke-[1.5] transition-transform duration-300 group-hover:scale-110" 
+                    />
+                  </div>
+                </div>
+                <h3 className="text-lg font-semibold text-foreground mb-2 transition-colors duration-300 group-hover:text-accent">
+                  {benefit.title}
+                </h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  {benefit.description}
+                </p>
               </div>
-              <h3 className="text-lg font-semibold text-foreground mb-2">
-                {benefit.title}
-              </h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                {benefit.description}
-              </p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>
