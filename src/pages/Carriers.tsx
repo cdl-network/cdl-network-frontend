@@ -23,7 +23,7 @@ const HeroSection = () => {
       if (heroRef.current) {
         const rect = heroRef.current.getBoundingClientRect();
         if (rect.bottom > 0) {
-          setScrollY(window.scrollY * 0.3);
+          setScrollY(window.scrollY * 0.08);
         }
       }
     };
