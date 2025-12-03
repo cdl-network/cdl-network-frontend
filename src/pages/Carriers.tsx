@@ -10,6 +10,130 @@ import { useToast } from "@/hooks/use-toast";
 import carriersHeroImage from "@/assets/carriers-2.jpg";
 import carriersImage from "@/assets/carriers-1.jpg";
 
+import { Users, Clock, MapPin } from "lucide-react";
+
+// Why Carriers Choose Us Section
+const WhyCarriersSection = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  const benefits = [
+    {
+      icon: Users,
+      title: "Pre-screened CDL-A drivers",
+      description: "Every driver is vetted for experience, safety record, and reliability before we make an introduction."
+    },
+    {
+      icon: Clock,
+      title: "Faster onboarding, lower turnover",
+      description: "Quality matches mean drivers stay longer. Reduce your hiring cycle and keep seats filled."
+    },
+    {
+      icon: MapPin,
+      title: "Drivers who fit your lanes",
+      description: "We match based on preferred routes, home time, and equipment — not just availability."
+    }
+  ];
+
+  return (
+    <section ref={sectionRef} className="relative py-16 md:py-20 px-4 overflow-hidden bg-background">
+      {/* Subtle logistics background pattern */}
+      <div className="absolute inset-0 opacity-[0.03]">
+        {/* Dotted grid pattern */}
+        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="dotGrid" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+              <circle cx="20" cy="20" r="1" fill="currentColor" className="text-foreground" />
+            </pattern>
+            <pattern id="routeLines" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+              <path 
+                d="M0 100 Q 50 80, 100 100 T 200 100" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="1" 
+                strokeDasharray="4 4"
+                className="text-foreground"
+              />
+              <path 
+                d="M0 150 Q 80 130, 150 150 T 200 140" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="0.5" 
+                strokeDasharray="2 4"
+                className="text-foreground"
+              />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#dotGrid)" />
+          <rect width="100%" height="100%" fill="url(#routeLines)" />
+        </svg>
+      </div>
+
+      <div className="container mx-auto max-w-5xl relative z-10">
+        <h2 
+          className={`text-2xl md:text-3xl font-bold text-foreground text-center mb-12 transition-all duration-700 ease-out ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          }`}
+        >
+          Why carriers choose us
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          {benefits.map((benefit, index) => (
+            <div
+              key={benefit.title}
+              className={`bg-card border border-border rounded-2xl p-6 md:p-8 shadow-md shadow-black/5 transition-all duration-700 ease-out ${
+                isVisible 
+                  ? 'opacity-100 translate-y-0' 
+                  : 'opacity-0 translate-y-8'
+              }`}
+              style={{ 
+                transitionDelay: isVisible ? `${150 + index * 100}ms` : '0ms'
+              }}
+            >
+              <div 
+                className={`mb-5 transition-transform duration-700 ease-out ${
+                  isVisible ? 'scale-100' : 'scale-90'
+                }`}
+                style={{ 
+                  transitionDelay: isVisible ? `${250 + index * 100}ms` : '0ms'
+                }}
+              >
+                <benefit.icon 
+                  className="w-10 h-10 text-accent stroke-[1.5]" 
+                />
+              </div>
+              <h3 className="text-lg font-semibold text-foreground mb-2">
+                {benefit.title}
+              </h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                {benefit.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
 // Hero Section Component with animations
 const HeroSection = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -165,6 +289,9 @@ const Carriers = () => {
       <main className="flex-1">
         {/* Hero Section */}
         <HeroSection />
+
+        {/* Why Carriers Choose Us Section */}
+        <WhyCarriersSection />
 
         {/* Inquiry Form Section */}
         <section className="py-16 px-4">
