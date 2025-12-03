@@ -282,17 +282,6 @@ const HeroSection = () => {
 
       {/* Content - centered with strong presence */}
       <div className="container mx-auto max-w-4xl text-center relative z-10 py-20">
-        {/* Accent badge */}
-        <div
-          className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 border border-accent/30 mb-8 transition-all duration-700 ease-out ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          }`}
-          style={{ transitionDelay: "100ms" }}
-        >
-          <div className="w-2 h-2 bg-accent rounded-full animate-pulse" />
-          <span className="text-sm font-medium text-white/90 tracking-wide">For Carriers & Fleet Operators</span>
-        </div>
-
         <h1
           className={`text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-8 leading-tight transition-all duration-700 ease-out ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
@@ -306,7 +295,7 @@ const HeroSection = () => {
         </h1>
 
         <p
-          className={`text-lg md:text-xl lg:text-2xl text-white/90 max-w-2xl mx-auto leading-relaxed mb-10 transition-all duration-700 ease-out ${
+          className={`text-lg md:text-xl lg:text-2xl text-white/90 max-w-2xl mx-auto leading-relaxed mb-8 transition-all duration-700 ease-out ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
           style={{
@@ -317,6 +306,21 @@ const HeroSection = () => {
           We deliver quality matches — not just resumes. Tell us what you need and we'll connect you with drivers who
           fit.
         </p>
+
+        <div
+          className={`mb-10 transition-all duration-700 ease-out ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          }`}
+          style={{ transitionDelay: "500ms" }}
+        >
+          <Button
+            size="lg"
+            className="text-lg px-8 py-6 bg-accent hover:bg-accent/90 text-accent-foreground shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+            onClick={() => document.getElementById('carrier-form')?.scrollIntoView({ behavior: 'smooth' })}
+          >
+            Get Drivers
+          </Button>
+        </div>
 
         {/* Trust indicators */}
         <div
@@ -515,7 +519,7 @@ const Carriers = () => {
         <FindNextDriverSection />
 
         {/* Inquiry Form Section */}
-        <section className="py-16 px-4 pt-0">
+        <section id="carrier-form" className="py-16 px-4 pt-0">
           <div className="container mx-auto max-w-4xl">
             <form onSubmit={handleSubmit} className="space-y-6 bg-card border border-border rounded-lg p-8 shadow-sm">
               {submitStatus && (
