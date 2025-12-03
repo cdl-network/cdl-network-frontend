@@ -68,21 +68,21 @@ const Drivers = () => {
             </svg>
           </div>
 
-          {/* CDL License Card - Bottom Left, touching edge */}
-          {/* Desktop: ~280px wide, 50% opacity */}
+          {/* CDL License Card - Bottom Left */}
+          {/* Desktop: ~300px wide, higher opacity */}
           <img
             src={cdlSampleImage}
             alt=""
             aria-hidden="true"
-            className="absolute -bottom-3 -left-3 w-[300px] opacity-60 blur-[0.5px] pointer-events-none hidden lg:block select-none"
+            className="absolute bottom-2 left-4 w-[300px] opacity-75 blur-[0.5px] pointer-events-none hidden lg:block select-none"
             style={{ zIndex: 1 }}
           />
-          {/* Mobile/Tablet: smaller (~140px), 35% opacity */}
+          {/* Mobile/Tablet: smaller (~140px) */}
           <img
             src={cdlSampleImage}
             alt=""
             aria-hidden="true"
-            className="absolute -bottom-1 -left-1 w-[140px] opacity-[0.35] pointer-events-none block lg:hidden select-none"
+            className="absolute bottom-2 left-2 w-[140px] opacity-[0.45] pointer-events-none block lg:hidden select-none"
             style={{ zIndex: 1 }}
           />
 
