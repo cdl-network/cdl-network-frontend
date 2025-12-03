@@ -294,19 +294,6 @@ const HeroSection = () => {
           Find Qualified CDL-A Drivers
         </h1>
 
-        <p
-          className={`text-lg md:text-xl lg:text-2xl text-white/90 max-w-2xl mx-auto leading-relaxed mb-8 transition-all duration-700 ease-out ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          }`}
-          style={{
-            transitionDelay: "400ms",
-            textShadow: "0 2px 20px rgba(0,0,0,0.3)",
-          }}
-        >
-          We deliver quality matches — not just resumes. Tell us what you need and we'll connect you with drivers who
-          fit.
-        </p>
-
         <div
           className={`mb-10 transition-all duration-700 ease-out ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
@@ -344,18 +331,6 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div
-        className={`absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 transition-all duration-700 ${
-          isVisible ? "opacity-60" : "opacity-0"
-        }`}
-        style={{ transitionDelay: "1200ms" }}
-      >
-        <span className="text-white/60 text-xs tracking-widest uppercase">Scroll</span>
-        <div className="w-5 h-8 border border-white/30 rounded-full flex justify-center pt-2">
-          <div className="w-1 h-2 bg-white/60 rounded-full animate-bounce" />
-        </div>
-      </div>
 
       {/* Bottom curved edge for smooth transition */}
       <div className="absolute -bottom-1 left-0 right-0 h-12 overflow-hidden">
