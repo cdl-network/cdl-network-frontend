@@ -69,52 +69,53 @@ const Drivers = () => {
           </div>
 
           {/* CDL License Card - Bottom Left, fixed position */}
-          {/* Desktop: ~280px wide, 25% opacity */}
+          {/* Desktop: ~280px wide, 35% opacity */}
           <img 
             src={cdlSampleImage} 
             alt="" 
             aria-hidden="true"
-            className="absolute bottom-8 left-6 w-[280px] opacity-25 pointer-events-none hidden lg:block"
+            className="absolute bottom-8 left-6 w-[280px] opacity-[0.35] pointer-events-none hidden lg:block"
           />
-          {/* Mobile/Tablet: smaller (~160px), more faded (15% opacity) */}
+          {/* Mobile/Tablet: smaller (~160px), more faded (20% opacity) */}
           <img 
             src={cdlSampleImage} 
             alt="" 
             aria-hidden="true"
-            className="absolute bottom-4 left-4 w-[160px] opacity-[0.15] pointer-events-none block lg:hidden"
+            className="absolute bottom-4 left-4 w-[160px] opacity-[0.20] pointer-events-none block lg:hidden"
           />
 
-          {/* Hand-drawn curved arrow - thin, dark grey, decorative */}
+          {/* Hand-drawn curved arrow - matching reference with loop */}
           <svg 
-            className="absolute bottom-[200px] left-[240px] w-[100px] h-[180px] pointer-events-none hidden lg:block" 
-            viewBox="0 0 100 180" 
+            className="absolute bottom-[180px] left-[220px] w-[140px] h-[220px] pointer-events-none hidden lg:block" 
+            viewBox="0 0 140 220" 
             xmlns="http://www.w3.org/2000/svg"
           >
-            {/* Smooth curved path with loop */}
+            {/* Smooth curved path with loop - matching reference */}
             <path 
-              d="M12 170 
-                 C 12 145, 18 120, 28 100 
-                 C 40 75, 50 60, 45 45 
-                 C 40 30, 25 30, 25 45 
-                 C 25 58, 42 55, 52 42 
-                 C 62 28, 72 18, 85 12" 
+              d="M20 210 
+                 C 20 180, 25 150, 35 120 
+                 C 45 90, 55 70, 65 55 
+                 C 75 40, 82 35, 82 45 
+                 C 82 55, 72 55, 72 45 
+                 C 72 35, 85 30, 95 28 
+                 C 105 26, 115 25, 125 24" 
               fill="none" 
-              stroke="#6b7280" 
-              strokeWidth="2" 
+              stroke="#1f2937" 
+              strokeWidth="3.5" 
               strokeLinecap="round"
               strokeLinejoin="round"
             />
-            {/* Arrow head - open style */}
+            {/* Arrow head - angular style matching reference */}
             <path 
-              d="M78 4 L88 11 L76 18" 
+              d="M115 16 L128 24 L118 34" 
               fill="none" 
-              stroke="#6b7280" 
-              strokeWidth="2" 
+              stroke="#1f2937" 
+              strokeWidth="3.5" 
               strokeLinecap="round"
               strokeLinejoin="round"
             />
             {/* Starting dot */}
-            <circle cx="12" cy="172" r="3" fill="#6b7280" />
+            <circle cx="20" cy="212" r="5" fill="#1f2937" />
           </svg>
           
           <div className="container mx-auto relative z-10">
