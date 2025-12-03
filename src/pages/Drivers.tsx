@@ -54,81 +54,68 @@ const Drivers = () => {
         </section>
 
         {/* Application Form Section */}
-        <section id="application-form" className="relative py-16 px-4 overflow-hidden bg-[#e8eef4]">
-          {/* Wavy background pattern */}
+        <section id="application-form" className="relative py-16 px-4 overflow-hidden bg-[#f0f4f8]">
+          {/* Subtle wavy-line pattern - very low contrast */}
           <div className="absolute inset-0 pointer-events-none">
             <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
               <defs>
-                <pattern id="wavy-lines" x="0" y="0" width="100%" height="50" patternUnits="userSpaceOnUse">
-                  <path d="M0 25 Q250 10 500 25 T1000 25 T1500 25 T2000 25" fill="none" stroke="#c5d3e0" strokeWidth="1.5" />
+                <pattern id="subtle-waves" x="0" y="0" width="400" height="60" patternUnits="userSpaceOnUse">
+                  <path d="M0 30 Q100 15 200 30 T400 30" fill="none" stroke="#d1d9e0" strokeWidth="1" opacity="0.6"/>
+                  <path d="M0 45 Q100 30 200 45 T400 45" fill="none" stroke="#d1d9e0" strokeWidth="0.8" opacity="0.4"/>
                 </pattern>
               </defs>
-              <rect width="100%" height="100%" fill="url(#wavy-lines)" />
+              <rect width="100%" height="100%" fill="url(#subtle-waves)" />
             </svg>
           </div>
 
-          {/* Gold accent in top right corner */}
-          <div className="absolute top-0 right-0 w-48 h-48 opacity-30 hidden md:block">
-            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-              <path d="M200 0 L200 100 Q150 80 100 100 L0 0 Z" fill="#F5A623" opacity="0.4" />
-            </svg>
-          </div>
+          {/* CDL License Card - Bottom Left, fixed position */}
+          {/* Desktop: ~280px wide, 25% opacity */}
+          <img 
+            src={cdlSampleImage} 
+            alt="" 
+            aria-hidden="true"
+            className="absolute bottom-8 left-6 w-[280px] opacity-25 pointer-events-none hidden lg:block"
+          />
+          {/* Mobile/Tablet: smaller (~160px), more faded (15% opacity) */}
+          <img 
+            src={cdlSampleImage} 
+            alt="" 
+            aria-hidden="true"
+            className="absolute bottom-4 left-4 w-[160px] opacity-[0.15] pointer-events-none block lg:hidden"
+          />
 
-          {/* Small gold star accent - bottom right */}
-          <svg className="absolute bottom-20 right-[15%] w-6 h-6 opacity-30 hidden md:block" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <polygon points="12,2 14,9 22,9 16,14 18,22 12,17 6,22 8,14 2,9 10,9" fill="#F5A623"/>
-          </svg>
-
-          {/* CDL License Card - Bottom Left */}
-          <div className="absolute bottom-8 left-8 hidden lg:block">
-            <img 
-              src={cdlSampleImage} 
-              alt="CDL License Example" 
-              className="w-64 rounded-lg shadow-lg border-2 border-white/50 opacity-90"
-            />
-          </div>
-
-          {/* Curly Arrow pointing from license to form */}
+          {/* Hand-drawn curved arrow - thin, dark grey, decorative */}
           <svg 
-            className="absolute bottom-40 left-64 w-40 h-56 hidden lg:block" 
-            viewBox="0 0 120 160" 
+            className="absolute bottom-[200px] left-[240px] w-[100px] h-[180px] pointer-events-none hidden lg:block" 
+            viewBox="0 0 100 180" 
             xmlns="http://www.w3.org/2000/svg"
           >
-            {/* Smooth curving path with loop - hand-drawn artistic style */}
+            {/* Smooth curved path with loop */}
             <path 
-              d="M15 150 
-                 C 15 130, 20 110, 30 95 
-                 C 45 75, 55 65, 50 50 
-                 C 45 35, 30 35, 30 50 
-                 C 30 65, 50 60, 60 45 
-                 C 70 30, 80 20, 95 15" 
+              d="M12 170 
+                 C 12 145, 18 120, 28 100 
+                 C 40 75, 50 60, 45 45 
+                 C 40 30, 25 30, 25 45 
+                 C 25 58, 42 55, 52 42 
+                 C 62 28, 72 18, 85 12" 
               fill="none" 
-              stroke="#3d4852" 
-              strokeWidth="3.5" 
+              stroke="#6b7280" 
+              strokeWidth="2" 
               strokeLinecap="round"
               strokeLinejoin="round"
             />
-            {/* Arrow head */}
+            {/* Arrow head - open style */}
             <path 
-              d="M88 5 L100 14 L85 22" 
+              d="M78 4 L88 11 L76 18" 
               fill="none" 
-              stroke="#3d4852" 
-              strokeWidth="3.5" 
+              stroke="#6b7280" 
+              strokeWidth="2" 
               strokeLinecap="round"
               strokeLinejoin="round"
             />
             {/* Starting dot */}
-            <circle cx="15" cy="152" r="4" fill="#3d4852" />
+            <circle cx="12" cy="172" r="3" fill="#6b7280" />
           </svg>
-
-          {/* CDL Badge - very bottom left corner */}
-          <div className="absolute bottom-4 left-4 hidden md:block lg:hidden">
-            <svg className="w-24 h-16 opacity-40" viewBox="0 0 120 70" xmlns="http://www.w3.org/2000/svg">
-              <rect x="2" y="2" width="116" height="66" rx="8" fill="none" stroke="#4a5568" strokeWidth="2"/>
-              <rect x="8" y="8" width="104" height="54" rx="5" fill="none" stroke="#4a5568" strokeWidth="1" strokeDasharray="4 2"/>
-              <text x="60" y="45" fontSize="24" fontWeight="bold" fill="#4a5568" textAnchor="middle" fontFamily="Arial, sans-serif">CDL</text>
-            </svg>
-          </div>
           
           <div className="container mx-auto relative z-10">
             <DriverApplicationQuiz />
