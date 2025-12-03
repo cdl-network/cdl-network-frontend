@@ -275,6 +275,74 @@ const HeroSection = () => {
   );
 };
 
+// Find Your Next Driver Section with scroll animation
+const FindNextDriverSection = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section ref={sectionRef} className="py-20 md:py-24 px-4 bg-muted/30">
+      <div className="container mx-auto max-w-6xl">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Text Content */}
+          <div 
+            className={`order-2 lg:order-1 transition-all duration-700 ease-out ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+            style={{ transitionDelay: '100ms' }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6 leading-tight">
+              Find Your Next Driver
+            </h2>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              Fill out the inquiry form below. We'll match you with qualified CDL-A drivers who meet your
+              operational needs and company culture.
+            </p>
+          </div>
+          
+          {/* Image */}
+          <div 
+            className={`order-1 lg:order-2 transition-all duration-700 ease-out ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+            style={{ transitionDelay: '250ms' }}
+          >
+            <div className="relative group">
+              {/* Decorative background element */}
+              <div 
+                className="absolute -inset-4 bg-accent/10 rounded-3xl -z-10 transition-transform duration-500 group-hover:scale-[1.02]"
+                style={{ transform: isVisible ? 'rotate(-2deg)' : 'rotate(0deg)' }}
+              />
+              <img
+                src={carriersImage}
+                alt="Professional truck fleet"
+                className="w-full h-auto object-cover rounded-2xl shadow-xl shadow-black/15 transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-black/20"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 const Carriers = () => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
@@ -347,25 +415,12 @@ const Carriers = () => {
         {/* Why Carriers Choose Us Section */}
         <WhyCarriersSection />
 
+        {/* Find Your Next Driver Section */}
+        <FindNextDriverSection />
+
         {/* Inquiry Form Section */}
-        <section className="py-16 px-4">
+        <section className="py-16 px-4 pt-0">
           <div className="container mx-auto max-w-4xl">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-12">
-              <div className="order-2 md:order-1">
-                <h2 className="text-2xl font-bold text-foreground mb-4">Find Your Next Driver</h2>
-                <p className="text-muted-foreground">
-                  Fill out the inquiry form below. We'll match you with qualified CDL-A drivers who meet your
-                  operational needs and company culture.
-                </p>
-              </div>
-              <div className="order-1 md:order-2">
-                <img
-                  src={carriersImage}
-                  alt="Professional truck fleet"
-                  className="rounded-lg shadow-lg w-full h-auto object-cover"
-                />
-              </div>
-            </div>
 
             <form onSubmit={handleSubmit} className="space-y-6 bg-card border border-border rounded-lg p-8 shadow-sm">
               {submitStatus && (
