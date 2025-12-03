@@ -69,20 +69,20 @@ const Drivers = () => {
           </div>
 
           {/* CDL License Card - Bottom Left, touching edge */}
-          {/* Desktop: ~280px wide, 22% opacity */}
+          {/* Desktop: ~280px wide, 35% opacity */}
           <img 
             src={cdlSampleImage} 
             alt="" 
             aria-hidden="true"
-            className="absolute -bottom-2 -left-2 w-[280px] opacity-[0.22] pointer-events-none hidden lg:block select-none"
+            className="absolute -bottom-2 -left-2 w-[280px] opacity-[0.35] pointer-events-none hidden lg:block select-none"
             style={{ zIndex: 1 }}
           />
-          {/* Mobile/Tablet: smaller (~140px), 15% opacity */}
+          {/* Mobile/Tablet: smaller (~140px), 22% opacity */}
           <img 
             src={cdlSampleImage} 
             alt="" 
             aria-hidden="true"
-            className="absolute -bottom-1 -left-1 w-[140px] opacity-[0.15] pointer-events-none block lg:hidden select-none"
+            className="absolute -bottom-1 -left-1 w-[140px] opacity-[0.22] pointer-events-none block lg:hidden select-none"
             style={{ zIndex: 1 }}
           />
 
