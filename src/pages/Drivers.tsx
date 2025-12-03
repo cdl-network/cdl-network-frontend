@@ -34,11 +34,11 @@ const Drivers = () => {
                 className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold px-8 py-6 text-lg shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5"
                 onClick={() => document.getElementById("application-form")?.scrollIntoView({ behavior: "smooth" })}
               >
-                Get Matches
+                Apply
               </Button>
             </div>
           </div>
-          
+
           {/* Bottom curved edge for smooth transition */}
           <div className="absolute -bottom-1 left-0 right-0 h-12 overflow-hidden">
             <svg
