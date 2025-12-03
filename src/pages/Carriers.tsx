@@ -10,7 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 import carriersHeroImage from "@/assets/carriers-2.jpg";
 import carriersImage from "@/assets/carriers-1.jpg";
 
-import { Users, Clock, MapPin } from "lucide-react";
+import { HardHat, Clock, MapPin } from "lucide-react";
 
 // Why Carriers Choose Us Section
 const WhyCarriersSection = () => {
@@ -36,7 +36,7 @@ const WhyCarriersSection = () => {
 
   const benefits = [
     {
-      icon: Users,
+      icon: HardHat,
       title: "Pre-screened CDL-A drivers",
       description:
         "Every driver is vetted for experience, safety record, and reliability before we make an introduction.",
@@ -317,7 +317,7 @@ const HeroSection = () => {
           style={{ transitionDelay: "600ms" }}
         >
           <span className="flex items-center gap-2">
-            <Users className="w-4 h-4 text-accent" />
+            <HardHat className="w-4 h-4 text-accent" />
             Pre-screened drivers
           </span>
           <span className="flex items-center gap-2">
