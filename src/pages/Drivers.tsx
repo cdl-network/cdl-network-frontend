@@ -90,21 +90,35 @@ const Drivers = () => {
 
           {/* Curly Arrow pointing from license to form */}
           <svg 
-            className="absolute bottom-48 left-72 w-32 h-48 hidden lg:block" 
-            viewBox="0 0 100 150" 
+            className="absolute bottom-40 left-64 w-40 h-56 hidden lg:block" 
+            viewBox="0 0 120 160" 
             xmlns="http://www.w3.org/2000/svg"
           >
+            {/* Smooth curving path with loop - hand-drawn artistic style */}
             <path 
-              d="M10 140 Q15 100 30 80 Q50 50 45 30 Q42 15 55 10" 
+              d="M15 150 
+                 C 15 130, 20 110, 30 95 
+                 C 45 75, 55 65, 50 50 
+                 C 45 35, 30 35, 30 50 
+                 C 30 65, 50 60, 60 45 
+                 C 70 30, 80 20, 95 15" 
               fill="none" 
-              stroke="#4a5568" 
-              strokeWidth="3" 
+              stroke="#3d4852" 
+              strokeWidth="3.5" 
               strokeLinecap="round"
+              strokeLinejoin="round"
             />
             {/* Arrow head */}
-            <polygon points="55,0 65,12 52,15" fill="#4a5568" />
-            {/* Loop in the arrow */}
-            <circle cx="38" cy="55" r="8" fill="none" stroke="#4a5568" strokeWidth="3" />
+            <path 
+              d="M88 5 L100 14 L85 22" 
+              fill="none" 
+              stroke="#3d4852" 
+              strokeWidth="3.5" 
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            {/* Starting dot */}
+            <circle cx="15" cy="152" r="4" fill="#3d4852" />
           </svg>
 
           {/* CDL Badge - very bottom left corner */}
