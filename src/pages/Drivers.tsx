@@ -7,6 +7,10 @@ import DriverApplicationQuiz from "@/components/DriverApplicationQuiz";
 import DriverFAQ from "@/components/DriverFAQ";
 
 const Drivers = () => {
+  useEffect(() => {
+    document.title = "CDL Network – Drivers";
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navigation />
