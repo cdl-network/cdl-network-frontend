@@ -3,19 +3,21 @@ import { useLocation } from "react-router-dom";
 
 declare global {
   interface Window {
-    gtag?: (...args: unknown[]) => void;
+    gtag?: (...args: any[]) => void;
   }
 }
 
-export const useGAPageTracking = () => {
+export function useGAPageTracking() {
   const location = useLocation();
 
   useEffect(() => {
-    if (typeof window.gtag === "function") {
-      window.gtag("config", "G-7N4JBTFRLD", {
-        page_path: location.pathname + location.search,
-        page_title: document.title,
-      });
+    if (typeof window.gtag !== "function") {
+      return;
     }
-  }, [location]);
-};
+
+    window.gtag("config", "G-7N4JBTFRLD", {
+      page_path: location.pathname + location.search,
+      page_title: document.title,
+    });
+  }, [location.pathname, location.search]);
+}
