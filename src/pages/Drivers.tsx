@@ -68,54 +68,95 @@ const Drivers = () => {
             </svg>
           </div>
 
-          {/* CDL License Card - Bottom Left, fixed position */}
-          {/* Desktop: ~280px wide, 35% opacity */}
+          {/* CDL License Card - Bottom Left, touching edge */}
+          {/* Desktop: ~280px wide, 22% opacity */}
           <img 
             src={cdlSampleImage} 
             alt="" 
             aria-hidden="true"
-            className="absolute bottom-8 left-6 w-[280px] opacity-[0.35] pointer-events-none hidden lg:block"
+            className="absolute -bottom-2 -left-2 w-[280px] opacity-[0.22] pointer-events-none hidden lg:block select-none"
+            style={{ zIndex: 1 }}
           />
-          {/* Mobile/Tablet: smaller (~160px), more faded (20% opacity) */}
+          {/* Mobile/Tablet: smaller (~140px), 15% opacity */}
           <img 
             src={cdlSampleImage} 
             alt="" 
             aria-hidden="true"
-            className="absolute bottom-4 left-4 w-[160px] opacity-[0.20] pointer-events-none block lg:hidden"
+            className="absolute -bottom-1 -left-1 w-[140px] opacity-[0.15] pointer-events-none block lg:hidden select-none"
+            style={{ zIndex: 1 }}
           />
 
-          {/* Hand-drawn curved arrow - matching reference with loop */}
+          {/* Hand-drawn curved arrow with loop - Desktop */}
           <svg 
-            className="absolute bottom-[180px] left-[220px] w-[140px] h-[220px] pointer-events-none hidden lg:block" 
-            viewBox="0 0 140 220" 
+            className="absolute bottom-[160px] left-[200px] w-[180px] h-[280px] pointer-events-none hidden lg:block select-none" 
+            viewBox="0 0 180 280" 
             xmlns="http://www.w3.org/2000/svg"
+            style={{ zIndex: 2, opacity: 0.45 }}
           >
-            {/* Smooth curved path with loop - matching reference */}
+            {/* Curved path starting from dot, sweeping up with a loop */}
             <path 
-              d="M20 210 
-                 C 20 180, 25 150, 35 120 
-                 C 45 90, 55 70, 65 55 
-                 C 75 40, 82 35, 82 45 
-                 C 82 55, 72 55, 72 45 
-                 C 72 35, 85 30, 95 28 
-                 C 105 26, 115 25, 125 24" 
+              d="M25 265 
+                 Q 30 220, 40 180 
+                 Q 50 140, 70 105 
+                 Q 85 75, 95 60 
+                 Q 105 45, 100 35 
+                 Q 95 25, 85 30 
+                 Q 75 35, 80 45 
+                 Q 85 55, 100 50 
+                 Q 115 45, 130 38 
+                 Q 145 31, 160 25" 
               fill="none" 
-              stroke="#1f2937" 
-              strokeWidth="3.5" 
+              stroke="#374151" 
+              strokeWidth="2.5" 
               strokeLinecap="round"
               strokeLinejoin="round"
             />
-            {/* Arrow head - angular style matching reference */}
+            {/* Arrow head pointing toward quiz card */}
             <path 
-              d="M115 16 L128 24 L118 34" 
+              d="M150 18 L163 25 L152 35" 
               fill="none" 
-              stroke="#1f2937" 
-              strokeWidth="3.5" 
+              stroke="#374151" 
+              strokeWidth="2.5" 
               strokeLinecap="round"
               strokeLinejoin="round"
             />
-            {/* Starting dot */}
-            <circle cx="20" cy="212" r="5" fill="#1f2937" />
+            {/* Starting dot at bottom */}
+            <circle cx="25" cy="268" r="4" fill="#374151" />
+          </svg>
+
+          {/* Hand-drawn curved arrow - Mobile/Tablet (scaled down) */}
+          <svg 
+            className="absolute bottom-[100px] left-[100px] w-[100px] h-[160px] pointer-events-none block lg:hidden select-none" 
+            viewBox="0 0 180 280" 
+            xmlns="http://www.w3.org/2000/svg"
+            style={{ zIndex: 2, opacity: 0.3 }}
+          >
+            <path 
+              d="M25 265 
+                 Q 30 220, 40 180 
+                 Q 50 140, 70 105 
+                 Q 85 75, 95 60 
+                 Q 105 45, 100 35 
+                 Q 95 25, 85 30 
+                 Q 75 35, 80 45 
+                 Q 85 55, 100 50 
+                 Q 115 45, 130 38 
+                 Q 145 31, 160 25" 
+              fill="none" 
+              stroke="#374151" 
+              strokeWidth="3" 
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path 
+              d="M150 18 L163 25 L152 35" 
+              fill="none" 
+              stroke="#374151" 
+              strokeWidth="3" 
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <circle cx="25" cy="268" r="5" fill="#374151" />
           </svg>
           
           <div className="container mx-auto relative z-10">
