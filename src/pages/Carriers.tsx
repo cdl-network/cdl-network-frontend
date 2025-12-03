@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -9,6 +9,93 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useToast } from "@/hooks/use-toast";
 import carriersHeroImage from "@/assets/carriers-2.jpg";
 import carriersImage from "@/assets/carriers-1.jpg";
+
+// Hero Section Component with animations
+const HeroSection = () => {
+  const [scrollY, setScrollY] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const heroRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    setIsVisible(true);
+    
+    const handleScroll = () => {
+      if (heroRef.current) {
+        const rect = heroRef.current.getBoundingClientRect();
+        if (rect.bottom > 0) {
+          setScrollY(window.scrollY * 0.3);
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <section
+      ref={heroRef}
+      className="relative py-20 md:py-28 px-4 overflow-hidden min-h-[340px] md:min-h-[400px] flex items-center"
+    >
+      {/* Parallax Background */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center transition-transform duration-100 ease-out scale-105"
+        style={{ 
+          backgroundImage: `url(${carriersHeroImage})`,
+          transform: `translateY(${scrollY}px) scale(1.05)`
+        }}
+      />
+      
+      {/* Gradient Overlay with subtle animation */}
+      <div 
+        className="absolute inset-0 transition-opacity duration-1000"
+        style={{ 
+          background: 'linear-gradient(135deg, rgba(11, 31, 59, 0.85) 0%, rgba(11, 31, 59, 0.50) 100%)',
+          opacity: isVisible ? 1 : 0.7
+        }}
+      />
+      
+      {/* Subtle animated particles/dots overlay */}
+      <div className="absolute inset-0 opacity-[0.04]">
+        <div 
+          className="absolute w-1 h-1 bg-white rounded-full animate-pulse"
+          style={{ top: '20%', left: '15%', animationDelay: '0s', animationDuration: '3s' }}
+        />
+        <div 
+          className="absolute w-1.5 h-1.5 bg-white rounded-full animate-pulse"
+          style={{ top: '60%', left: '80%', animationDelay: '1s', animationDuration: '4s' }}
+        />
+        <div 
+          className="absolute w-1 h-1 bg-white rounded-full animate-pulse"
+          style={{ top: '75%', left: '25%', animationDelay: '2s', animationDuration: '3.5s' }}
+        />
+        <div 
+          className="absolute w-1.5 h-1.5 bg-white rounded-full animate-pulse"
+          style={{ top: '30%', left: '70%', animationDelay: '0.5s', animationDuration: '4.5s' }}
+        />
+      </div>
+
+      {/* Content */}
+      <div className="container mx-auto max-w-3xl text-center relative z-10">
+        <h1 
+          className={`text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-5 transition-all duration-700 ease-out ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          }`}
+        >
+          Carrier Inquiry
+        </h1>
+        <p 
+          className={`text-lg md:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed transition-all duration-700 ease-out delay-200 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          }`}
+        >
+          Looking for reliable, pre-screened CDL-A drivers? We deliver quality matches — not just resumes. Tell us
+          what you need and we'll connect you with drivers who fit.
+        </p>
+      </div>
+    </section>
+  );
+};
 
 const Carriers = () => {
   const { toast } = useToast();
@@ -77,19 +164,7 @@ const Carriers = () => {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section
-          className="relative py-24 px-4 bg-cover bg-center"
-          style={{ backgroundImage: `url(${carriersHeroImage})` }}
-        >
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(11, 31, 59, 0.80) 0%, rgba(11, 31, 59, 0.45) 100%)' }}></div>
-          <div className="container mx-auto max-w-3xl text-center relative z-10">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">Carrier Inquiry</h1>
-            <p className="text-xl text-white/95 max-w-2xl mx-auto">
-              Looking for reliable, pre-screened CDL-A drivers? We deliver quality matches — not just resumes. Tell us
-              what you need and we'll connect you with drivers who fit.
-            </p>
-          </div>
-        </section>
+        <HeroSection />
 
         {/* Inquiry Form Section */}
         <section className="py-16 px-4">
