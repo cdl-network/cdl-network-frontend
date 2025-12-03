@@ -60,8 +60,8 @@ const Drivers = () => {
             <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <pattern id="subtle-waves" x="0" y="0" width="400" height="60" patternUnits="userSpaceOnUse">
-                  <path d="M0 30 Q100 15 200 30 T400 30" fill="none" stroke="#d1d9e0" strokeWidth="1" opacity="0.6"/>
-                  <path d="M0 45 Q100 30 200 45 T400 45" fill="none" stroke="#d1d9e0" strokeWidth="0.8" opacity="0.4"/>
+                  <path d="M0 30 Q100 15 200 30 T400 30" fill="none" stroke="#d1d9e0" strokeWidth="1" opacity="0.6" />
+                  <path d="M0 45 Q100 30 200 45 T400 45" fill="none" stroke="#d1d9e0" strokeWidth="0.8" opacity="0.4" />
                 </pattern>
               </defs>
               <rect width="100%" height="100%" fill="url(#subtle-waves)" />
@@ -70,31 +70,31 @@ const Drivers = () => {
 
           {/* CDL License Card - Bottom Left, touching edge */}
           {/* Desktop: ~280px wide, 50% opacity */}
-          <img 
-            src={cdlSampleImage} 
-            alt="" 
+          <img
+            src={cdlSampleImage}
+            alt=""
             aria-hidden="true"
-            className="absolute -bottom-2 -left-2 w-[280px] opacity-50 pointer-events-none hidden lg:block select-none"
+            className="absolute -bottom-2 -left-2 w-[280px] opacity-75 pointer-events-none hidden lg:block select-none"
             style={{ zIndex: 1 }}
           />
           {/* Mobile/Tablet: smaller (~140px), 35% opacity */}
-          <img 
-            src={cdlSampleImage} 
-            alt="" 
+          <img
+            src={cdlSampleImage}
+            alt=""
             aria-hidden="true"
             className="absolute -bottom-1 -left-1 w-[140px] opacity-[0.35] pointer-events-none block lg:hidden select-none"
             style={{ zIndex: 1 }}
           />
 
           {/* Hand-drawn curved arrow with loop - Desktop */}
-          <svg 
-            className="absolute bottom-[160px] left-[200px] w-[180px] h-[280px] pointer-events-none hidden lg:block select-none" 
-            viewBox="0 0 180 280" 
+          <svg
+            className="absolute bottom-[160px] left-[200px] w-[180px] h-[280px] pointer-events-none hidden lg:block select-none"
+            viewBox="0 0 180 280"
             xmlns="http://www.w3.org/2000/svg"
             style={{ zIndex: 2, opacity: 0.45 }}
           >
             {/* Curved path starting from dot, sweeping up with a loop */}
-            <path 
+            <path
               d="M25 265 
                  Q 30 220, 40 180 
                  Q 50 140, 70 105 
@@ -104,19 +104,19 @@ const Drivers = () => {
                  Q 75 35, 80 45 
                  Q 85 55, 100 50 
                  Q 115 45, 130 38 
-                 Q 145 31, 160 25" 
-              fill="none" 
-              stroke="#374151" 
-              strokeWidth="2.5" 
+                 Q 145 31, 160 25"
+              fill="none"
+              stroke="#374151"
+              strokeWidth="2.5"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
             {/* Arrow head pointing toward quiz card */}
-            <path 
-              d="M150 18 L163 25 L152 35" 
-              fill="none" 
-              stroke="#374151" 
-              strokeWidth="2.5" 
+            <path
+              d="M150 18 L163 25 L152 35"
+              fill="none"
+              stroke="#374151"
+              strokeWidth="2.5"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
@@ -125,13 +125,13 @@ const Drivers = () => {
           </svg>
 
           {/* Hand-drawn curved arrow - Mobile/Tablet (scaled down) */}
-          <svg 
-            className="absolute bottom-[100px] left-[100px] w-[100px] h-[160px] pointer-events-none block lg:hidden select-none" 
-            viewBox="0 0 180 280" 
+          <svg
+            className="absolute bottom-[100px] left-[100px] w-[100px] h-[160px] pointer-events-none block lg:hidden select-none"
+            viewBox="0 0 180 280"
             xmlns="http://www.w3.org/2000/svg"
             style={{ zIndex: 2, opacity: 0.3 }}
           >
-            <path 
+            <path
               d="M25 265 
                  Q 30 220, 40 180 
                  Q 50 140, 70 105 
@@ -141,24 +141,24 @@ const Drivers = () => {
                  Q 75 35, 80 45 
                  Q 85 55, 100 50 
                  Q 115 45, 130 38 
-                 Q 145 31, 160 25" 
-              fill="none" 
-              stroke="#374151" 
-              strokeWidth="3" 
+                 Q 145 31, 160 25"
+              fill="none"
+              stroke="#374151"
+              strokeWidth="3"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
-            <path 
-              d="M150 18 L163 25 L152 35" 
-              fill="none" 
-              stroke="#374151" 
-              strokeWidth="3" 
+            <path
+              d="M150 18 L163 25 L152 35"
+              fill="none"
+              stroke="#374151"
+              strokeWidth="3"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
             <circle cx="25" cy="268" r="5" fill="#374151" />
           </svg>
-          
+
           <div className="container mx-auto relative z-10">
             <DriverApplicationQuiz />
           </div>
