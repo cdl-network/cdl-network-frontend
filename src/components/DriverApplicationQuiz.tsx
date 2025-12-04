@@ -160,26 +160,27 @@ const DriverApplicationQuiz = () => {
   const isLastStep = currentStep === totalSteps;
 
   return (
-    <div className="w-full max-w-2xl mx-auto px-4 py-8">
+    <div className="w-full max-w-2xl mx-auto px-0 sm:px-4 py-4 sm:py-8">
       {/* Heading - only show when not submitted */}
       {!isSubmitted && (
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-foreground mb-3">Start Your Application</h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
+        <div className="text-center mb-4 sm:mb-8 px-4 sm:px-0">
+          <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-2 sm:mb-3">Start Your Application</h2>
+          <p className="text-sm sm:text-base text-muted-foreground max-w-xl mx-auto">
             Answer a few quick questions and we'll connect you with carriers that match your needs.
           </p>
         </div>
       )}
-      {/* Progress Indicator */}
+
+      {/* Progress Bar - Full width on mobile, 4px height */}
       {totalSteps > 1 && (
-        <div className="mb-8">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-sm font-medium text-muted-foreground">
+        <div className="mb-4 sm:mb-8 px-4 sm:px-0">
+          <div className="flex items-center justify-between mb-1 sm:mb-2">
+            <span className="text-xs sm:text-sm font-medium text-muted-foreground">
               Step {currentStep} of {totalSteps}
             </span>
-            <span className="text-sm font-medium text-accent">{Math.round((currentStep / totalSteps) * 100)}%</span>
+            <span className="text-xs sm:text-sm font-medium text-accent">{Math.round((currentStep / totalSteps) * 100)}%</span>
           </div>
-          <div className="h-2 bg-muted rounded-full overflow-hidden">
+          <div className="h-1 sm:h-2 bg-muted rounded-full overflow-hidden">
             <div
               className="h-full bg-accent transition-all duration-300 ease-out"
               style={{ width: `${(currentStep / totalSteps) * 100}%` }}
@@ -188,17 +189,17 @@ const DriverApplicationQuiz = () => {
         </div>
       )}
 
-      {/* Step Content */}
-      <div className="bg-card border border-border rounded-2xl p-6 sm:p-8 shadow-sm min-h-[400px]">
+      {/* Step Content - No card on mobile, card on desktop */}
+      <div className="sm:bg-card sm:border sm:border-border sm:rounded-2xl sm:p-8 sm:shadow-sm px-4 sm:px-8">
         {/* Step 1: CDL Status */}
         {currentStep === 1 && (
-          <div className="space-y-6 animate-fade-in">
+          <div className="space-y-4 sm:space-y-6 animate-fade-in">
             <div>
-              <h2 className="text-2xl font-bold text-foreground mb-2">Do you have a valid CDL-A?</h2>
-              <p className="text-sm text-muted-foreground">Select one option</p>
+              <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-1 sm:mb-2 text-left">Do you have a valid CDL-A?</h2>
+              <p className="text-xs sm:text-sm text-muted-foreground text-left">Select one option</p>
             </div>
 
-            <div className="grid gap-3">
+            <div className="flex flex-col gap-2 sm:gap-3">
               {[
                 { value: "has_cdl", label: "Yes" },
                 { value: "training", label: "Still in training" },
@@ -211,10 +212,10 @@ const DriverApplicationQuiz = () => {
                     setFormData({ ...formData, cdl_class: option.value });
                     setTimeout(handleNext, 300);
                   }}
-                  className={`p-5 rounded-xl border-2 transition-all text-left hover:border-accent/70 ${
+                  className={`w-full p-3 sm:p-5 rounded-lg sm:rounded-xl border transition-all text-left ${
                     formData.cdl_class === option.value
                       ? "border-accent bg-accent/10 text-foreground"
-                      : "border-border bg-background text-foreground"
+                      : "border-border bg-background text-foreground hover:border-accent/70"
                   }`}
                 >
                   <div className="flex items-center gap-3">
@@ -227,7 +228,7 @@ const DriverApplicationQuiz = () => {
                         <div className="w-2.5 h-2.5 flex-shrink-0 rounded-full bg-accent-foreground" />
                       )}
                     </div>
-                    <span className="font-semibold text-base">{option.label}</span>
+                    <span className="font-semibold text-sm sm:text-base">{option.label}</span>
                   </div>
                 </button>
               ))}
@@ -237,13 +238,14 @@ const DriverApplicationQuiz = () => {
 
         {/* Step 2A: Truck Type (has_cdl only) */}
         {currentStep === 2 && formData.cdl_class === "has_cdl" && (
-          <div className="space-y-6 animate-fade-in">
+          <div className="space-y-4 sm:space-y-6 animate-fade-in">
             <div>
-              <h2 className="text-2xl font-bold text-foreground mb-2">Truck type preference?</h2>
-              <p className="text-sm text-muted-foreground">Select all that apply</p>
+              <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-1 sm:mb-2 text-left">Truck type preference?</h2>
+              <p className="text-xs sm:text-sm text-muted-foreground text-left">Select all that apply</p>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            {/* Mobile: stacked list, Desktop: grid */}
+            <div className="flex flex-col gap-2 sm:grid sm:grid-cols-3 sm:gap-3">
               {[
                 { value: "Dry van", label: "Dry van" },
                 { value: "Flat bed", label: "Flat bed" },
@@ -255,13 +257,13 @@ const DriverApplicationQuiz = () => {
                   key={type.value}
                   type="button"
                   onClick={() => handleTruckTypeToggle(type.value)}
-                  className={`p-4 rounded-xl border-2 transition-all text-center ${
+                  className={`w-full p-3 sm:p-4 rounded-lg sm:rounded-xl border transition-all text-left sm:text-center ${
                     formData.truck_types.includes(type.value)
                       ? "border-accent bg-accent/10 text-foreground"
                       : "border-border bg-background text-foreground hover:border-accent/50"
                   }`}
                 >
-                  <div className="flex items-center justify-center gap-2">
+                  <div className="flex items-center gap-3 sm:justify-center sm:gap-2">
                     <div
                       className={`w-5 h-5 flex-shrink-0 rounded-md border-2 flex items-center justify-center ${
                         formData.truck_types.includes(type.value)
@@ -273,7 +275,7 @@ const DriverApplicationQuiz = () => {
                         <Check className="w-3 h-3 flex-shrink-0 text-accent-foreground" />
                       )}
                     </div>
-                    <span className="font-semibold">{type.label}</span>
+                    <span className="font-semibold text-sm sm:text-base">{type.label}</span>
                   </div>
                 </button>
               ))}
@@ -283,12 +285,12 @@ const DriverApplicationQuiz = () => {
 
         {/* Step 2B: Training Message (training only) */}
         {currentStep === 2 && formData.cdl_class === "training" && (
-          <div className="space-y-6 animate-fade-in flex items-center justify-center min-h-[300px]">
+          <div className="space-y-4 sm:space-y-6 animate-fade-in flex items-center justify-center min-h-[200px] sm:min-h-[300px]">
             <div className="text-center max-w-md space-y-4">
-              <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto">
-                <Check className="w-8 h-8 text-accent" />
+              <div className="w-14 h-14 sm:w-16 sm:h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto">
+                <Check className="w-7 h-7 sm:w-8 sm:h-8 text-accent" />
               </div>
-              <p className="text-lg text-foreground font-medium">
+              <p className="text-base sm:text-lg text-foreground font-medium">
                 We will be glad to work with you once you receive your CDL.
               </p>
             </div>
@@ -297,24 +299,24 @@ const DriverApplicationQuiz = () => {
 
         {/* Step 2C: Non-CDL Job Description (no_cdl only) */}
         {currentStep === 2 && formData.cdl_class === "no_cdl" && (
-          <div className="space-y-6 animate-fade-in">
+          <div className="space-y-4 sm:space-y-6 animate-fade-in">
             <div>
-              <h2 className="text-2xl font-bold text-foreground mb-2">Tell us more</h2>
-              <p className="text-sm text-muted-foreground">
+              <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-1 sm:mb-2 text-left">Tell us more</h2>
+              <p className="text-xs sm:text-sm text-muted-foreground text-left">
                 We work with non-CDL positions on an irregular basis. Please tell us more about the type of position you
                 are looking for.
               </p>
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="job-description">What type of position are you looking for?</Label>
+              <Label htmlFor="job-description" className="text-sm">What type of position are you looking for?</Label>
               <Textarea
                 id="job-description"
                 placeholder="e.g., warehouse work, dispatch, dock loading, logistics coordinator..."
                 value={formData.notes}
                 onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                rows={6}
-                className="resize-none"
+                rows={5}
+                className="resize-none text-base"
                 autoFocus
               />
             </div>
@@ -323,14 +325,14 @@ const DriverApplicationQuiz = () => {
 
         {/* Step 3A: Years of Experience (has_cdl only) */}
         {currentStep === 3 && formData.cdl_class === "has_cdl" && (
-          <div className="space-y-6 animate-fade-in">
-          <div>
-            <h2 className="text-2xl font-bold text-foreground mb-2">Years of CDL experience</h2>
-            <p className="text-sm text-muted-foreground">How long have you been driving?</p>
-          </div>
+          <div className="space-y-4 sm:space-y-6 animate-fade-in">
+            <div>
+              <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-1 sm:mb-2 text-left">Years of CDL experience</h2>
+              <p className="text-xs sm:text-sm text-muted-foreground text-left">How long have you been driving?</p>
+            </div>
 
             <div className="space-y-2">
-              <Label htmlFor="experience">Years</Label>
+              <Label htmlFor="experience" className="text-sm">Years</Label>
               <Input
                 id="experience"
                 type="number"
@@ -339,6 +341,7 @@ const DriverApplicationQuiz = () => {
                 placeholder="0"
                 value={formData.years_exp || ""}
                 onChange={(e) => setFormData({ ...formData, years_exp: parseInt(e.target.value) || 0 })}
+                className="text-base h-12"
                 autoFocus
               />
             </div>
@@ -347,68 +350,78 @@ const DriverApplicationQuiz = () => {
 
         {/* Final Step: Contact Info (all paths) */}
         {isLastStep && formData.cdl_class && (
-          <div className="space-y-6 animate-fade-in">
+          <div className="space-y-4 sm:space-y-6 animate-fade-in">
             <div>
-              <h2 className="text-2xl font-bold text-foreground mb-2">Contact Info</h2>
-              <p className="text-sm text-muted-foreground">How can we reach you?</p>
+              <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-1 sm:mb-2 text-left">Contact Info</h2>
+              <p className="text-xs sm:text-sm text-muted-foreground text-left">How can we reach you?</p>
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="name">Full Name</Label>
-              <Input
-                id="name"
-                placeholder="John Doe"
-                value={formData.full_name}
-                onChange={(e) => setFormData({ ...formData, full_name: e.target.value })}
-                autoFocus
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="phone">Phone</Label>
-              <Input
-                id="phone"
-                type="tel"
-                placeholder="+1 312 555 8899"
-                value={formData.phone}
-                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="john@example.com"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              />
-            </div>
-
-            {/* Notes textarea - only for has_cdl path */}
-            {formData.cdl_class === "has_cdl" && (
-              <div className="space-y-2">
-                <Label htmlFor="notes">Anything we should know? (Optional)</Label>
-                <Textarea
-                  id="notes"
-                  placeholder="I want to be home weekly, ready to OTR, going through SAP, drive with a partner/dog..."
-                  value={formData.notes}
-                  onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                  rows={4}
-                  className="resize-none"
+            <div className="space-y-3 sm:space-y-4">
+              <div className="space-y-1.5 sm:space-y-2">
+                <Label htmlFor="name" className="text-sm">Full Name</Label>
+                <Input
+                  id="name"
+                  placeholder="John Doe"
+                  value={formData.full_name}
+                  onChange={(e) => setFormData({ ...formData, full_name: e.target.value })}
+                  className="text-base h-12"
+                  autoFocus
                 />
               </div>
-            )}
+
+              <div className="space-y-1.5 sm:space-y-2">
+                <Label htmlFor="phone" className="text-sm">Phone</Label>
+                <Input
+                  id="phone"
+                  type="tel"
+                  placeholder="+1 312 555 8899"
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  className="text-base h-12"
+                />
+              </div>
+
+              <div className="space-y-1.5 sm:space-y-2">
+                <Label htmlFor="email" className="text-sm">Email</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="john@example.com"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  className="text-base h-12"
+                />
+              </div>
+
+              {/* Notes textarea - only for has_cdl path */}
+              {formData.cdl_class === "has_cdl" && (
+                <div className="space-y-1.5 sm:space-y-2">
+                  <Label htmlFor="notes" className="text-sm">Anything we should know? (Optional)</Label>
+                  <Textarea
+                    id="notes"
+                    placeholder="I want to be home weekly, ready to OTR, going through SAP, drive with a partner/dog..."
+                    value={formData.notes}
+                    onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+                    rows={3}
+                    className="resize-none text-base"
+                  />
+                </div>
+              )}
+            </div>
           </div>
         )}
       </div>
 
-      {/* Navigation Buttons - Sticky on mobile */}
-      <div className="fixed bottom-0 left-0 right-0 bg-background border-t border-border p-4 sm:relative sm:border-0 sm:bg-transparent sm:p-0 sm:mt-6 z-50">
-        <div className="max-w-2xl mx-auto flex gap-3">
+      {/* Navigation Buttons - Full width on mobile, closer to content */}
+      <div className="mt-4 sm:mt-6 px-4 sm:px-0">
+        <div className="flex gap-2 sm:gap-3">
           {currentStep > 1 && (
-            <Button type="button" variant="outline" onClick={handleBack} className="flex-1 sm:flex-none">
+            <Button 
+              type="button" 
+              variant="outline" 
+              onClick={handleBack} 
+              className="flex-1 sm:flex-none h-12 sm:h-auto rounded-md sm:rounded-lg font-semibold"
+            >
               <ChevronLeft className="w-4 h-4 mr-1" />
               Back
             </Button>
@@ -418,7 +431,7 @@ const DriverApplicationQuiz = () => {
             <Button
               type="button"
               onClick={handleNext}
-              className="flex-1 bg-accent hover:bg-accent/90 text-accent-foreground"
+              className="flex-1 bg-accent hover:bg-accent/90 text-accent-foreground h-12 sm:h-auto rounded-md sm:rounded-lg font-semibold"
               disabled={currentStep === 1 && !formData.cdl_class}
             >
               Next
@@ -429,16 +442,13 @@ const DriverApplicationQuiz = () => {
               type="button"
               onClick={handleSubmit}
               disabled={isSubmitting}
-              className="flex-1 bg-accent hover:bg-accent/90 text-accent-foreground"
+              className="flex-1 bg-accent hover:bg-accent/90 text-accent-foreground h-12 sm:h-auto rounded-md sm:rounded-lg font-semibold"
             >
               {isSubmitting ? "Submitting..." : "Submit Application"}
             </Button>
           )}
         </div>
       </div>
-
-      {/* Spacer for sticky buttons on mobile */}
-      <div className="h-20 sm:hidden" />
     </div>
   );
 };
