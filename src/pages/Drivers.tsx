@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -6,14 +5,16 @@ import cdlSampleImage from "@/assets/cdl-sample.png";
 import driversHeroImage from "@/assets/drivers-hero.jpg";
 import DriverApplicationQuiz from "@/components/DriverApplicationQuiz";
 import DriverFAQ from "@/components/DriverFAQ";
+import SEOHead from "@/components/SEOHead";
 
 const Drivers = () => {
-  useEffect(() => {
-    document.title = "CDL Network – Drivers";
-  }, []);
-
   return (
     <div className="min-h-screen flex flex-col">
+      <SEOHead
+        title="CDL Network – Apply for Trucking Jobs"
+        description="Apply for CDL-A trucking jobs free. Get matched with vetted U.S. carriers. Fast placement, no spam, route-matched positions."
+        canonicalUrl="https://www.cdlnetworkllc.com/drivers"
+      />
       <Navigation />
 
       <main className="flex-1">

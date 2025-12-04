@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -65,6 +66,11 @@ const Index = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <SEOHead
+        title="CDL Network - Connecting CDL-A Drivers with Carriers"
+        description="Connect with quality trucking jobs or find pre-screened CDL-A drivers. Free for drivers. Fast placement. U.S. nationwide coverage."
+        canonicalUrl="https://www.cdlnetworkllc.com/"
+      />
       <Navigation />
       
       <main className="flex-1">

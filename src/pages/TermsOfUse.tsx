@@ -1,9 +1,15 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
 
 const TermsOfUse = () => {
   return (
     <div className="min-h-screen flex flex-col">
+      <SEOHead
+        title="CDL Network – Terms of Use"
+        description="Read CDL Network's terms of use. Understand the conditions for using our CDL-A driver and carrier matching services."
+        canonicalUrl="https://www.cdlnetworkllc.com/terms-of-use"
+      />
       <Navigation />
       
       <main className="flex-1">

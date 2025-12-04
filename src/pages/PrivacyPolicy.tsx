@@ -1,9 +1,15 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
 
 const PrivacyPolicy = () => {
   return (
     <div className="min-h-screen flex flex-col">
+      <SEOHead
+        title="CDL Network – Privacy Policy"
+        description="Learn how CDL Network protects your personal information. Our privacy policy explains data collection, usage, and your rights."
+        canonicalUrl="https://www.cdlnetworkllc.com/privacy-policy"
+      />
       <Navigation />
       
       <main className="flex-1">
