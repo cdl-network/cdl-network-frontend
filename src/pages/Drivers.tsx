@@ -1,6 +1,7 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import OptimizedImage from "@/components/OptimizedImage";
 import cdlSampleImage from "@/assets/cdl-sample.png";
 import driversHeroImage from "@/assets/drivers-hero.jpg";
 import DriverApplicationQuiz from "@/components/DriverApplicationQuiz";
@@ -71,18 +72,18 @@ const Drivers = () => {
 
           {/* CDL License Card - Bottom Left */}
           {/* Desktop: ~300px wide, higher opacity */}
-          <img
+          <OptimizedImage
             src={cdlSampleImage}
             alt=""
-            aria-hidden="true"
+            aria-hidden={true}
             className="absolute bottom-2 left-4 w-[300px] opacity-75 blur-[0.5px] pointer-events-none hidden lg:block select-none"
             style={{ zIndex: 1 }}
           />
           {/* Mobile/Tablet: smaller (~140px) */}
-          <img
+          <OptimizedImage
             src={cdlSampleImage}
             alt=""
-            aria-hidden="true"
+            aria-hidden={true}
             className="absolute bottom-2 left-2 w-[140px] opacity-[0.45] pointer-events-none block lg:hidden select-none"
             style={{ zIndex: 1 }}
           />

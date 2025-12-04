@@ -11,6 +11,7 @@ import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import HowItWorks from "@/components/HowItWorks";
 import TruckTypesSection from "@/components/TruckTypesSection";
 import { useNavigate } from "react-router-dom";
+import OptimizedImage from "@/components/OptimizedImage";
 import {
   Carousel,
   CarouselContent,
@@ -20,11 +21,6 @@ import {
 import heroMainImage from "@/assets/hero-main.jpeg";
 import supportImage from "@/assets/hero-main-3.webp";
 import driversForDriversImage from "@/assets/drivers-for-drivers.jpeg";
-import dryVanImage from "@/assets/dry-van.jpg";
-import reeferImage from "@/assets/reefer.jpg";
-import flatbedImage from "@/assets/flatbed.webp";
-import powerOnlyImage from "@/assets/power-only.jpg";
-import boxTruckImage from "@/assets/box-truck.jpg";
 import contactUsImage from "@/assets/contact-us.jpg";
 import whyChooseUs1 from "@/assets/why-choose-us-1.jpg";
 import whyChooseUs2 from "@/assets/why-choose-us-2.jpg";
@@ -193,10 +189,11 @@ const Index = () => {
                       {/* Mobile: Full-width modern hero slider */}
                       <div className="relative md:hidden overflow-hidden">
                         <div className="relative w-full aspect-[4/5]">
-                          <img 
+                          <OptimizedImage 
                             src={card.image} 
                             alt={card.alt}
-                            className="w-full h-full object-cover"
+                            className="w-full h-full"
+                            sizes="100vw"
                           />
                           {/* Gradient overlay for text readability */}
                           <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent" />
@@ -224,10 +221,11 @@ const Index = () => {
                           </p>
                         </div>
                         <div className="w-full h-[200px] overflow-hidden">
-                          <img 
+                          <OptimizedImage 
                             src={card.image} 
                             alt={card.alt}
-                            className="w-full h-full object-cover"
+                            className="w-full h-full"
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                           />
                         </div>
                       </div>
@@ -289,10 +287,11 @@ const Index = () => {
                 {/* Mobile: Full-width modern hero style */}
                 <div className="relative md:hidden overflow-hidden">
                   <div className="relative w-full aspect-[4/5]">
-                    <img 
+                    <OptimizedImage 
                       src={driversForDriversImage} 
                       alt="Professional driver standing by their truck"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full"
+                      sizes="100vw"
                     />
                     {/* Gradient overlay for text readability */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent" />
@@ -336,10 +335,11 @@ const Index = () => {
                 {/* Mobile: Full-width modern hero style */}
                 <div className="relative md:hidden overflow-hidden">
                   <div className="relative w-full aspect-[4/5]">
-                    <img 
+                    <OptimizedImage 
                       src={supportImage} 
                       alt="Carrier team discussing logistics"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full"
+                      sizes="100vw"
                     />
                     {/* Gradient overlay for text readability */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent" />
@@ -396,10 +396,11 @@ const Index = () => {
               {/* Mobile: Image First with Modern Styling */}
               <div className="lg:hidden order-first mb-0">
                 <div className="relative w-full aspect-[4/5] overflow-hidden">
-                  <img 
+                  <OptimizedImage 
                     src={contactUsImage} 
                     alt="Truck driver talking to a worker beside the rig"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full"
+                    sizes="100vw"
                   />
                   {/* Gradient overlay for cohesion */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
@@ -461,10 +462,11 @@ const Index = () => {
 
               {/* Desktop: Contact Image */}
               <div className="hidden lg:block lg:order-last">
-                <img 
+                <OptimizedImage 
                   src={contactUsImage} 
                   alt="Truck driver talking to a worker beside the rig"
-                  className="w-full h-full object-cover rounded-lg shadow-md aspect-[4/5]"
+                  className="w-full h-full rounded-lg shadow-md aspect-[4/5]"
+                  sizes="50vw"
                 />
               </div>
             </div>

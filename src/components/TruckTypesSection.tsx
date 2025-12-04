@@ -1,6 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import AutoScroll from "embla-carousel-auto-scroll";
+import OptimizedImage from "@/components/OptimizedImage";
 import dryVanImage from "@/assets/dry-van.jpg";
 import reeferImage from "@/assets/reefer.jpg";
 import flatbedImage from "@/assets/flatbed.webp";
@@ -181,10 +182,11 @@ const TruckTypesSection = () => {
                 >
                   <div className="relative overflow-hidden rounded-xl">
                     <div className="relative w-full aspect-[4/5] overflow-hidden">
-                      <img 
+                      <OptimizedImage 
                         src={truck.image} 
                         alt={truck.alt}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full"
+                        sizes="85vw"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent" />
                       <div className="absolute bottom-0 left-0 right-0 p-5">
