@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -6,12 +6,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import SEOHead from "@/components/SEOHead";
 
 const Contact = () => {
-  useEffect(() => {
-    document.title = "CDL Network – Contact";
-  }, []);
-
   const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: "",
@@ -30,6 +27,11 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <SEOHead
+        title="CDL Network – Contact Us"
+        description="Contact CDL Network for trucking job inquiries. Drivers and carriers welcome. We respond within 24 hours."
+        canonicalUrl="https://www.cdlnetworkllc.com/contact"
+      />
       <Navigation />
 
       <main className="flex-1">

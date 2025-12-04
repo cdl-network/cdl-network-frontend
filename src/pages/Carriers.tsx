@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -415,10 +416,6 @@ const FindNextDriverSection = () => {
 };
 
 const Carriers = () => {
-  useEffect(() => {
-    document.title = "CDL Network – Carriers";
-  }, []);
-
   const { toast } = useToast();
   const [formData, setFormData] = useState({
     contact_name: "",
@@ -481,6 +478,11 @@ const Carriers = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <SEOHead
+        title="CDL Network – Find CDL-A Drivers"
+        description="Find pre-screened CDL-A drivers for your fleet. Faster onboarding, lower turnover, drivers matched to your lanes and routes."
+        canonicalUrl="https://www.cdlnetworkllc.com/carriers"
+      />
       <Navigation />
 
       <main className="flex-1">
