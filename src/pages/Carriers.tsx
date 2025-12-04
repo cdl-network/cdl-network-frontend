@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
+import OptimizedImage from "@/components/OptimizedImage";
 import carriersHeroImage from "@/assets/carriers-2.jpg";
 import carriersImage from "@/assets/carriers-1.jpg";
 
@@ -402,10 +403,11 @@ const FindNextDriverSection = () => {
                 className="absolute -inset-4 bg-accent/10 rounded-3xl -z-10 transition-transform duration-500 group-hover:scale-[1.02]"
                 style={{ transform: isVisible ? "rotate(-2deg)" : "rotate(0deg)" }}
               />
-              <img
+              <OptimizedImage
                 src={carriersImage}
                 alt="Professional truck fleet"
-                className="w-full h-auto object-cover rounded-2xl shadow-xl shadow-black/15 transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-black/20"
+                className="w-full h-auto rounded-2xl shadow-xl shadow-black/15 transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-black/20"
+                sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
           </div>
