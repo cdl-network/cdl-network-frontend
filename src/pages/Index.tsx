@@ -17,11 +17,11 @@ import heroMainImage from "@/assets/hero-main.jpeg";
 import supportImage from "@/assets/hero-main-3.webp";
 import driversForDriversImage from "@/assets/drivers-for-drivers.jpeg";
 import contactUsImage from "@/assets/contact-us.jpg";
-import whyChooseUs1 from "@/assets/why-choose-us-1.jpg";
-import whyChooseUs2 from "@/assets/why-choose-us-2.jpg";
-import whyChooseUs3 from "@/assets/why-choose-us-3.jpg";
-import whyChooseUs4 from "@/assets/why-choose-us-4.jpg";
-import whyChooseUs5 from "@/assets/why-choose-us-5.png";
+import whyChooseUs1 from "@/assets/why-choose-us-1.webp";
+import whyChooseUs2 from "@/assets/why-choose-us-2.webp";
+import whyChooseUs3 from "@/assets/why-choose-us-3.webp";
+import whyChooseUs4 from "@/assets/why-choose-us-4.webp";
+import whyChooseUs5 from "@/assets/why-choose-us-5.webp";
 const Index = () => {
   const {
     toast
