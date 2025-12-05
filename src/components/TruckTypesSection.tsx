@@ -2,11 +2,11 @@ import { useRef, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import AutoScroll from "embla-carousel-auto-scroll";
 import OptimizedImage from "@/components/OptimizedImage";
-import dryVanImage from "@/assets/dry-van.jpg";
-import reeferImage from "@/assets/reefer.jpg";
+import dryVanImage from "@/assets/dry-van.webp";
+import reeferImage from "@/assets/reefer.webp";
 import flatbedImage from "@/assets/flatbed.webp";
-import powerOnlyImage from "@/assets/power-only.jpg";
-import boxTruckImage from "@/assets/box-truck.jpg";
+import powerOnlyImage from "@/assets/power-only.webp";
+import boxTruckImage from "@/assets/box-truck.webp";
 
 const truckTypes = [
   {
