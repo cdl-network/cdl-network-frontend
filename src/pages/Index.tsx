@@ -266,7 +266,7 @@ const Index = () => {
                 {/* Desktop: Traditional card */}
                 <div className="hidden md:flex md:flex-col h-full bg-card border border-border rounded-[var(--radius)] overflow-hidden shadow-sm hover:shadow-md transition-shadow">
                   <div className="h-48 bg-cover bg-center" style={{
-                  backgroundImage: `url(${supportImage})`
+                  backgroundImage: "url(\"/lovable-uploads/d7425885-a6ba-4b40-8347-41731e230813.webp\")"
                 }}></div>
                   <div className="p-6 flex flex-col flex-grow">
                     <h3 className="text-2xl font-semibold mb-3">Carriers</h3>
