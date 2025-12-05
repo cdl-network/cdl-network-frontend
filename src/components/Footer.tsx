@@ -83,28 +83,31 @@ const Footer = () => {
                   href="https://facebook.com"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Follow us on Facebook"
                   className="w-10 h-10 rounded-full bg-white/90 hover:bg-white hover:scale-110 flex items-center justify-center transition-all"
                   style={{ color: "hsl(var(--brand-orange))" }}
                 >
-                  <Facebook className="h-5 w-5" />
+                  <Facebook className="h-5 w-5" aria-hidden="true" />
                 </a>
                 <a
                   href="https://instagram.com"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Follow us on Instagram"
                   className="w-10 h-10 rounded-full bg-white/90 hover:bg-white hover:scale-110 flex items-center justify-center transition-all"
                   style={{ color: "hsl(var(--brand-orange))" }}
                 >
-                  <Instagram className="h-5 w-5" />
+                  <Instagram className="h-5 w-5" aria-hidden="true" />
                 </a>
                 <a
                   href="https://www.linkedin.com/company/cdl-network"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Follow us on LinkedIn"
                   className="w-10 h-10 rounded-full bg-white/90 hover:bg-white hover:scale-110 flex items-center justify-center transition-all"
                   style={{ color: "hsl(var(--brand-orange))" }}
                 >
-                  <Linkedin className="h-5 w-5" />
+                  <Linkedin className="h-5 w-5" aria-hidden="true" />
                 </a>
               </div>
             </div>

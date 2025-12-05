@@ -25,7 +25,7 @@ const Navigation = () => {
       <div className="container mx-auto px-4">
         {/* Mobile: Logo + Burger */}
         <div className="md:hidden flex h-16 items-center justify-between">
-          <NavLink to="/" className="flex items-center hover:opacity-80 transition-opacity">
+          <NavLink to="/" className="flex items-center hover:opacity-80 transition-opacity" aria-label="CDL Network - Go to homepage">
             <img 
               src={logo} 
               alt="CDL Network" 
@@ -66,7 +66,7 @@ const Navigation = () => {
 
         {/* Desktop/Tablet: Side-by-side layout */}
         <div className="hidden md:flex h-16 items-center justify-between">
-          <NavLink to="/" className="flex items-center hover:opacity-80 transition-opacity">
+          <NavLink to="/" className="flex items-center hover:opacity-80 transition-opacity" aria-label="CDL Network - Go to homepage">
             <img src={logo} alt="CDL Network" className="h-8 lg:h-10" />
           </NavLink>
           
