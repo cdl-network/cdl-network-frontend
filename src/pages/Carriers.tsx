@@ -146,7 +146,7 @@ const HeroSection = () => {
   return <section ref={heroRef} className="relative px-4 overflow-hidden min-h-[calc(100vh-80px)] flex items-center justify-center">
       {/* Parallax Background */}
       <div className="absolute inset-0 bg-cover bg-center transition-transform duration-100 ease-out scale-110" style={{
-      backgroundImage: `url(${carriersHeroImage})`,
+      backgroundImage: "url(\"/lovable-uploads/784c0927-a2f5-4c07-a42b-b23647a40f2a.webp\")",
       transform: `translateY(${scrollY}px) scale(1.1)`
     }} />
 
