@@ -65,7 +65,7 @@ const Index = () => {
           
           {/* Static background - mobile only */}
           <div className="md:hidden absolute inset-0 bg-cover bg-center" style={{
-          backgroundImage: `url(${heroMainImage})`
+          backgroundImage: "url(\"/lovable-uploads/105074a5-623a-4d95-ab7e-0815adcdadf1.webp\")"
         }}></div>
           
           {/* Dark gradient overlay */}
