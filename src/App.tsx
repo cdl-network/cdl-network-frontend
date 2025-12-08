@@ -7,7 +7,7 @@ import { useGAPageTracking } from "./hooks/useGAPageTracking";
 import Index from "./pages/Index";
 import Drivers from "./pages/Drivers";
 import Carriers from "./pages/Carriers";
-import Contact from "./pages/Contact";
+import Partners from "./pages/Partners";
 import TermsOfUse from "./pages/TermsOfUse";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import NotFound from "./pages/NotFound";
@@ -30,7 +30,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/drivers" element={<Drivers />} />
           <Route path="/carriers" element={<Carriers />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/partners" element={<Partners />} />
           <Route path="/terms" element={<TermsOfUse />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
