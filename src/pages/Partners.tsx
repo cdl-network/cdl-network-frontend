@@ -96,7 +96,7 @@ const Partners = () => {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative min-h-[calc(100vh-64px)] flex items-center justify-center px-4 overflow-hidden">
+        <section className="relative min-h-[calc(100vh-80px)] flex items-center justify-center px-4 overflow-hidden">
           <div 
             className="absolute inset-0 bg-cover bg-center scale-110"
             style={{ backgroundImage: `url(${heroImage})` }}
