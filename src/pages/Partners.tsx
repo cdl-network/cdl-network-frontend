@@ -96,19 +96,19 @@ const Partners = () => {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative min-h-[calc(100vh-64px)] flex items-center justify-center overflow-hidden">
+        <section className="relative min-h-[calc(100vh-64px)] flex items-center justify-center px-4 overflow-hidden">
           <div 
-            className="absolute inset-0 bg-cover bg-center"
+            className="absolute inset-0 bg-cover bg-center scale-110"
             style={{ backgroundImage: `url(${heroImage})` }}
           />
           <div 
             className="absolute inset-0"
             style={{ 
-              background: "linear-gradient(135deg, rgba(11, 31, 59, 0.88) 0%, rgba(11, 31, 59, 0.7) 50%, rgba(11, 31, 59, 0.82) 100%)" 
+              background: "linear-gradient(135deg, rgba(11, 31, 59, 0.92) 0%, rgba(11, 31, 59, 0.75) 50%, rgba(11, 31, 59, 0.85) 100%)" 
             }}
           />
           
-          <div className="relative z-10 container mx-auto px-4 text-center">
+          <div className="relative z-10 container mx-auto text-center">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 animate-fade-in">
               Partner With CDL Network
             </h1>
@@ -125,9 +125,9 @@ const Partners = () => {
           </div>
 
           {/* Bottom curved edge for smooth transition */}
-          <div className="absolute -bottom-1 left-0 right-0 h-12 overflow-hidden">
-            <svg viewBox="0 0 1440 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full" preserveAspectRatio="none">
-              <path d="M0 48h1440V24c-240 16-480 24-720 24S240 40 0 24v24z" fill="hsl(var(--background))" />
+          <div className="absolute bottom-0 left-0 right-0 h-16">
+            <svg viewBox="0 0 1440 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full" preserveAspectRatio="none">
+              <path d="M0 64h1440V32c-240 20-480 32-720 32S240 52 0 32v32z" fill="hsl(var(--background))" />
             </svg>
           </div>
         </section>
