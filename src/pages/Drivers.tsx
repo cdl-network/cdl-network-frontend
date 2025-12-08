@@ -33,9 +33,9 @@ const Drivers = () => {
           </div>
 
           {/* Bottom curved edge for smooth transition */}
-          <div className="absolute -bottom-1 left-0 right-0 h-12 overflow-hidden">
-            <svg viewBox="0 0 1440 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full" preserveAspectRatio="none">
-              <path d="M0 48h1440V24c-240 16-480 24-720 24S240 40 0 24v24z" fill="hsl(var(--muted))" />
+          <div className="absolute bottom-0 left-0 right-0 h-16">
+            <svg viewBox="0 0 1440 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full" preserveAspectRatio="none">
+              <path d="M0 64h1440V32c-240 20-480 32-720 32S240 52 0 32v32z" fill="hsl(var(--muted))" />
             </svg>
           </div>
         </section>
