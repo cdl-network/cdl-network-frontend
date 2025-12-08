@@ -124,10 +124,10 @@ const Partners = () => {
             </Button>
           </div>
 
-          {/* Curved bottom edge */}
-          <div className="absolute -bottom-px left-0 right-0">
-            <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full block">
-              <path d="M0 60L1440 60L1440 0C1440 0 1080 60 720 60C360 60 0 0 0 0L0 60Z" fill="hsl(var(--background))" />
+          {/* Bottom curved edge for smooth transition */}
+          <div className="absolute -bottom-1 left-0 right-0 h-12 overflow-hidden">
+            <svg viewBox="0 0 1440 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full" preserveAspectRatio="none">
+              <path d="M0 48h1440V24c-240 16-480 24-720 24S240 40 0 24v24z" fill="hsl(var(--background))" />
             </svg>
           </div>
         </section>
