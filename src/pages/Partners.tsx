@@ -96,7 +96,7 @@ const Partners = () => {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative min-h-[60vh] md:min-h-[70vh] flex items-center justify-center overflow-hidden">
+        <section className="relative min-h-[calc(100vh-64px)] flex items-center justify-center overflow-hidden">
           <div 
             className="absolute inset-0 bg-cover bg-center"
             style={{ backgroundImage: `url(${heroImage})` }}
@@ -109,24 +109,24 @@ const Partners = () => {
           />
           
           <div className="relative z-10 container mx-auto px-4 text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 animate-fade-in">
               Partner With CDL Network
             </h1>
-            <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl mx-auto">
+            <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl mx-auto animate-fade-in">
               Refer qualified CDL-A drivers. Earn payouts. Zero complexity.
             </p>
             <Button 
               onClick={scrollToForm}
               size="lg"
-              className="bg-[hsl(var(--brand-orange))] hover:bg-[hsl(var(--brand-orange))]/90 text-white font-semibold px-8 py-6 text-lg transition-all hover:-translate-y-1 hover:shadow-lg"
+              className="bg-[hsl(var(--brand-orange))] hover:bg-[hsl(var(--brand-orange))]/90 text-white font-semibold px-8 py-6 text-lg transition-all hover:-translate-y-1 hover:shadow-lg animate-fade-in"
             >
               Become a Partner
             </Button>
           </div>
 
           {/* Curved bottom edge */}
-          <div className="absolute bottom-0 left-0 right-0">
-            <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
+          <div className="absolute -bottom-px left-0 right-0">
+            <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full block">
               <path d="M0 60L1440 60L1440 0C1440 0 1080 60 720 60C360 60 0 0 0 0L0 60Z" fill="hsl(var(--background))" />
             </svg>
           </div>
