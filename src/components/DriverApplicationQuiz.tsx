@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -421,8 +420,8 @@ const DriverApplicationQuiz = () => {
                 />
                 <label htmlFor="sms-consent" className="text-xs sm:text-sm text-muted-foreground leading-relaxed cursor-pointer">
                   I agree to receive recurring automated text messages at the phone number provided. Msg & data rates may apply. Msg frequency varies. Reply HELP for help and STOP to cancel. View our{" "}
-                  <Link to="/terms-of-use" className="text-accent underline hover:text-accent/80">Terms of Service</Link> and{" "}
-                  <Link to="/privacy-policy" className="text-accent underline hover:text-accent/80">Privacy Policy</Link>.
+                  <a href="/terms-of-use" className="text-accent underline hover:text-accent/80">Terms of Service</a> and{" "}
+                  <a href="/privacy-policy" className="text-accent underline hover:text-accent/80">Privacy Policy</a>.
                 </label>
               </div>
             </div>
