@@ -1,10 +1,9 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { ChevronRight, ChevronLeft, Check } from "lucide-react";
-import { useEffect, useRef } from "react";
 
 // Declare fbq for Facebook Pixel
 declare global {
@@ -12,7 +11,8 @@ declare global {
     fbq?: (...args: any[]) => void;
   }
 }
-const fbq = typeof window !== 'undefined' ? window.fbq : undefined;
+
+const fbq = typeof window !== "undefined" ? window.fbq : undefined;
 
 interface FormData {
   full_name: string;
@@ -28,6 +28,10 @@ const DriverApplicationQuiz = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  // UI-only SMS consent (DO NOT include in payload)
+  const [smsConsent, setSmsConsent] = useState(false);
+
   const [formData, setFormData] = useState<FormData>({
     full_name: "",
     phone: "",
@@ -53,7 +57,7 @@ const DriverApplicationQuiz = () => {
         });
       }
     }
-  }, [currentStep]);
+  }, [currentStep, formData.cdl_class]);
   // ---- END META TRACKING ----
 
   const getTotalSteps = () => {
@@ -62,6 +66,14 @@ const DriverApplicationQuiz = () => {
     if (formData.cdl_class === "no_cdl") return 3; // CDL question + textarea + contact
     return 1; // Just CDL question
   };
+
+  const totalSteps = getTotalSteps();
+  const isLastStep = currentStep === totalSteps;
+
+  // Keep consent from "sticking" if user navigates back/forth
+  useEffect(() => {
+    if (!isLastStep) setSmsConsent(false);
+  }, [isLastStep]);
 
   const handleTruckTypeToggle = (type: string) => {
     setFormData((prev) => ({
@@ -83,6 +95,9 @@ const DriverApplicationQuiz = () => {
   };
 
   const handleSubmit = async () => {
+    // Hard guard: do not submit unless consent is checked
+    if (!smsConsent) return;
+
     setIsSubmitting(true);
 
     try {
@@ -102,9 +117,7 @@ const DriverApplicationQuiz = () => {
 
       const response = await fetch("https://cdlnetworkllc.vercel.app/api/lead", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
 
@@ -156,9 +169,6 @@ const DriverApplicationQuiz = () => {
     );
   }
 
-  const totalSteps = getTotalSteps();
-  const isLastStep = currentStep === totalSteps;
-
   return (
     <div className="w-full max-w-2xl mx-auto px-0 sm:px-4 py-4 sm:py-8">
       {/* Heading - only show when not submitted */}
@@ -178,7 +188,9 @@ const DriverApplicationQuiz = () => {
             <span className="text-xs sm:text-sm font-medium text-muted-foreground">
               Step {currentStep} of {totalSteps}
             </span>
-            <span className="text-xs sm:text-sm font-medium text-accent">{Math.round((currentStep / totalSteps) * 100)}%</span>
+            <span className="text-xs sm:text-sm font-medium text-accent">
+              {Math.round((currentStep / totalSteps) * 100)}%
+            </span>
           </div>
           <div className="h-1 sm:h-2 bg-muted rounded-full overflow-hidden">
             <div
@@ -195,7 +207,9 @@ const DriverApplicationQuiz = () => {
         {currentStep === 1 && (
           <div className="space-y-4 sm:space-y-6 animate-fade-in">
             <div>
-              <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-1 sm:mb-2 text-left">Do you have a valid CDL-A?</h2>
+              <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-1 sm:mb-2 text-left">
+                Do you have a valid CDL-A?
+              </h2>
               <p className="text-xs sm:text-sm text-muted-foreground text-left">Select one option</p>
             </div>
 
@@ -240,7 +254,9 @@ const DriverApplicationQuiz = () => {
         {currentStep === 2 && formData.cdl_class === "has_cdl" && (
           <div className="space-y-4 sm:space-y-6 animate-fade-in">
             <div>
-              <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-1 sm:mb-2 text-left">Truck type preference?</h2>
+              <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-1 sm:mb-2 text-left">
+                Truck type preference?
+              </h2>
               <p className="text-xs sm:text-sm text-muted-foreground text-left">Select all that apply</p>
             </div>
 
@@ -309,7 +325,9 @@ const DriverApplicationQuiz = () => {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="job-description" className="text-sm">What type of position are you looking for?</Label>
+              <Label htmlFor="job-description" className="text-sm">
+                What type of position are you looking for?
+              </Label>
               <Textarea
                 id="job-description"
                 placeholder="e.g., warehouse work, dispatch, dock loading, logistics coordinator..."
@@ -327,12 +345,16 @@ const DriverApplicationQuiz = () => {
         {currentStep === 3 && formData.cdl_class === "has_cdl" && (
           <div className="space-y-4 sm:space-y-6 animate-fade-in">
             <div>
-              <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-1 sm:mb-2 text-left">Years of CDL experience</h2>
+              <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-1 sm:mb-2 text-left">
+                Years of CDL experience
+              </h2>
               <p className="text-xs sm:text-sm text-muted-foreground text-left">How long have you been driving?</p>
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="experience" className="text-sm">Years</Label>
+              <Label htmlFor="experience" className="text-sm">
+                Years
+              </Label>
               <Input
                 id="experience"
                 type="number"
@@ -340,7 +362,12 @@ const DriverApplicationQuiz = () => {
                 max="100"
                 placeholder="0"
                 value={formData.years_exp || ""}
-                onChange={(e) => setFormData({ ...formData, years_exp: parseInt(e.target.value) || 0 })}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    years_exp: parseInt(e.target.value) || 0,
+                  })
+                }
                 className="text-base h-12"
                 autoFocus
               />
@@ -358,7 +385,9 @@ const DriverApplicationQuiz = () => {
 
             <div className="space-y-3 sm:space-y-4">
               <div className="space-y-1.5 sm:space-y-2">
-                <Label htmlFor="name" className="text-sm">Full Name</Label>
+                <Label htmlFor="name" className="text-sm">
+                  Full Name
+                </Label>
                 <Input
                   id="name"
                   placeholder="John Doe"
@@ -370,7 +399,9 @@ const DriverApplicationQuiz = () => {
               </div>
 
               <div className="space-y-1.5 sm:space-y-2">
-                <Label htmlFor="phone" className="text-sm">Phone</Label>
+                <Label htmlFor="phone" className="text-sm">
+                  Phone
+                </Label>
                 <Input
                   id="phone"
                   type="tel"
@@ -382,7 +413,9 @@ const DriverApplicationQuiz = () => {
               </div>
 
               <div className="space-y-1.5 sm:space-y-2">
-                <Label htmlFor="email" className="text-sm">Email</Label>
+                <Label htmlFor="email" className="text-sm">
+                  Email
+                </Label>
                 <Input
                   id="email"
                   type="email"
@@ -393,10 +426,34 @@ const DriverApplicationQuiz = () => {
                 />
               </div>
 
+              {/* REQUIRED SMS consent (UI-only; not sent to backend/HubSpot) */}
+              <div className="space-y-2 pt-1">
+                <label className="flex items-start gap-3 text-sm text-foreground">
+                  <input
+                    type="checkbox"
+                    checked={smsConsent}
+                    onChange={(e) => setSmsConsent(e.target.checked)}
+                    className="mt-1 h-4 w-4"
+                  />
+                  <span className="leading-snug">
+                    I agree to receive text messages at the phone number provided. Msg &amp; data rates may apply. Msg
+                    frequency varies. Reply STOP to opt out, HELP for help.{" "}
+                    <a href="/privacy-policy" className="underline">
+                      Privacy Policy
+                    </a>{" "}
+                    <a href="/terms" className="underline">
+                      Terms
+                    </a>
+                  </span>
+                </label>
+              </div>
+
               {/* Notes textarea - only for has_cdl path */}
               {formData.cdl_class === "has_cdl" && (
                 <div className="space-y-1.5 sm:space-y-2">
-                  <Label htmlFor="notes" className="text-sm">Anything we should know? (Optional)</Label>
+                  <Label htmlFor="notes" className="text-sm">
+                    Anything we should know? (Optional)
+                  </Label>
                   <Textarea
                     id="notes"
                     placeholder="I want to be home weekly, ready to OTR, going through SAP, drive with a partner/dog..."
@@ -416,10 +473,10 @@ const DriverApplicationQuiz = () => {
       <div className="mt-4 sm:mt-6 px-4 sm:px-0">
         <div className="flex gap-2 sm:gap-3">
           {currentStep > 1 && (
-            <Button 
-              type="button" 
-              variant="outline" 
-              onClick={handleBack} 
+            <Button
+              type="button"
+              variant="outline"
+              onClick={handleBack}
               className="flex-1 sm:flex-none h-12 sm:h-auto rounded-md sm:rounded-lg font-semibold"
             >
               <ChevronLeft className="w-4 h-4 mr-1" />
@@ -441,13 +498,20 @@ const DriverApplicationQuiz = () => {
             <Button
               type="button"
               onClick={handleSubmit}
-              disabled={isSubmitting}
+              disabled={isSubmitting || !smsConsent}
               className="flex-1 bg-accent hover:bg-accent/90 text-accent-foreground h-12 sm:h-auto rounded-md sm:rounded-lg font-semibold"
             >
               {isSubmitting ? "Submitting..." : "Submit Application"}
             </Button>
           )}
         </div>
+
+        {/* Optional small hint when consent not checked */}
+        {isLastStep && !smsConsent && (
+          <p className="mt-2 text-xs text-muted-foreground">
+            Please check the SMS consent box to submit your application.
+          </p>
+        )}
       </div>
     </div>
   );
