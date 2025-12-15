@@ -11,7 +11,7 @@ const PrivacyPolicy = () => {
         canonicalUrl="https://www.cdlnetworkllc.com/privacy-policy"
       />
       <Navigation />
-      
+
       <main className="flex-1">
         <div className="container mx-auto px-4 py-16 max-w-4xl">
           <h1 className="text-4xl font-bold mb-4">Privacy Policy</h1>
@@ -23,7 +23,9 @@ const PrivacyPolicy = () => {
             <p className="text-sm text-muted-foreground">Last updated: November 2025</p>
 
             <p>
-              CDL Network LLC ("we," "our," "us") respects your privacy and is committed to protecting your personal information. This Privacy Policy explains what data we collect, how we use it, and your rights regarding it.
+              CDL Network LLC ("we," "our," "us") respects your privacy and is committed to protecting your personal
+              information. This Privacy Policy explains what data we collect, how we use it, and your rights regarding
+              it.
             </p>
 
             <section>
@@ -38,7 +40,9 @@ const PrivacyPolicy = () => {
             <section>
               <h2 className="text-2xl font-semibold mb-3">2. Analytics and cookies</h2>
               <p>
-                We use Google Analytics 4 (GA4) and Microsoft Clarity to analyze site performance and improve usability. These tools use cookies and tracking scripts to collect anonymized data like clicks, scrolls, and session heatmaps. You can control cookies through your browser settings.
+                We use Google Analytics 4 (GA4) and Microsoft Clarity to analyze site performance and improve usability.
+                These tools use cookies and tracking scripts to collect anonymized data like clicks, scrolls, and
+                session heatmaps. You can control cookies through your browser settings.
               </p>
             </section>
 
@@ -49,43 +53,49 @@ const PrivacyPolicy = () => {
                 <li>To improve site experience and detect technical issues.</li>
                 <li>To ensure proper operation and prevent abuse.</li>
               </ul>
-              <p className="mt-3">
-                We do not sell or rent personal data to third parties.
+              <p className="mt-3">We do not sell or rent personal data to third parties.</p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold mb-3">4. Text messaging and SMS consent</h2>
+              <p>
+                If you opt in to receive text messages from us, we may collect and store your phone number and your
+                consent to receive SMS communications. Text messaging originator opt-in data and consent will not be
+                shared with any third parties, excluding aggregators and providers of the Text Message services.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold mb-3">4. Data retention</h2>
+              <h2 className="text-2xl font-semibold mb-3">5. Data retention</h2>
+              <p>We keep personal data only as long as needed for its original purpose or as required by law.</p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold mb-3">6. Security</h2>
+              <p>We use reasonable measures to protect your data, though no system is completely secure.</p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold mb-3">7. Your rights</h2>
               <p>
-                We keep personal data only as long as needed for its original purpose or as required by law.
+                You may request access, correction, or deletion of your personal data by emailing
+                info@cdlnetworkllc.com. We will reply within a reasonable time.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold mb-3">5. Security</h2>
+              <h2 className="text-2xl font-semibold mb-3">8. Updates to this policy</h2>
               <p>
-                We use reasonable measures to protect your data, though no system is completely secure.
+                We may revise this Privacy Policy occasionally. The updated version will be posted here with a new "Last
+                updated" date.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold mb-3">6. Your rights</h2>
+              <h2 className="text-2xl font-semibold mb-3">9. Contact us</h2>
               <p>
-                You may request access, correction, or deletion of your personal data by emailing info@cdlnetworkllc.com. We will reply within a reasonable time.
-              </p>
-            </section>
-
-            <section>
-              <h2 className="text-2xl font-semibold mb-3">7. Updates to this policy</h2>
-              <p>
-                We may revise this Privacy Policy occasionally. The updated version will be posted here with a new "Last updated" date.
-              </p>
-            </section>
-
-            <section>
-              <h2 className="text-2xl font-semibold mb-3">8. Contact us</h2>
-              <p>
-                CDL Network LLC<br />
+                CDL Network LLC
+                <br />
                 Email: info@cdlnetworkllc.com
               </p>
             </section>
