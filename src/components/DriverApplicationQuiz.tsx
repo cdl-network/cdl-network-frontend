@@ -444,11 +444,11 @@ const DriverApplicationQuiz = () => {
                 >
                   I agree to receive recurring automated text messages at the phone number provided. Msg & data rates
                   may apply. Msg frequency varies. Reply HELP for help and STOP to cancel. View our{" "}
-                  <a href="/termsofuse" className="text-accent underline hover:text-accent/80">
+                  <a href="/terms" className="text-accent underline hover:text-accent/80">
                     Terms of Service
                   </a>{" "}
                   and{" "}
-                  <a href="/privacypolicy" className="text-accent underline hover:text-accent/80">
+                  <a href="/privacy" className="text-accent underline hover:text-accent/80">
                     Privacy Policy
                   </a>
                   .
