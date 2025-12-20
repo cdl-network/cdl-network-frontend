@@ -447,25 +447,28 @@ const DriverApplicationQuiz = () => {
             </Button>
           )}
 
-          {!isLastStep ? (
-            <Button
-              type="button"
-              onClick={handleNext}
-              className="flex-1 bg-accent hover:bg-accent/90 text-accent-foreground h-12 sm:h-auto rounded-md sm:rounded-lg font-semibold"
-              disabled={currentStep === 1 && !formData.cdl_class}
-            >
-              Next
-              <ChevronRight className="w-4 h-4 ml-1" />
-            </Button>
-          ) : (
-            <Button
-              type="button"
-              onClick={handleSubmit}
-              disabled={isSubmitting}
-              className="flex-1 bg-accent hover:bg-accent/90 text-accent-foreground h-12 sm:h-auto rounded-md sm:rounded-lg font-semibold"
-            >
-              {isSubmitting ? "Submitting..." : "Submit Application"}
-            </Button>
+          {currentStep > 1 && (
+            <>
+              {!isLastStep ? (
+                <Button
+                  type="button"
+                  onClick={handleNext}
+                  className="flex-1 bg-accent hover:bg-accent/90 text-accent-foreground h-12 sm:h-auto rounded-md sm:rounded-lg font-semibold"
+                >
+                  Next
+                  <ChevronRight className="w-4 h-4 ml-1" />
+                </Button>
+              ) : (
+                <Button
+                  type="button"
+                  onClick={handleSubmit}
+                  disabled={isSubmitting}
+                  className="flex-1 bg-accent hover:bg-accent/90 text-accent-foreground h-12 sm:h-auto rounded-md sm:rounded-lg font-semibold"
+                >
+                  {isSubmitting ? "Submitting..." : "Submit Application"}
+                </Button>
+              )}
+            </>
           )}
         </div>
       </div>
