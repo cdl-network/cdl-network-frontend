@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Checkbox } from "@/components/ui/checkbox";
 import { ChevronRight, ChevronLeft, Check } from "lucide-react";
 import { useEffect, useRef } from "react";
 
@@ -28,7 +27,6 @@ interface FormData {
 const DriverApplicationQuiz = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [consentChecked, setConsentChecked] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState<FormData>({
     full_name: "",
@@ -429,31 +427,6 @@ const DriverApplicationQuiz = () => {
                   />
                 </div>
               )}
-
-              {/* SMS Consent Checkbox */}
-              <div className="flex items-start gap-3 pt-2">
-                <Checkbox
-                  id="sms-consent"
-                  checked={consentChecked}
-                  onCheckedChange={(checked) => setConsentChecked(checked === true)}
-                  className="mt-1"
-                />
-                <label
-                  htmlFor="sms-consent"
-                  className="text-xs sm:text-sm text-muted-foreground leading-relaxed cursor-pointer"
-                >
-                  I agree to receive recurring automated text messages at the phone number provided. Msg & data rates
-                  may apply. Msg frequency varies. Reply HELP for help and STOP to cancel. View our{" "}
-                  <a href="/terms" className="text-accent underline hover:text-accent/80">
-                    Terms of Service
-                  </a>{" "}
-                  and{" "}
-                  <a href="/privacy" className="text-accent underline hover:text-accent/80">
-                    Privacy Policy
-                  </a>
-                  .
-                </label>
-              </div>
             </div>
           </div>
         )}
@@ -488,7 +461,7 @@ const DriverApplicationQuiz = () => {
             <Button
               type="button"
               onClick={handleSubmit}
-              disabled={isSubmitting || !consentChecked}
+              disabled={isSubmitting}
               className="flex-1 bg-accent hover:bg-accent/90 text-accent-foreground h-12 sm:h-auto rounded-md sm:rounded-lg font-semibold"
             >
               {isSubmitting ? "Submitting..." : "Submit Application"}
