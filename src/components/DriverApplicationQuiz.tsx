@@ -410,23 +410,6 @@ const DriverApplicationQuiz = () => {
                   className="text-base h-12"
                 />
               </div>
-
-              {/* Notes textarea - only for has_cdl path */}
-              {formData.cdl_class === "has_cdl" && (
-                <div className="space-y-1.5 sm:space-y-2">
-                  <Label htmlFor="notes" className="text-sm">
-                    Anything we should know? (Optional)
-                  </Label>
-                  <Textarea
-                    id="notes"
-                    placeholder="I want to be home weekly, ready to OTR, going through SAP, drive with a partner/dog..."
-                    value={formData.notes}
-                    onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                    rows={3}
-                    className="resize-none text-base"
-                  />
-                </div>
-              )}
             </div>
           </div>
         )}
