@@ -338,24 +338,40 @@ const DriverApplicationQuiz = () => {
               <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-1 sm:mb-2 text-left">
                 Years of CDL experience
               </h2>
-              <p className="text-xs sm:text-sm text-muted-foreground text-left">How long have you been driving?</p>
+              <p className="text-xs sm:text-sm text-muted-foreground text-left">Select one option</p>
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="experience" className="text-sm">
-                Years
-              </Label>
-              <Input
-                id="experience"
-                type="number"
-                min="0"
-                max="100"
-                placeholder="0"
-                value={formData.years_exp || ""}
-                onChange={(e) => setFormData({ ...formData, years_exp: parseInt(e.target.value) || 0 })}
-                className="text-base h-12"
-                autoFocus
-              />
+            <div className="flex flex-col gap-2 sm:gap-3">
+              {[
+                { value: 0, label: "Less than 1 year" },
+                { value: 1, label: "1–2 years" },
+                { value: 3, label: "3–5 years" },
+                { value: 5, label: "5+ years" },
+              ].map((opt) => (
+                <button
+                  key={opt.value}
+                  type="button"
+                  onClick={() => setFormData({ ...formData, years_exp: opt.value })}
+                  className={`w-full p-3 sm:p-5 rounded-lg sm:rounded-xl border transition-all text-left ${
+                    formData.years_exp === opt.value
+                      ? "border-accent bg-accent/10 text-foreground"
+                      : "border-border bg-background text-foreground hover:border-accent/70"
+                  }`}
+                >
+                  <div className="flex items-center gap-3">
+                    <div
+                      className={`w-5 h-5 flex-shrink-0 rounded-full border-2 flex items-center justify-center ${
+                        formData.years_exp === opt.value ? "border-accent bg-accent" : "border-muted-foreground"
+                      }`}
+                    >
+                      {formData.years_exp === opt.value && (
+                        <div className="w-2.5 h-2.5 flex-shrink-0 rounded-full bg-accent-foreground" />
+                      )}
+                    </div>
+                    <span className="font-semibold text-sm sm:text-base">{opt.label}</span>
+                  </div>
+                </button>
+              ))}
             </div>
           </div>
         )}
