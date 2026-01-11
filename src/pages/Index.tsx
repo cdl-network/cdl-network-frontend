@@ -22,6 +22,7 @@ import whyChooseUs2 from "@/assets/why-choose-us-2.webp";
 import whyChooseUs3 from "@/assets/why-choose-us-3.webp";
 import whyChooseUs4 from "@/assets/why-choose-us-4.webp";
 import whyChooseUs5 from "@/assets/why-choose-us-5.webp";
+import { contactFormSchema, validateForm } from "@/lib/formValidation";
 const Index = () => {
   const {
     toast
@@ -32,6 +33,8 @@ const Index = () => {
     email: "",
     message: ""
   });
+  const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
+  const [honeypot, setHoneypot] = useState("");
   const [carouselApi, setCarouselApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
@@ -45,11 +48,29 @@ const Index = () => {
   }, [carouselApi]);
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Honeypot check - if filled, silently reject (bot detected)
+    if (honeypot) {
+      toast({
+        title: "Message Received",
+        description: "We'll be in touch shortly."
+      });
+      return;
+    }
+
+    // Validate form data
+    const validation = validateForm(contactFormSchema, formData);
+    if (validation.success === false) {
+      setValidationErrors(validation.errors);
+      return;
+    }
+
+    setValidationErrors({});
     toast({
       title: "Message Received",
       description: "We'll be in touch shortly."
     });
-    console.log("Contact form:", formData);
+    setFormData({ name: "", email: "", message: "" });
   };
   return <div className="min-h-screen flex flex-col">
       <SEOHead title="CDL Network - Connecting CDL-A Drivers with Carriers" description="Connect with quality trucking jobs or find pre-screened CDL-A drivers. Free for drivers. Fast placement. U.S. nationwide coverage." canonicalUrl="https://www.cdlnetworkllc.com/" />
@@ -306,28 +327,73 @@ const Index = () => {
 
               {/* Contact Form - Mobile: Full-width modern style, Desktop: Traditional card */}
               <form onSubmit={handleSubmit} className="space-y-5 bg-card border-0 md:border md:border-border rounded-none md:rounded-lg p-6 md:p-8 shadow-none md:shadow-sm">
+                {/* Honeypot field - hidden from users, bots will fill it */}
+                <input
+                  type="text"
+                  name="website"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                  style={{ position: "absolute", left: "-9999px", opacity: 0 }}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                />
+
                 <div className="space-y-2">
                   <Label htmlFor="name">Name *</Label>
-                  <Input id="name" required value={formData.name} onChange={e => setFormData({
-                  ...formData,
-                  name: e.target.value
-                })} className="h-12" />
+                  <Input 
+                    id="name" 
+                    required 
+                    value={formData.name} 
+                    onChange={e => setFormData({
+                      ...formData,
+                      name: e.target.value
+                    })} 
+                    className={`h-12 ${validationErrors.name ? "border-red-500" : ""}`}
+                    maxLength={100}
+                  />
+                  {validationErrors.name && (
+                    <p className="text-xs text-red-500">{validationErrors.name}</p>
+                  )}
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="email">Email *</Label>
-                  <Input id="email" type="email" required value={formData.email} onChange={e => setFormData({
-                  ...formData,
-                  email: e.target.value
-                })} className="h-12" />
+                  <Input 
+                    id="email" 
+                    type="email" 
+                    required 
+                    value={formData.email} 
+                    onChange={e => setFormData({
+                      ...formData,
+                      email: e.target.value
+                    })} 
+                    className={`h-12 ${validationErrors.email ? "border-red-500" : ""}`}
+                    maxLength={254}
+                  />
+                  {validationErrors.email && (
+                    <p className="text-xs text-red-500">{validationErrors.email}</p>
+                  )}
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="message">Message *</Label>
-                  <Textarea id="message" required placeholder="Your message..." value={formData.message} onChange={e => setFormData({
-                  ...formData,
-                  message: e.target.value
-                })} rows={4} className="resize-none" />
+                  <Textarea 
+                    id="message" 
+                    required 
+                    placeholder="Your message..." 
+                    value={formData.message} 
+                    onChange={e => setFormData({
+                      ...formData,
+                      message: e.target.value
+                    })} 
+                    rows={4} 
+                    className={`resize-none ${validationErrors.message ? "border-red-500" : ""}`}
+                    maxLength={2000}
+                  />
+                  {validationErrors.message && (
+                    <p className="text-xs text-red-500">{validationErrors.message}</p>
+                  )}
                 </div>
 
                 <Button type="submit" variant="accent" className="w-full h-12 transition-all hover:scale-[1.02]">
