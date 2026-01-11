@@ -12,6 +12,7 @@ import OptimizedImage from "@/components/OptimizedImage";
 import carriersHeroImage from "@/assets/carriers-2.jpg";
 import carriersImage from "@/assets/carriers-1.jpg";
 import { HardHat, Clock, MapPin } from "lucide-react";
+import { carrierInquirySchema, validateForm } from "@/lib/formValidation";
 
 // Why Carriers Choose Us Section
 const WhyCarriersSection = () => {
@@ -288,24 +289,45 @@ const Carriers = () => {
     hiring_needs: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
+  const [honeypot, setHoneypot] = useState("");
   const [submitStatus, setSubmitStatus] = useState<{
     type: "success" | "error";
     message: string;
   } | null>(null);
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Honeypot check - if filled, silently reject (bot detected)
+    if (honeypot) {
+      setSubmitStatus({
+        type: "success",
+        message: "Thank you, we'll reach out shortly!"
+      });
+      return;
+    }
+
+    // Validate form data
+    const validation = validateForm(carrierInquirySchema, formData);
+    if (validation.success === false) {
+      setValidationErrors(validation.errors);
+      return;
+    }
+
+    setValidationErrors({});
     setIsSubmitting(true);
     setSubmitStatus(null);
+    
     try {
       const payload = {
         lead_type: "carrier",
-        contact_name: formData.contact_name,
-        company_name: formData.company_name,
-        phone: formData.phone,
-        email: formData.email,
-        fleet_size: formData.fleet_size,
-        lane_type: formData.lane_type,
-        hiring_needs: formData.hiring_needs
+        contact_name: validation.data.contact_name,
+        company_name: validation.data.company_name,
+        phone: validation.data.phone,
+        email: validation.data.email,
+        fleet_size: validation.data.fleet_size,
+        lane_type: validation.data.lane_type || "",
+        hiring_needs: validation.data.hiring_needs
       };
       const response = await fetch("https://cdlnetworkllc.vercel.app/api/lead", {
         method: "POST",
@@ -359,6 +381,18 @@ const Carriers = () => {
         <section id="carrier-form" className="py-16 px-4 pt-0">
           <div className="container mx-auto max-w-4xl">
             <form onSubmit={handleSubmit} className="space-y-6 bg-card border border-border rounded-lg p-8 shadow-sm">
+              {/* Honeypot field - hidden from users, bots will fill it */}
+              <input
+                type="text"
+                name="website"
+                value={honeypot}
+                onChange={(e) => setHoneypot(e.target.value)}
+                style={{ position: "absolute", left: "-9999px", opacity: 0 }}
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+              />
+
               {submitStatus && <div className={`p-4 rounded-md ${submitStatus.type === "success" ? "bg-green-50 text-green-800" : "bg-red-50 text-red-800"}`}>
                   {submitStatus.message}
                 </div>}
@@ -366,36 +400,84 @@ const Carriers = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <Label htmlFor="name">Contact Name *</Label>
-                  <Input id="name" name="contact_name" required value={formData.contact_name} onChange={e => setFormData({
-                  ...formData,
-                  contact_name: e.target.value
-                })} />
+                  <Input 
+                    id="name" 
+                    name="contact_name" 
+                    required 
+                    value={formData.contact_name} 
+                    onChange={e => setFormData({
+                      ...formData,
+                      contact_name: e.target.value
+                    })}
+                    maxLength={100}
+                    className={validationErrors.contact_name ? "border-red-500" : ""}
+                  />
+                  {validationErrors.contact_name && (
+                    <p className="text-xs text-red-500">{validationErrors.contact_name}</p>
+                  )}
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="company">Company Name *</Label>
-                  <Input id="company" name="company_name" required value={formData.company_name} onChange={e => setFormData({
-                  ...formData,
-                  company_name: e.target.value
-                })} />
+                  <Input 
+                    id="company" 
+                    name="company_name" 
+                    required 
+                    value={formData.company_name} 
+                    onChange={e => setFormData({
+                      ...formData,
+                      company_name: e.target.value
+                    })}
+                    maxLength={200}
+                    className={validationErrors.company_name ? "border-red-500" : ""}
+                  />
+                  {validationErrors.company_name && (
+                    <p className="text-xs text-red-500">{validationErrors.company_name}</p>
+                  )}
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <Label htmlFor="phone">Phone *</Label>
-                  <Input id="phone" name="phone" type="tel" inputMode="tel" required placeholder="+1 312 555 8899" title="Use a US-style number such as: +1 312 555 8899" value={formData.phone} onChange={e => setFormData({
-                  ...formData,
-                  phone: e.target.value
-                })} />
+                  <Input 
+                    id="phone" 
+                    name="phone" 
+                    type="tel" 
+                    inputMode="tel" 
+                    required 
+                    placeholder="+1 312 555 8899" 
+                    title="Use a US-style number such as: +1 312 555 8899" 
+                    value={formData.phone} 
+                    onChange={e => setFormData({
+                      ...formData,
+                      phone: e.target.value
+                    })}
+                    className={validationErrors.phone ? "border-red-500" : ""}
+                  />
+                  {validationErrors.phone && (
+                    <p className="text-xs text-red-500">{validationErrors.phone}</p>
+                  )}
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="email">Email *</Label>
-                  <Input id="email" name="email" type="email" required value={formData.email} onChange={e => setFormData({
-                  ...formData,
-                  email: e.target.value
-                })} />
+                  <Input 
+                    id="email" 
+                    name="email" 
+                    type="email" 
+                    required 
+                    value={formData.email} 
+                    onChange={e => setFormData({
+                      ...formData,
+                      email: e.target.value
+                    })}
+                    maxLength={254}
+                    className={validationErrors.email ? "border-red-500" : ""}
+                  />
+                  {validationErrors.email && (
+                    <p className="text-xs text-red-500">{validationErrors.email}</p>
+                  )}
                 </div>
               </div>
 
@@ -429,10 +511,23 @@ const Carriers = () => {
 
               <div className="space-y-2">
                 <Label htmlFor="hiringNeeds">Hiring Needs *</Label>
-                <Textarea id="hiringNeeds" name="hiring_needs" required placeholder="Tell us about your current hiring needs, number of drivers, experience requirements, etc." value={formData.hiring_needs} onChange={e => setFormData({
-                ...formData,
-                hiring_needs: e.target.value
-              })} rows={4} />
+                <Textarea 
+                  id="hiringNeeds" 
+                  name="hiring_needs" 
+                  required 
+                  placeholder="Tell us about your current hiring needs, number of drivers, experience requirements, etc." 
+                  value={formData.hiring_needs} 
+                  onChange={e => setFormData({
+                    ...formData,
+                    hiring_needs: e.target.value
+                  })} 
+                  rows={4}
+                  maxLength={2000}
+                  className={validationErrors.hiring_needs ? "border-red-500" : ""}
+                />
+                {validationErrors.hiring_needs && (
+                  <p className="text-xs text-red-500">{validationErrors.hiring_needs}</p>
+                )}
               </div>
 
               <Button type="submit" disabled={isSubmitting} className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">

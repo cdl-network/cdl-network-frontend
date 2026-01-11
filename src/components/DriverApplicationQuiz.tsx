@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { ChevronRight, ChevronLeft, Check } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { driverApplicationSchema, validateForm } from "@/lib/formValidation";
 
 // Declare fbq for Facebook Pixel
 declare global {
@@ -28,6 +28,8 @@ const DriverApplicationQuiz = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
+  const [honeypot, setHoneypot] = useState("");
   const [formData, setFormData] = useState<FormData>({
     full_name: "",
     phone: "",
@@ -83,21 +85,45 @@ const DriverApplicationQuiz = () => {
   };
 
   const handleSubmit = async () => {
+    // Honeypot check - if filled, silently reject (bot detected)
+    if (honeypot) {
+      setIsSubmitted(true);
+      return;
+    }
+
+    // Validate form data
+    const validationData = {
+      full_name: formData.full_name,
+      phone: formData.phone,
+      email: formData.email,
+      cdl_class: formData.cdl_class,
+      years_exp: formData.years_exp,
+      truck_types: formData.truck_types,
+      notes: formData.notes,
+    };
+
+    const validation = validateForm(driverApplicationSchema, validationData);
+    if (validation.success === false) {
+      setValidationErrors(validation.errors);
+      return;
+    }
+
+    setValidationErrors({});
     setIsSubmitting(true);
 
     try {
       const payload = {
         lead_type: "driver",
-        full_name: formData.full_name,
-        phone: formData.phone,
-        email: formData.email,
-        cdl_class: formData.cdl_class,
+        full_name: validation.data.full_name,
+        phone: validation.data.phone,
+        email: validation.data.email,
+        cdl_class: validation.data.cdl_class,
         years_exp: formData.cdl_class === "has_cdl" ? formData.years_exp : 0,
         state: "",
         availability: "",
         preferred_region: "",
         truck_type_preference: formData.cdl_class === "has_cdl" ? formData.truck_types.join(", ") : "",
-        notes: formData.notes,
+        notes: validation.data.notes || "",
       };
 
       const response = await fetch("https://cdlnetworkllc.vercel.app/api/lead", {
@@ -384,23 +410,39 @@ const DriverApplicationQuiz = () => {
             </div>
 
             <div className="space-y-3 sm:space-y-4">
+              {/* Honeypot field - hidden from users, bots will fill it */}
+              <input
+                type="text"
+                name="website"
+                value={honeypot}
+                onChange={(e) => setHoneypot(e.target.value)}
+                style={{ position: "absolute", left: "-9999px", opacity: 0 }}
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+              />
+
               <div className="space-y-1.5 sm:space-y-2">
                 <Label htmlFor="name" className="text-sm">
-                  Full Name
+                  Full Name *
                 </Label>
                 <Input
                   id="name"
                   placeholder="John Doe"
                   value={formData.full_name}
                   onChange={(e) => setFormData({ ...formData, full_name: e.target.value })}
-                  className="text-base h-12"
+                  className={`text-base h-12 ${validationErrors.full_name ? "border-red-500" : ""}`}
+                  maxLength={100}
                   autoFocus
                 />
+                {validationErrors.full_name && (
+                  <p className="text-xs text-red-500">{validationErrors.full_name}</p>
+                )}
               </div>
 
               <div className="space-y-1.5 sm:space-y-2">
                 <Label htmlFor="phone" className="text-sm">
-                  Phone
+                  Phone *
                 </Label>
                 <Input
                   id="phone"
@@ -408,13 +450,16 @@ const DriverApplicationQuiz = () => {
                   placeholder="+1 312 555 8899"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="text-base h-12"
+                  className={`text-base h-12 ${validationErrors.phone ? "border-red-500" : ""}`}
                 />
+                {validationErrors.phone && (
+                  <p className="text-xs text-red-500">{validationErrors.phone}</p>
+                )}
               </div>
 
               <div className="space-y-1.5 sm:space-y-2">
                 <Label htmlFor="email" className="text-sm">
-                  Email
+                  Email *
                 </Label>
                 <Input
                   id="email"
@@ -422,8 +467,12 @@ const DriverApplicationQuiz = () => {
                   placeholder="john@example.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="text-base h-12"
+                  className={`text-base h-12 ${validationErrors.email ? "border-red-500" : ""}`}
+                  maxLength={254}
                 />
+                {validationErrors.email && (
+                  <p className="text-xs text-red-500">{validationErrors.email}</p>
+                )}
               </div>
             </div>
           </div>

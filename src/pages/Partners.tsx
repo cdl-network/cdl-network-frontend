@@ -20,6 +20,7 @@ import {
   DollarSign,
 } from "lucide-react";
 import heroImage from "@/assets/partners-hero.webp";
+import { contactFormSchema, validateForm } from "@/lib/formValidation";
 
 const Partners = () => {
   const { toast } = useToast();
@@ -28,14 +29,33 @@ const Partners = () => {
     email: "",
     message: "",
   });
+  const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
+  const [honeypot, setHoneypot] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Honeypot check - if filled, silently reject (bot detected)
+    if (honeypot) {
+      toast({
+        title: "Message Sent",
+        description: "We'll get back to you as soon as possible.",
+      });
+      return;
+    }
+
+    const validation = validateForm(contactFormSchema, formData);
+    if (validation.success === false) {
+      setValidationErrors(validation.errors);
+      return;
+    }
+
+    setValidationErrors({});
     toast({
       title: "Message Sent",
       description: "We'll get back to you as soon as possible.",
     });
-    console.log("Partner form:", formData);
+    setFormData({ name: "", email: "", message: "" });
   };
 
   const scrollToForm = () => {
