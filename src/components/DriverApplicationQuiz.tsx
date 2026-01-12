@@ -359,7 +359,10 @@ const DriverApplicationQuiz = () => {
                 <button
                   key={opt.value}
                   type="button"
-                  onClick={() => setFormData({ ...formData, years_exp: opt.value })}
+                  onClick={() => {
+                    setFormData({ ...formData, years_exp: opt.value });
+                    setTimeout(handleNext, 250);
+                  }}
                   className={`w-full p-3 sm:p-5 rounded-lg sm:rounded-xl border transition-all text-left ${
                     formData.years_exp === opt.value
                       ? "border-accent bg-accent/10 text-foreground"
