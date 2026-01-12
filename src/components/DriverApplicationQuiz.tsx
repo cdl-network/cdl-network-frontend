@@ -63,13 +63,13 @@ const DriverApplicationQuiz = () => {
     return 1; // Just CDL question
   };
 
-  const handleTruckTypeToggle = (type: string) => {
+  const handleTruckTypePick = (type: string) => {
     setFormData((prev) => ({
       ...prev,
-      truck_types: prev.truck_types.includes(type)
-        ? prev.truck_types.filter((t) => t !== type)
-        : [...prev.truck_types, type],
+      truck_types: [type], // ✅ correct key name
     }));
+
+    setTimeout(handleNext, 250);
   };
 
   const handleNext = () => {
@@ -159,6 +159,10 @@ const DriverApplicationQuiz = () => {
   const totalSteps = getTotalSteps();
   const isLastStep = currentStep === totalSteps;
 
+  const shouldHideNext =
+    (currentStep === 2 && formData.cdl_class === "has_cdl") || // Truck type auto-advance
+    (currentStep === 3 && formData.cdl_class === "has_cdl"); // Years auto-advance
+
   return (
     <div className="w-full max-w-2xl mx-auto px-0 sm:px-4 py-4 sm:py-8">
       {/* Heading - only show when not submitted */}
@@ -247,7 +251,7 @@ const DriverApplicationQuiz = () => {
               <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-1 sm:mb-2 text-left">
                 Truck type preference?
               </h2>
-              <p className="text-xs sm:text-sm text-muted-foreground text-left">Select all that apply</p>
+              <p className="text-xs sm:text-sm text-muted-foreground text-left">Select one option</p>
             </div>
 
             {/* Mobile: stacked list, Desktop: grid */}
@@ -262,7 +266,7 @@ const DriverApplicationQuiz = () => {
                 <button
                   key={type.value}
                   type="button"
-                  onClick={() => handleTruckTypeToggle(type.value)}
+                  onClick={() => handleTruckTypePick(type.value)}
                   className={`w-full p-3 sm:p-4 rounded-lg sm:rounded-xl border transition-all text-left sm:text-center ${
                     formData.truck_types.includes(type.value)
                       ? "border-accent bg-accent/10 text-foreground"
@@ -350,7 +354,10 @@ const DriverApplicationQuiz = () => {
                 <button
                   key={opt.value}
                   type="button"
-                  onClick={() => setFormData({ ...formData, years_exp: opt.value })}
+                  onClick={() => {
+                    setFormData({ ...formData, years_exp: opt.value });
+                    setTimeout(handleNext, 250);
+                  }}
                   className={`w-full p-3 sm:p-5 rounded-lg sm:rounded-xl border transition-all text-left ${
                     formData.years_exp === opt.value
                       ? "border-accent bg-accent/10 text-foreground"
@@ -447,7 +454,7 @@ const DriverApplicationQuiz = () => {
 
           {currentStep > 1 && (
             <>
-              {!isLastStep ? (
+              {!isLastStep && !shouldHideNext && (
                 <Button
                   type="button"
                   onClick={handleNext}
@@ -456,7 +463,9 @@ const DriverApplicationQuiz = () => {
                   Next
                   <ChevronRight className="w-4 h-4 ml-1" />
                 </Button>
-              ) : (
+              )}
+
+              {isLastStep && (
                 <Button
                   type="button"
                   onClick={handleSubmit}
