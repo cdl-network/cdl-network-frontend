@@ -247,7 +247,7 @@ const DriverApplicationQuiz = () => {
               <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-1 sm:mb-2 text-left">
                 Truck type preference?
               </h2>
-              <p className="text-xs sm:text-sm text-muted-foreground text-left">Select one option</p>
+              <p className="text-xs sm:text-sm text-muted-foreground text-left">Select all that apply</p>
             </div>
 
             {/* Mobile: stacked list, Desktop: grid */}
@@ -350,7 +350,10 @@ const DriverApplicationQuiz = () => {
                 <button
                   key={opt.value}
                   type="button"
-                  onClick={() => setFormData({ ...formData, years_exp: opt.value })}
+                  onClick={() => {
+                    setFormData({ ...formData, years_exp: opt.value });
+                    setTimeout(handleNext, 250);
+                  }}
                   className={`w-full p-3 sm:p-5 rounded-lg sm:rounded-xl border transition-all text-left ${
                     formData.years_exp === opt.value
                       ? "border-accent bg-accent/10 text-foreground"
