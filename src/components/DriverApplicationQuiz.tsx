@@ -63,15 +63,6 @@ const DriverApplicationQuiz = () => {
     return 1; // Just CDL question
   };
 
-  const handleTruckTypeToggle = (type: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      truck_types: prev.truck_types.includes(type)
-        ? prev.truck_types.filter((t) => t !== type)
-        : [...prev.truck_types, type],
-    }));
-  };
-
   const handleTruckTypePick = (type: string) => {
     setFormData((prev) => ({
       ...prev,
