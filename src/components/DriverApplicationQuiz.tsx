@@ -63,9 +63,13 @@ const DriverApplicationQuiz = () => {
     return 1; // Just CDL question
   };
 
-  const handleTruckTypePick = (type: string) => {
-    setFormData((prev) => ({ ...prev, truck_types: [type] }));
-    setTimeout(handleNext, 250);
+  const handleTruckTypeToggle = (type: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      truck_types: prev.truck_types.includes(type)
+        ? prev.truck_types.filter((t) => t !== type)
+        : [...prev.truck_types, type],
+    }));
   };
 
   const handleNext = () => {
@@ -258,7 +262,7 @@ const DriverApplicationQuiz = () => {
                 <button
                   key={type.value}
                   type="button"
-                  onClick={() => handleTruckTypeToggle(type.value)}
+                  onClick={() => handleTruckTypePick(type.value)}
                   className={`w-full p-3 sm:p-4 rounded-lg sm:rounded-xl border transition-all text-left sm:text-center ${
                     formData.truck_types.includes(type.value)
                       ? "border-accent bg-accent/10 text-foreground"
