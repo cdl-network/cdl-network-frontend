@@ -72,15 +72,6 @@ const DriverApplicationQuiz = () => {
     }));
   };
 
-  const handleTruckTypePick = (type: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      truck_types: [type], // single select
-    }));
-
-    setTimeout(handleNext, 250); // auto-advance
-  };
-
   const handleNext = () => {
     setCurrentStep((prev) => prev + 1);
   };
@@ -271,7 +262,7 @@ const DriverApplicationQuiz = () => {
                 <button
                   key={type.value}
                   type="button"
-                  onClick={() => handleTruckTypeToggle(type.value)}
+                  onClick={() => handleTruckTypePick(type.value)}
                   className={`w-full p-3 sm:p-4 rounded-lg sm:rounded-xl border transition-all text-left sm:text-center ${
                     formData.truck_types.includes(type.value)
                       ? "border-accent bg-accent/10 text-foreground"
