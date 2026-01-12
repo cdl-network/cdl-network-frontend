@@ -94,7 +94,7 @@ const DriverApplicationQuiz = () => {
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
-    const scid = typeof window !== "undefined" ? localStorage.getItem("employers_scid") : "";
+    const scid = typeof window !== "undefined" ? localStorage.getItem("scid") : "";
     try {
       const payload = {
         lead_type: "driver",
