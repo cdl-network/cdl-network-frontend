@@ -108,6 +108,7 @@ const DriverApplicationQuiz = () => {
         preferred_region: "",
         truck_type_preference: formData.cdl_class === "has_cdl" ? formData.truck_types.join(", ") : "",
         notes: formData.notes,
+        scid: scid || "",
       };
 
       const response = await fetch("https://cdlnetworkllc.vercel.app/api/lead", {
