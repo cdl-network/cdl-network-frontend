@@ -72,6 +72,15 @@ const DriverApplicationQuiz = () => {
     }));
   };
 
+  const handleTruckTypePick = (type: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      truck_types: [type], // ✅ correct key name
+    }));
+
+    setTimeout(handleNext, 250);
+  };
+
   const handleNext = () => {
     setCurrentStep((prev) => prev + 1);
   };
@@ -247,7 +256,7 @@ const DriverApplicationQuiz = () => {
               <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-1 sm:mb-2 text-left">
                 Truck type preference?
               </h2>
-              <p className="text-xs sm:text-sm text-muted-foreground text-left">Select all that apply</p>
+              <p className="text-xs sm:text-sm text-muted-foreground text-left">Select one option</p>
             </div>
 
             {/* Mobile: stacked list, Desktop: grid */}
