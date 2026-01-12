@@ -119,7 +119,7 @@ const DriverApplicationQuiz = () => {
       });
 
       if (response.ok) {
-        // --- META LEAD EVENT ---
+        // Meta Lead
         if (typeof fbq === "function") {
           fbq("track", "Lead", {
             cdl_class: formData.cdl_class,
@@ -127,10 +127,8 @@ const DriverApplicationQuiz = () => {
             truck_types: formData.truck_types.join(", "),
           });
         }
-        // -------------------------
 
-        setIsSubmitted(true);
-        // ---- EMPLOYERS.IO POSTBACK (fire only on REAL lead success) ----
+        // Employers postback (BEFORE setIsSubmitted)
         try {
           const scid = localStorage.getItem("employers_scid");
           if (scid) {
@@ -141,7 +139,8 @@ const DriverApplicationQuiz = () => {
             }).catch(() => {});
           }
         } catch {}
-        // ---- END POSTBACK ----
+
+        setIsSubmitted(true);
       } else {
         throw new Error("Server returned non-200 response");
       }
