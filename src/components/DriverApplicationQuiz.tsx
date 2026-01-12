@@ -346,11 +346,13 @@ const DriverApplicationQuiz = () => {
             </div>
 
             <div className="flex flex-col gap-2 sm:gap-3">
-              {[
-                { value: "0_1", label: "Less than 1 year" },
-                { value: "1_3", label: "1–3 years" },
-                { value: "3_plus", label: "More than 3 years" },
-              ].map((opt) => (
+              {(
+                [
+                  { value: "0_1", label: "Less than 1 year" },
+                  { value: "1_3", label: "1–3 years" },
+                  { value: "3_plus", label: "More than 3 years" },
+                ] as const
+              ).map((opt) => (
                 <button
                   key={opt.value}
                   type="button"
