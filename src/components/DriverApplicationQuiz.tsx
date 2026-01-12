@@ -38,6 +38,16 @@ const DriverApplicationQuiz = () => {
     notes: "",
   });
 
+  // ---- EMPLOYERS.IO SCID CAPTURE ----
+  useEffect(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const scid = params.get("scid");
+      if (scid) localStorage.setItem("employers_scid", scid);
+    } catch {}
+  }, []);
+  // ---- END SCID CAPTURE ----
+
   // ---- META PIXEL QUIZ START TRACKING ----
   const quizStartedRef = useRef(false);
 
