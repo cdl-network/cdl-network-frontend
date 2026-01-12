@@ -43,7 +43,7 @@ const DriverApplicationQuiz = () => {
     try {
       const params = new URLSearchParams(window.location.search);
       const scid = params.get("scid");
-      if (scid) localStorage.setItem("employers_scid", scid);
+      if (scid) localStorage.setItem("scid", scid);
     } catch {}
   }, []);
   // ---- END SCID CAPTURE ----
@@ -94,7 +94,7 @@ const DriverApplicationQuiz = () => {
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
-    const scid = typeof window !== "undefined" ? localStorage.getItem("employers_scid") : "";
+    const scid = typeof window !== "undefined" ? localStorage.getItem("scid") : "";
     try {
       const payload = {
         lead_type: "driver",
