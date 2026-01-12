@@ -33,7 +33,7 @@ const DriverApplicationQuiz = () => {
     phone: "",
     email: "",
     cdl_class: "",
-    years_exp: 0,
+    years_exp: "",
     truck_types: [],
     notes: "",
   });
