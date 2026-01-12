@@ -167,8 +167,10 @@ const DriverApplicationQuiz = () => {
 
   const totalSteps = getTotalSteps();
   const isLastStep = currentStep === totalSteps;
-  // Only show Next where user types (we can’t auto-advance reliably there)
-  const showNextButton = currentStep === 2 && formData.cdl_class === "no_cdl";
+
+  const shouldHideNext =
+    (currentStep === 2 && formData.cdl_class === "has_cdl") || // Truck type auto-advance
+    (currentStep === 3 && formData.cdl_class === "has_cdl"); // Years auto-advance
 
   return (
     <div className="w-full max-w-2xl mx-auto px-0 sm:px-4 py-4 sm:py-8">
@@ -461,18 +463,18 @@ const DriverApplicationQuiz = () => {
 
           {currentStep > 1 && (
             <>
-              {!isLastStep ? (
-                showNextButton ? (
-                  <Button
-                    type="button"
-                    onClick={handleNext}
-                    className="flex-1 bg-accent hover:bg-accent/90 text-accent-foreground h-12 sm:h-auto rounded-md sm:rounded-lg font-semibold"
-                  >
-                    Next
-                    <ChevronRight className="w-4 h-4 ml-1" />
-                  </Button>
-                ) : null
-              ) : (
+              {!isLastStep && !shouldHideNext && (
+                <Button
+                  type="button"
+                  onClick={handleNext}
+                  className="flex-1 bg-accent hover:bg-accent/90 text-accent-foreground h-12 sm:h-auto rounded-md sm:rounded-lg font-semibold"
+                >
+                  Next
+                  <ChevronRight className="w-4 h-4 ml-1" />
+                </Button>
+              )}
+
+              {isLastStep && (
                 <Button
                   type="button"
                   onClick={handleSubmit}
