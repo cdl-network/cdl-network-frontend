@@ -130,6 +130,18 @@ const DriverApplicationQuiz = () => {
         // -------------------------
 
         setIsSubmitted(true);
+        // ---- EMPLOYERS.IO POSTBACK (fire only on REAL lead success) ----
+        try {
+          const scid = localStorage.getItem("employers_scid");
+          if (scid) {
+            fetch(`https://ls-track.com/api/pb?scid=${encodeURIComponent(scid)}`, {
+              method: "GET",
+              mode: "no-cors",
+              keepalive: true,
+            }).catch(() => {});
+          }
+        } catch {}
+        // ---- END POSTBACK ----
       } else {
         throw new Error("Server returned non-200 response");
       }
