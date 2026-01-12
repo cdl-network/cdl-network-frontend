@@ -64,13 +64,8 @@ const DriverApplicationQuiz = () => {
   };
 
   const handleTruckTypePick = (type: string) => {
-    // single option only
     setFormData((prev) => ({ ...prev, truck_types: [type] }));
-
-    // auto-advance
-    setTimeout(() => {
-      handleNext();
-    }, 250);
+    setTimeout(handleNext, 250);
   };
 
   const handleNext = () => {
@@ -248,7 +243,7 @@ const DriverApplicationQuiz = () => {
               <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-1 sm:mb-2 text-left">
                 Truck type preference?
               </h2>
-              <p className="text-xs sm:text-sm text-muted-foreground text-left">Select one option</p>
+              <p className="text-xs sm:text-sm text-muted-foreground text-left">Select all that apply</p>
             </div>
 
             {/* Mobile: stacked list, Desktop: grid */}
@@ -263,7 +258,7 @@ const DriverApplicationQuiz = () => {
                 <button
                   key={type.value}
                   type="button"
-                  onClick={() => handleTruckTypePick(type.value)}
+                  onClick={() => handleTruckTypeToggle(type.value)}
                   className={`w-full p-3 sm:p-4 rounded-lg sm:rounded-xl border transition-all text-left sm:text-center ${
                     formData.truck_types.includes(type.value)
                       ? "border-accent bg-accent/10 text-foreground"
@@ -351,10 +346,7 @@ const DriverApplicationQuiz = () => {
                 <button
                   key={opt.value}
                   type="button"
-                  onClick={() => {
-                    setFormData({ ...formData, years_exp: opt.value });
-                    setTimeout(handleNext, 250);
-                  }}
+                  onClick={() => setFormData({ ...formData, years_exp: opt.value })}
                   className={`w-full p-3 sm:p-5 rounded-lg sm:rounded-xl border transition-all text-left ${
                     formData.years_exp === opt.value
                       ? "border-accent bg-accent/10 text-foreground"
