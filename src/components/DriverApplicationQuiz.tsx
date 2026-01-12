@@ -19,7 +19,7 @@ interface FormData {
   phone: string;
   email: string;
   cdl_class: string;
-  years_exp: number;
+  years_exp: "0_1" | "1_3" | "3_plus" | "";
   truck_types: string[];
   notes: string;
 }
