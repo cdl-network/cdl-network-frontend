@@ -92,7 +92,7 @@ const DriverApplicationQuiz = () => {
         phone: formData.phone,
         email: formData.email,
         cdl_class: formData.cdl_class,
-        years_exp: formData.cdl_class === "has_cdl" ? formData.years_exp : 0,
+        years_exp: formData.cdl_class === "has_cdl" ? formData.years_exp : "",
         state: "",
         availability: "",
         preferred_region: "",
