@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import SEOHead from "@/components/SEOHead";
+import PartnerLogos from "@/components/PartnerLogos";
 import {
   Truck,
   Users,
@@ -244,32 +245,7 @@ const Partners = () => {
         </section>
 
         {/* Partner Representation */}
-        <section className="py-10 md:py-14 bg-[#0B1F3B]">
-          <div className="container mx-auto px-4">
-            <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-8">
-              Partners
-            </h2>
-
-            {/* Logo Strip */}
-            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 lg:gap-16 max-w-5xl mx-auto">
-              {partners.map((partner, index) => (
-                <a
-                  key={index}
-                  href={partner.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block opacity-90 hover:opacity-100 transition-opacity duration-300"
-                >
-                  <img
-                    src={partner.logo}
-                    alt={`${partner.name} logo`}
-                    className="h-16 md:h-20 w-auto object-contain"
-                  />
-                </a>
-              ))}
-            </div>
-          </div>
-        </section>
+        <PartnerLogos partners={partners} />
 
         {/* Form Section */}
         <section id="partner-form" className="py-16 md:py-24 bg-muted/30">
