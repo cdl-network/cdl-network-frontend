@@ -254,19 +254,19 @@ const Partners = () => {
             </p>
 
             {/* Logo Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-5xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6 max-w-6xl mx-auto">
               {partners.map((partner, index) => (
                 <a
                   key={index}
                   href={partner.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center justify-center p-6 bg-card border border-border rounded-xl hover:shadow-lg hover:border-[hsl(var(--brand-orange))/0.3] transition-all duration-300"
+                  className="group block overflow-hidden rounded-xl hover:shadow-lg transition-all duration-300"
                 >
                   <img
                     src={partner.logo}
                     alt={`${partner.name} logo`}
-                    className="max-h-16 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-32 md:h-40 object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </a>
               ))}
