@@ -258,12 +258,12 @@ const Partners = () => {
                   href={partner.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group block overflow-hidden rounded-xl bg-white p-4 hover:shadow-lg transition-all duration-300"
+                  className="group block overflow-hidden rounded-xl bg-white hover:shadow-lg transition-all duration-300"
                 >
                   <img
                     src={partner.logo}
                     alt={`${partner.name} logo`}
-                    className="w-full h-24 md:h-32 object-contain group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-40 md:h-48 object-contain group-hover:scale-105 transition-transform duration-300"
                   />
                 </a>
               ))}
