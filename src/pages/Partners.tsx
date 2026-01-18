@@ -176,18 +176,6 @@ const Partners = () => {
           </div>
         </section>
 
-        {/* What You Get */}
-        <section className="py-16 md:py-20" style={{ backgroundColor: "hsl(var(--brand-navy))" }}>
-          <div className="container mx-auto px-4 text-center">
-            <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3">
-              <Check className="w-6 h-6 text-green-400" />
-              <span className="text-xl md:text-2xl font-semibold text-white">
-                $100 for every driver who completes 3 months
-              </span>
-            </div>
-          </div>
-        </section>
-
         {/* How It Works */}
         <section className="py-16 md:py-24 bg-background">
           <div className="container mx-auto px-4">
