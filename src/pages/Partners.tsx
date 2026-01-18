@@ -21,6 +21,13 @@ import {
 } from "lucide-react";
 import heroImage from "@/assets/partners-hero.webp";
 
+// Partner logos
+import pixelfreightLogo from "@/assets/partners/pixelfreight.png";
+import proDriverSchoolLogo from "@/assets/partners/pro-driver-school.jpg";
+import commercialRigsLogo from "@/assets/partners/commercial-rigs.jpg";
+import eagleLineHaulLogo from "@/assets/partners/eagle-line-haul.jpg";
+import redMechanicLogo from "@/assets/partners/red-mechanic.jpg";
+
 const Partners = () => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
@@ -93,6 +100,34 @@ const Partners = () => {
       icon: DollarSign,
       title: "You get paid after 3 months",
       description: "If the driver stays for 90 days, you receive your $100 bonus.",
+    },
+  ];
+
+  const partners = [
+    {
+      name: "Pixelfreight",
+      logo: pixelfreightLogo,
+      url: "https://pixelfreight.com",
+    },
+    {
+      name: "Pro Driver School",
+      logo: proDriverSchoolLogo,
+      url: "https://prodriverschool.com",
+    },
+    {
+      name: "Commercial Rigs",
+      logo: commercialRigsLogo,
+      url: "https://commercialrigs.com",
+    },
+    {
+      name: "Eagle Line Haul",
+      logo: eagleLineHaulLogo,
+      url: "https://eaglelinehaul.com",
+    },
+    {
+      name: "Red Mechanic",
+      logo: redMechanicLogo,
+      url: "https://redmechanic.com",
     },
   ];
 
@@ -203,6 +238,37 @@ const Partners = () => {
                   <h3 className="text-xl font-semibold text-foreground mb-3">{step.title}</h3>
                   <p className="text-muted-foreground">{step.description}</p>
                 </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Partner Representation */}
+        <section className="py-16 md:py-24 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-4">
+              Partners
+            </h2>
+            <p className="text-lg text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
+              Teams and platforms we work with to help carriers hire and keep trucks moving.
+            </p>
+
+            {/* Logo Grid */}
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-5xl mx-auto">
+              {partners.map((partner, index) => (
+                <a
+                  key={index}
+                  href={partner.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center justify-center p-6 bg-card border border-border rounded-xl hover:shadow-lg hover:border-[hsl(var(--brand-orange))/0.3] transition-all duration-300"
+                >
+                  <img
+                    src={partner.logo}
+                    alt={`${partner.name} logo`}
+                    className="max-h-16 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+                  />
+                </a>
               ))}
             </div>
           </div>
