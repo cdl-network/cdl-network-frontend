@@ -6,7 +6,6 @@ interface Partner {
   logo: string;
   url: string;
   isIconWithText?: boolean;
-  isCompact?: boolean;
 }
 
 interface PartnersLogoSectionProps {
@@ -22,37 +21,33 @@ const PartnersLogoSection = ({ partners, onPartnerClick }: PartnersLogoSectionPr
   });
 
   return (
-    <section className="py-16 md:py-20 bg-white">
+    <section className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4">
-        <h2 className="text-2xl md:text-3xl font-semibold text-foreground text-center mb-3">
-          Partners
+        <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-4">
+          Partnerships
         </h2>
-        <p className="text-base text-muted-foreground text-center mb-10 max-w-xl mx-auto">
-          Teams and platforms we work with to help carriers hire and keep trucks moving.
+        <p className="text-base md:text-lg text-muted-foreground text-center mb-12 max-w-3xl mx-auto leading-relaxed">
+          We partner with selected companies across driver services, CDL schools, digital platforms, and carriers to create added value for drivers and fleets.
         </p>
 
-        {/* Desktop: Horizontal logo strip with larger cards */}
-        <div className="hidden md:flex items-center justify-center gap-6 lg:gap-8 mb-10">
+        {/* Desktop: Equal-sized cards in a grid */}
+        <div className="hidden md:grid md:grid-cols-5 gap-5 lg:gap-6 max-w-6xl mx-auto mb-12">
           {partners.map((partner, index) => (
             <a
               key={index}
               href={partner.url}
               target="_blank"
               rel="noopener noreferrer"
-              className={`flex items-center justify-center bg-white border border-border/50 rounded-xl shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 ${
-                partner.isCompact 
-                  ? "p-5 lg:p-6 w-40 lg:w-44 h-28 lg:h-32" 
-                  : "p-6 lg:p-8 w-48 lg:w-56 h-32 lg:h-40"
-              }`}
+              className="flex items-center justify-center bg-white border border-border/60 rounded-2xl p-6 aspect-[4/3] shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-border transition-all duration-300"
             >
               {partner.isIconWithText ? (
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2.5">
                   <img
                     src={partner.logo}
                     alt={`${partner.name} logo`}
-                    className="h-8 lg:h-10 w-auto object-contain"
+                    className="h-9 lg:h-11 w-auto object-contain"
                   />
-                  <span className="text-[#172B4D] font-semibold text-base lg:text-lg tracking-tight">
+                  <span className="text-[#172B4D] font-semibold text-lg lg:text-xl tracking-tight">
                     {partner.name}
                   </span>
                 </div>
@@ -60,37 +55,30 @@ const PartnersLogoSection = ({ partners, onPartnerClick }: PartnersLogoSectionPr
                 <img
                   src={partner.logo}
                   alt={`${partner.name} logo`}
-                  className={partner.isCompact 
-                    ? "max-h-18 lg:max-h-20 max-w-full object-contain" 
-                    : "max-h-24 lg:max-h-28 max-w-full object-contain"
-                  }
+                  className="max-h-[70%] max-w-[85%] object-contain"
                 />
               )}
             </a>
           ))}
         </div>
 
-        {/* Mobile: Swipeable carousel with larger cards */}
-        <div className="md:hidden overflow-hidden mb-8" ref={emblaRef}>
-          <div className="flex items-center gap-4 px-1">
+        {/* Mobile: Swipeable carousel with equal cards */}
+        <div className="md:hidden overflow-hidden mb-10" ref={emblaRef}>
+          <div className="flex items-stretch gap-4 px-1">
             {partners.map((partner, index) => (
               <a
                 key={index}
                 href={partner.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`flex-shrink-0 flex items-center justify-center bg-white border border-border/50 rounded-xl shadow-sm ${
-                  partner.isCompact 
-                    ? "p-4 w-36 h-24" 
-                    : "p-5 w-44 h-32"
-                }`}
+                className="flex-shrink-0 flex items-center justify-center bg-white border border-border/60 rounded-2xl p-5 w-40 h-32 shadow-sm"
               >
                 {partner.isIconWithText ? (
                   <div className="flex items-center gap-2">
                     <img
                       src={partner.logo}
                       alt={`${partner.name} logo`}
-                      className="h-6 w-auto object-contain"
+                      className="h-7 w-auto object-contain"
                     />
                     <span className="text-[#172B4D] font-semibold text-sm tracking-tight">
                       {partner.name}
@@ -100,10 +88,7 @@ const PartnersLogoSection = ({ partners, onPartnerClick }: PartnersLogoSectionPr
                   <img
                     src={partner.logo}
                     alt={`${partner.name} logo`}
-                    className={partner.isCompact 
-                      ? "max-h-14 max-w-full object-contain" 
-                      : "max-h-20 max-w-full object-contain"
-                    }
+                    className="max-h-[65%] max-w-[80%] object-contain"
                   />
                 )}
               </a>
@@ -116,7 +101,7 @@ const PartnersLogoSection = ({ partners, onPartnerClick }: PartnersLogoSectionPr
           <Button
             onClick={onPartnerClick}
             size="lg"
-            className="bg-[hsl(var(--brand-orange))] hover:bg-[hsl(var(--brand-orange))]/90 text-white font-semibold px-8 py-6 text-lg transition-all hover:-translate-y-0.5 hover:shadow-lg"
+            className="bg-[hsl(var(--brand-orange))] hover:bg-[hsl(var(--brand-orange))]/90 text-white font-semibold px-10 py-6 text-lg rounded-full transition-all hover:-translate-y-0.5 hover:shadow-lg"
           >
             Partner With Us
           </Button>
