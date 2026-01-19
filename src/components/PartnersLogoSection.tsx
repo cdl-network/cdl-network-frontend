@@ -38,14 +38,14 @@ const PartnersLogoSection = ({ partners, onPartnerClick }: PartnersLogoSectionPr
               href={partner.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center bg-white border border-border/60 rounded-2xl p-6 aspect-[4/3] shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-border transition-all duration-300"
+              className="flex items-center justify-center bg-white border border-border/60 rounded-2xl p-4 aspect-[4/3] shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-border transition-all duration-300"
             >
               {partner.isIconWithText ? (
                 <div className="flex items-center gap-2.5">
                   <img
                     src={partner.logo}
                     alt={`${partner.name} logo`}
-                    className="h-9 lg:h-11 w-auto object-contain"
+                    className="h-10 lg:h-12 w-auto object-contain"
                   />
                   <span className="text-[#172B4D] font-semibold text-lg lg:text-xl tracking-tight">
                     {partner.name}
@@ -55,7 +55,7 @@ const PartnersLogoSection = ({ partners, onPartnerClick }: PartnersLogoSectionPr
                 <img
                   src={partner.logo}
                   alt={`${partner.name} logo`}
-                  className="max-h-[70%] max-w-[85%] object-contain"
+                  className="max-h-[85%] max-w-[90%] object-contain"
                 />
               )}
             </a>
@@ -71,14 +71,14 @@ const PartnersLogoSection = ({ partners, onPartnerClick }: PartnersLogoSectionPr
                 href={partner.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-shrink-0 flex items-center justify-center bg-white border border-border/60 rounded-2xl p-5 w-40 h-32 shadow-sm"
+                className="flex-shrink-0 flex items-center justify-center bg-white border border-border/60 rounded-2xl p-3 w-44 h-36 shadow-sm"
               >
                 {partner.isIconWithText ? (
                   <div className="flex items-center gap-2">
                     <img
                       src={partner.logo}
                       alt={`${partner.name} logo`}
-                      className="h-7 w-auto object-contain"
+                      className="h-8 w-auto object-contain"
                     />
                     <span className="text-[#172B4D] font-semibold text-sm tracking-tight">
                       {partner.name}
@@ -88,7 +88,7 @@ const PartnersLogoSection = ({ partners, onPartnerClick }: PartnersLogoSectionPr
                   <img
                     src={partner.logo}
                     alt={`${partner.name} logo`}
-                    className="max-h-[65%] max-w-[80%] object-contain"
+                    className="max-h-[80%] max-w-[85%] object-contain"
                   />
                 )}
               </a>
