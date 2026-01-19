@@ -39,7 +39,7 @@ const PartnersLogoSection = ({ partners, onPartnerClick }: PartnersLogoSectionPr
               href={partner.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center bg-white border border-border/60 rounded-2xl p-4 aspect-[4/3] shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-border transition-all duration-300"
+              className="flex items-center justify-center bg-white rounded-2xl p-4 aspect-[4/3] transition-all duration-300"
             >
               {partner.isIconWithText ? (
                 <div className="flex items-center gap-2.5">
@@ -75,7 +75,7 @@ const PartnersLogoSection = ({ partners, onPartnerClick }: PartnersLogoSectionPr
                 href={partner.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-shrink-0 flex items-center justify-center bg-white border border-border/60 rounded-2xl p-3 w-44 h-36 shadow-sm"
+                className="flex-shrink-0 flex items-center justify-center bg-white rounded-2xl p-3 w-44 h-36"
               >
                 {partner.isIconWithText ? (
                   <div className="flex items-center gap-2">
