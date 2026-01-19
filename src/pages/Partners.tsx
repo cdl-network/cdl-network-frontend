@@ -22,7 +22,7 @@ import {
 import heroImage from "@/assets/partners-hero.webp";
 
 // Partner logos
-import pixelfreightLogo from "@/assets/partners/pixelfreight.png";
+import pixelfreightIcon from "@/assets/partners/pixelfreight-icon.png";
 import proDriverSchoolLogo from "@/assets/partners/pro-driver-school.jpg";
 import commercialRigsLogo from "@/assets/partners/commercial-rigs.jpg";
 import eagleLineHaulLogo from "@/assets/partners/eagle-line-haul.jpg";
@@ -106,28 +106,33 @@ const Partners = () => {
   const partners = [
     {
       name: "Pixelfreight",
-      logo: pixelfreightLogo,
+      logo: pixelfreightIcon,
       url: "https://pixelfreight.com",
+      isIconWithText: true,
     },
     {
       name: "Pro Driver School",
       logo: proDriverSchoolLogo,
       url: "https://prodriverschool.com",
+      isCompact: false,
     },
     {
       name: "Commercial Rigs",
       logo: commercialRigsLogo,
       url: "https://commercialrigs.com",
+      isCompact: false,
     },
     {
       name: "Eagle Line Haul",
       logo: eagleLineHaulLogo,
       url: "https://eaglelinehaul.com",
+      isCompact: false,
     },
     {
       name: "Red Mechanic",
       logo: redMechanicLogo,
       url: "https://redmechanic.app/",
+      isCompact: true,
     },
   ];
 

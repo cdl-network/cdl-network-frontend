@@ -5,6 +5,8 @@ interface Partner {
   name: string;
   logo: string;
   url: string;
+  isIconWithText?: boolean;
+  isCompact?: boolean;
 }
 
 interface PartnersLogoSectionProps {
@@ -30,20 +32,40 @@ const PartnersLogoSection = ({ partners, onPartnerClick }: PartnersLogoSectionPr
         </p>
 
         {/* Desktop: Horizontal logo strip with larger cards */}
-        <div className="hidden md:flex items-center justify-center gap-8 lg:gap-10 mb-10">
+        <div className="hidden md:flex items-center justify-center gap-6 lg:gap-8 mb-10">
           {partners.map((partner, index) => (
             <a
               key={index}
               href={partner.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center bg-white border border-border/50 rounded-xl p-6 lg:p-8 w-44 lg:w-52 h-32 lg:h-36 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
+              className={`flex items-center justify-center bg-white border border-border/50 rounded-xl shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 ${
+                partner.isCompact 
+                  ? "p-5 lg:p-6 w-40 lg:w-44 h-28 lg:h-32" 
+                  : "p-6 lg:p-8 w-48 lg:w-56 h-32 lg:h-40"
+              }`}
             >
-              <img
-                src={partner.logo}
-                alt={`${partner.name} logo`}
-                className="max-h-20 lg:max-h-24 max-w-full object-contain"
-              />
+              {partner.isIconWithText ? (
+                <div className="flex flex-col items-center gap-2">
+                  <img
+                    src={partner.logo}
+                    alt={`${partner.name} logo`}
+                    className="h-12 lg:h-16 w-auto object-contain"
+                  />
+                  <span className="text-[#172B4D] font-semibold text-sm lg:text-base tracking-tight">
+                    {partner.name}
+                  </span>
+                </div>
+              ) : (
+                <img
+                  src={partner.logo}
+                  alt={`${partner.name} logo`}
+                  className={partner.isCompact 
+                    ? "max-h-18 lg:max-h-20 max-w-full object-contain" 
+                    : "max-h-24 lg:max-h-28 max-w-full object-contain"
+                  }
+                />
+              )}
             </a>
           ))}
         </div>
@@ -57,13 +79,33 @@ const PartnersLogoSection = ({ partners, onPartnerClick }: PartnersLogoSectionPr
                 href={partner.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-shrink-0 flex items-center justify-center bg-white border border-border/50 rounded-xl p-5 w-40 h-28 shadow-sm"
+                className={`flex-shrink-0 flex items-center justify-center bg-white border border-border/50 rounded-xl shadow-sm ${
+                  partner.isCompact 
+                    ? "p-4 w-36 h-24" 
+                    : "p-5 w-44 h-32"
+                }`}
               >
-                <img
-                  src={partner.logo}
-                  alt={`${partner.name} logo`}
-                  className="max-h-16 max-w-full object-contain"
-                />
+                {partner.isIconWithText ? (
+                  <div className="flex flex-col items-center gap-1.5">
+                    <img
+                      src={partner.logo}
+                      alt={`${partner.name} logo`}
+                      className="h-10 w-auto object-contain"
+                    />
+                    <span className="text-[#172B4D] font-semibold text-xs tracking-tight">
+                      {partner.name}
+                    </span>
+                  </div>
+                ) : (
+                  <img
+                    src={partner.logo}
+                    alt={`${partner.name} logo`}
+                    className={partner.isCompact 
+                      ? "max-h-14 max-w-full object-contain" 
+                      : "max-h-20 max-w-full object-contain"
+                    }
+                  />
+                )}
               </a>
             ))}
           </div>
