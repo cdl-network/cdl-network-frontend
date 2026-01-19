@@ -6,7 +6,6 @@ interface Partner {
   logo: string;
   url: string;
   isIconWithText?: boolean;
-  isLarge?: boolean;
 }
 
 interface PartnersLogoSectionProps {
@@ -56,10 +55,7 @@ const PartnersLogoSection = ({ partners, onPartnerClick }: PartnersLogoSectionPr
                 <img
                   src={partner.logo}
                   alt={`${partner.name} logo`}
-                  className={partner.isLarge 
-                    ? "max-h-full max-w-full object-contain scale-[1.8]" 
-                    : "max-h-[85%] max-w-[90%] object-contain"
-                  }
+                  className="max-h-[85%] max-w-[90%] object-contain"
                 />
               )}
             </a>
@@ -92,10 +88,7 @@ const PartnersLogoSection = ({ partners, onPartnerClick }: PartnersLogoSectionPr
                   <img
                     src={partner.logo}
                     alt={`${partner.name} logo`}
-                    className={partner.isLarge 
-                      ? "max-h-full max-w-full object-contain scale-[1.6]" 
-                      : "max-h-[80%] max-w-[85%] object-contain"
-                    }
+                    className="max-h-[80%] max-w-[85%] object-contain"
                   />
                 )}
               </a>
