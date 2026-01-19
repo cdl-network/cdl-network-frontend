@@ -114,16 +114,19 @@ const Partners = () => {
       name: "Pro Driver School",
       logo: proDriverSchoolLogo,
       url: "https://prodriverschool.com",
+      isLarge: true,
     },
     {
       name: "Commercial Rigs",
       logo: commercialRigsLogo,
       url: "https://commercialrigs.com",
+      isLarge: true,
     },
     {
       name: "Eagle Line Haul",
       logo: eagleLineHaulLogo,
       url: "https://eaglelinehaul.com",
+      isLarge: true,
     },
     {
       name: "Red Mechanic",
