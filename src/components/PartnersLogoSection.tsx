@@ -46,13 +46,13 @@ const PartnersLogoSection = ({ partners, onPartnerClick }: PartnersLogoSectionPr
               }`}
             >
               {partner.isIconWithText ? (
-                <div className="flex flex-col items-center gap-2">
+                <div className="flex items-center gap-2">
                   <img
                     src={partner.logo}
                     alt={`${partner.name} logo`}
-                    className="h-12 lg:h-16 w-auto object-contain"
+                    className="h-8 lg:h-10 w-auto object-contain"
                   />
-                  <span className="text-[#172B4D] font-semibold text-sm lg:text-base tracking-tight">
+                  <span className="text-[#172B4D] font-semibold text-base lg:text-lg tracking-tight">
                     {partner.name}
                   </span>
                 </div>
@@ -86,13 +86,13 @@ const PartnersLogoSection = ({ partners, onPartnerClick }: PartnersLogoSectionPr
                 }`}
               >
                 {partner.isIconWithText ? (
-                  <div className="flex flex-col items-center gap-1.5">
+                  <div className="flex items-center gap-2">
                     <img
                       src={partner.logo}
                       alt={`${partner.name} logo`}
-                      className="h-10 w-auto object-contain"
+                      className="h-6 w-auto object-contain"
                     />
-                    <span className="text-[#172B4D] font-semibold text-xs tracking-tight">
+                    <span className="text-[#172B4D] font-semibold text-sm tracking-tight">
                       {partner.name}
                     </span>
                   </div>
