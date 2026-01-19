@@ -127,7 +127,7 @@ const Partners = () => {
     {
       name: "Red Mechanic",
       logo: redMechanicLogo,
-      url: "https://redmechanic.com",
+      url: "https://redmechanic.app/",
     },
   ];
 
@@ -244,7 +244,7 @@ const Partners = () => {
         </section>
 
         {/* Partner Representation */}
-        <PartnersLogoSection partners={partners} />
+        <PartnersLogoSection partners={partners} onPartnerClick={scrollToForm} />
 
         {/* Form Section */}
         <section id="partner-form" className="py-16 md:py-24 bg-muted/30">
