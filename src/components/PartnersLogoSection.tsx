@@ -27,40 +27,40 @@ const PartnersLogoSection = ({ partners }: PartnersLogoSectionProps) => {
           Teams and platforms we work with to help carriers hire and keep trucks moving.
         </p>
 
-        {/* Desktop: Horizontal logo strip */}
-        <div className="hidden md:flex items-center justify-center gap-12 lg:gap-16">
+        {/* Desktop: Horizontal logo strip with white cards */}
+        <div className="hidden md:flex items-center justify-center gap-6 lg:gap-8">
           {partners.map((partner, index) => (
             <a
               key={index}
               href={partner.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="opacity-80 hover:opacity-100 transition-opacity duration-200"
+              className="flex items-center justify-center bg-white rounded-lg p-4 lg:p-5 w-36 lg:w-44 h-24 lg:h-28 shadow-sm hover:shadow-md transition-all duration-200"
             >
               <img
                 src={partner.logo}
                 alt={`${partner.name} logo`}
-                className="h-12 md:h-14 lg:h-16 w-auto object-contain"
+                className="max-h-16 lg:max-h-20 max-w-full object-contain"
               />
             </a>
           ))}
         </div>
 
-        {/* Mobile: Swipeable carousel */}
+        {/* Mobile: Swipeable carousel with white cards */}
         <div className="md:hidden overflow-hidden" ref={emblaRef}>
-          <div className="flex items-center gap-8">
+          <div className="flex items-center gap-4 px-1">
             {partners.map((partner, index) => (
               <a
                 key={index}
                 href={partner.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-shrink-0 opacity-80 hover:opacity-100 transition-opacity duration-200"
+                className="flex-shrink-0 flex items-center justify-center bg-white rounded-lg p-4 w-32 h-20 shadow-sm"
               >
                 <img
                   src={partner.logo}
                   alt={`${partner.name} logo`}
-                  className="h-12 w-auto object-contain"
+                  className="max-h-12 max-w-full object-contain"
                 />
               </a>
             ))}
