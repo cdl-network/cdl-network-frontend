@@ -25,10 +25,10 @@ const PartnersLogoSection = ({ partners, onPartnerClick }: PartnersLogoSectionPr
     <section className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-4">
-          Partnerships
+          Strategic Partnerships
         </h2>
         <p className="text-base md:text-lg text-muted-foreground text-center mb-12 max-w-3xl mx-auto leading-relaxed">
-          We partner with selected companies across driver services, CDL schools, digital platforms, and carriers to create added value for drivers and fleets.
+          We partner with selected companies across driver services, CDL schools, digital consultants, value-added apps, and anybody who can create value to carriers and drivers.
         </p>
 
         {/* Desktop: Equal-sized cards in a grid */}

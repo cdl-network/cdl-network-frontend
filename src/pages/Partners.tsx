@@ -80,6 +80,16 @@ const Partners = () => {
       title: "Recruiting Agencies",
       description: "Add extra revenue with minimal effort.",
     },
+    {
+      icon: Search,
+      title: "Supply Chain Consultants",
+      description: "Connect your clients with reliable driver solutions.",
+    },
+    {
+      icon: ClipboardList,
+      title: "Digital Platforms",
+      description: "Integrate driver referrals into your existing tools.",
+    },
   ];
 
   const steps = [
@@ -98,8 +108,8 @@ const Partners = () => {
     {
       number: "3",
       icon: DollarSign,
-      title: "You get paid after 3 months",
-      description: "If the driver stays for 90 days, you receive your $100 bonus.",
+      title: "You get paid after 1 month",
+      description: "If the driver stays for 30 days, you receive your $600 bonus.",
     },
   ];
 
@@ -160,12 +170,9 @@ const Partners = () => {
           />
 
           <div className="relative z-10 container mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 animate-fade-in">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 animate-fade-in">
               Partner With CDL Network
             </h1>
-            <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl mx-auto animate-fade-in">
-              Refer qualified CDL-A drivers. Earn payouts. Zero complexity.
-            </p>
             <Button
               onClick={scrollToForm}
               size="lg"
