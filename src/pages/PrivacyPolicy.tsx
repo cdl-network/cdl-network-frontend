@@ -63,6 +63,10 @@ const PrivacyPolicy = () => {
                 consent to receive SMS communications. Text messaging originator opt-in data and consent will not be
                 shared with any third parties, excluding aggregators and providers of the Text Message services.
               </p>
+              <p className="mt-3 font-medium">
+                SMS opt-in and phone numbers collected for SMS communication purposes will not be shared with any 
+                third party and affiliates for marketing purposes.
+              </p>
             </section>
 
             <section>
