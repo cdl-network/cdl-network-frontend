@@ -48,9 +48,6 @@ const SmsConsentCheckbox = ({ checked, onCheckedChange, showError = false }: Sms
           .
         </Label>
       </div>
-      {showError && !checked && (
-        <p className="text-xs text-destructive ml-7">Please agree to continue.</p>
-      )}
     </div>
   );
 };
