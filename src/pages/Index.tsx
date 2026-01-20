@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import SmsConsentCheckbox from "@/components/SmsConsentCheckbox";
 import HowItWorks from "@/components/HowItWorks";
 import TruckTypesSection from "@/components/TruckTypesSection";
 import { useNavigate } from "react-router-dom";
@@ -32,6 +33,7 @@ const Index = () => {
     email: "",
     message: ""
   });
+  const [smsConsent, setSmsConsent] = useState(false);
   const [carouselApi, setCarouselApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
@@ -330,15 +332,15 @@ const Index = () => {
                 })} rows={4} className="resize-none" />
                 </div>
 
-                <Button type="submit" variant="accent" className="w-full h-12 transition-all hover:scale-[1.02]">
+                <SmsConsentCheckbox
+                  checked={smsConsent}
+                  onCheckedChange={setSmsConsent}
+                  showError={true}
+                />
+
+                <Button type="submit" variant="accent" className="w-full h-12 transition-all hover:scale-[1.02]" disabled={!smsConsent}>
                   Send Message
                 </Button>
-
-                <div className="pt-3 border-t border-border/50 mt-3">
-                  <p className="text-xs text-muted-foreground leading-relaxed" aria-live="off">
-                    By submitting this form, you consent to the processing and secure storage of your information in accordance with our privacy policy. Your details will only be used to respond to your inquiry.
-                  </p>
-                </div>
               </form>
 
               {/* Desktop: Contact Image */}

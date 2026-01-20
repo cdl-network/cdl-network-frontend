@@ -12,6 +12,7 @@ import OptimizedImage from "@/components/OptimizedImage";
 import carriersHeroImage from "@/assets/carriers-2.jpg";
 import carriersImage from "@/assets/carriers-1.jpg";
 import { HardHat, Clock, MapPin } from "lucide-react";
+import SmsConsentCheckbox from "@/components/SmsConsentCheckbox";
 
 // Why Carriers Choose Us Section
 const WhyCarriersSection = () => {
@@ -288,6 +289,7 @@ const Carriers = () => {
     hiring_needs: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [smsConsent, setSmsConsent] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
     type: "success" | "error";
     message: string;
@@ -435,7 +437,13 @@ const Carriers = () => {
               })} rows={4} />
               </div>
 
-              <Button type="submit" disabled={isSubmitting} className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">
+              <SmsConsentCheckbox
+                checked={smsConsent}
+                onCheckedChange={setSmsConsent}
+                showError={true}
+              />
+
+              <Button type="submit" disabled={isSubmitting || !smsConsent} className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">
                 {isSubmitting ? "Submitting..." : "Get Drivers"}
               </Button>
             </form>

@@ -3,8 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Checkbox } from "@/components/ui/checkbox";
 import { ChevronRight, ChevronLeft, Check } from "lucide-react";
+import SmsConsentCheckbox from "@/components/SmsConsentCheckbox";
 import { useEffect, useRef } from "react";
 
 // Declare fbq for Facebook Pixel
@@ -460,46 +460,12 @@ const DriverApplicationQuiz = () => {
               </div>
 
               {/* SMS Consent Checkbox */}
-              <div className="space-y-2 pt-2">
-                <div className="flex items-start gap-3">
-                  <Checkbox
-                    id="sms-consent"
-                    checked={smsConsent}
-                    onCheckedChange={(checked) => setSmsConsent(checked === true)}
-                    className="mt-1"
-                  />
-                  <Label
-                    htmlFor="sms-consent"
-                    className="text-xs text-muted-foreground leading-relaxed cursor-pointer"
-                  >
-                    I agree to receive SMS messages from CDL Network LLC regarding job opportunities,
-                    application updates, and recruiting communications. Messaging frequency may vary.
-                    Message and data rates may apply. You can opt out at any time by replying STOP.
-                    For assistance, reply HELP or visit www.cdlnetworkllc.com. We do not share or sell
-                    SMS opt-in or phone numbers for SMS purposes. View our{" "}
-                    <a
-                      href="/privacy"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-accent underline hover:text-accent/80"
-                    >
-                      Privacy Policy
-                    </a>{" "}
-                    and{" "}
-                    <a
-                      href="/terms"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-accent underline hover:text-accent/80"
-                    >
-                      Terms of Service
-                    </a>
-                    .
-                  </Label>
-                </div>
-                {!smsConsent && (
-                  <p className="text-xs text-destructive ml-7">Please agree to continue.</p>
-                )}
+              <div className="pt-2">
+                <SmsConsentCheckbox
+                  checked={smsConsent}
+                  onCheckedChange={setSmsConsent}
+                  showError={true}
+                />
               </div>
             </div>
           </div>
