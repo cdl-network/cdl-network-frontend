@@ -63,7 +63,7 @@ const TermsOfUse = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold mb-3">5. No guarantees</h2>
+              <h2 className="text-2xl font-semibold mb-3">5. Text Message Consent</h2>
               <p>No mobile opt-in or text message consent will be shared with third parties or affiliates</p>
             </section>
 
