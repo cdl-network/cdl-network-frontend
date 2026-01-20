@@ -63,8 +63,122 @@ const TermsOfUse = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold mb-3">5. Text Message Consent</h2>
-              <p>No mobile opt-in or text message consent will be shared with third parties or affiliates</p>
+              <h2 className="text-2xl font-semibold mb-3">5. SMS Terms and Conditions</h2>
+              
+              <div className="space-y-4 mt-4">
+                <div>
+                  <h3 className="text-lg font-medium mb-2">1. SMS Consent Communication</h3>
+                  <p>
+                    The information (Phone Numbers) obtained as part of the SMS consent process will not be shared with 
+                    third parties for marketing purposes.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-lg font-medium mb-2">2. Types of SMS Communications</h3>
+                  <p className="mb-2">
+                    If you have consented to receive text messages from CDL Network LLC, you may receive messages related 
+                    to the following:
+                  </p>
+                  <ul className="list-disc pl-6 space-y-1 mb-2">
+                    <li>Account notification</li>
+                    <li>Customer care</li>
+                  </ul>
+                  <p className="text-sm text-muted-foreground italic">
+                    Example: "Hello, this is a friendly reminder of your documents pending CDL-A and Medical card. 
+                    You can reply STOP to opt out of SMS messaging from CDL Network LLC at any time." For assistance, 
+                    text HELP. Message frequency may vary. Message and data rates may apply.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-lg font-medium mb-2">3. Message Frequency</h3>
+                  <p>
+                    Message frequency may vary depending on the type of communication. For example, you may receive 
+                    up to 3-5 SMS messages per week related to your potential employments.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-lg font-medium mb-2">4. Potential Fees for SMS Messaging</h3>
+                  <p>
+                    Please note that standard message and data rates may apply, depending on your carrier's pricing plan. 
+                    These fees may vary if the message is sent domestically or internationally.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-lg font-medium mb-2">5. Opt-In Method</h3>
+                  <p>
+                    You may opt-in to receive SMS messages from CDL Network LLC in the following ways:
+                  </p>
+                  <ul className="list-disc pl-6 mt-2">
+                    <li>
+                      By submitting an online form:{" "}
+                      <a 
+                        href="https://www.cdlnetworkllc.com/drivers" 
+                        className="text-accent underline hover:text-accent/80"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        https://www.cdlnetworkllc.com/drivers
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h3 className="text-lg font-medium mb-2">6. Opt-Out Method</h3>
+                  <p>
+                    You can opt out of receiving SMS messages at any time. To do so, simply reply "STOP" to any SMS 
+                    message you receive. Alternatively, you can contact us directly to request removal from our messaging list.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-lg font-medium mb-2">7. Help</h3>
+                  <p className="mb-2">
+                    If you are experiencing any issues, you can reply with the keyword HELP. Or, you can get help 
+                    directly from us at{" "}
+                    <a 
+                      href="https://www.cdlnetworkllc.com/" 
+                      className="text-accent underline hover:text-accent/80"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      https://www.cdlnetworkllc.com/
+                    </a>{" "}
+                    or call us at{" "}
+                    <a href="tel:+18723274090" className="text-accent underline hover:text-accent/80">
+                      +1 (872) 327-4090
+                    </a>
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    Additional Options: If you do not wish to receive SMS messages, you can choose not to check the 
+                    SMS consent box on our forms.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-lg font-medium mb-2">8. Standard Messaging Disclosures</h3>
+                  <ul className="list-disc pl-6 space-y-1">
+                    <li>Message and data rates may apply.</li>
+                    <li>You can opt-out at any time by texting "STOP."</li>
+                    <li>
+                      For assistance, text "HELP" or visit our{" "}
+                      <a href="/privacy" className="text-accent underline hover:text-accent/80">
+                        Privacy Policy
+                      </a>{" "}
+                      and{" "}
+                      <a href="/terms" className="text-accent underline hover:text-accent/80">
+                        Terms and Conditions
+                      </a>{" "}
+                      pages.
+                    </li>
+                    <li>Message frequency may vary.</li>
+                  </ul>
+                </div>
+              </div>
             </section>
 
             <section>
