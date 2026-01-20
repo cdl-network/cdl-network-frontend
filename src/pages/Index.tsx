@@ -338,7 +338,7 @@ const Index = () => {
                   showError={true}
                 />
 
-                <Button type="submit" variant="accent" className="w-full h-12 transition-all hover:scale-[1.02]" disabled={!smsConsent}>
+                <Button type="submit" variant="accent" className="w-full h-12 transition-all hover:scale-[1.02]">
                   Send Message
                 </Button>
               </form>

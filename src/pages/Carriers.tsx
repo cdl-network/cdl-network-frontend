@@ -443,7 +443,7 @@ const Carriers = () => {
                 showError={true}
               />
 
-              <Button type="submit" disabled={isSubmitting || !smsConsent} className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">
+              <Button type="submit" disabled={isSubmitting} className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">
                 {isSubmitting ? "Submitting..." : "Get Drivers"}
               </Button>
             </form>

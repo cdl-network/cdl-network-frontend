@@ -504,7 +504,7 @@ const DriverApplicationQuiz = () => {
                 <Button
                   type="button"
                   onClick={handleSubmit}
-                  disabled={isSubmitting || !smsConsent}
+                  disabled={isSubmitting}
                   className="flex-1 bg-accent hover:bg-accent/90 text-accent-foreground h-12 sm:h-auto rounded-md sm:rounded-lg font-semibold"
                 >
                   {isSubmitting ? "Submitting..." : "Submit Application"}
