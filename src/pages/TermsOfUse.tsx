@@ -68,7 +68,7 @@ const TermsOfUse = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold mb-3">5. Limitation of liability</h2>
+              <h2 className="text-2xl font-semibold mb-3">6. Limitation of liability</h2>
               <p>
                 We make reasonable efforts to keep the site accurate and available, but we do not warrant that it will
                 always be error-free. CDL Network LLC is not responsible for damages or losses resulting from your use
@@ -77,7 +77,7 @@ const TermsOfUse = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold mb-3">6. Third-party links</h2>
+              <h2 className="text-2xl font-semibold mb-3">7. Third-party links</h2>
               <p>
                 Our site may include links to external websites. We are not responsible for their content or privacy
                 practices.
@@ -85,7 +85,7 @@ const TermsOfUse = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold mb-3">7. Modifications</h2>
+              <h2 className="text-2xl font-semibold mb-3">8. Modifications</h2>
               <p>
                 We may update these Terms at any time. The "Last updated" date reflects the latest version. Continued
                 use of our website means you accept any changes.
@@ -93,7 +93,7 @@ const TermsOfUse = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold mb-3">8. Contact</h2>
+              <h2 className="text-2xl font-semibold mb-3">9. Contact</h2>
               <p>For questions about these Terms, contact info@cdlnetworkllc.com.</p>
             </section>
           </div>
