@@ -113,7 +113,7 @@ const DriverApplicationQuiz = () => {
         scid: scid || "",
       };
 
-      const response = await fetch("https://cdlnetworkllc.vercel.app/api/lead", {
+      const response = await fetch("https://api.cdlnetworkllc.com/api/lead", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
