@@ -309,7 +309,7 @@ const Carriers = () => {
         lane_type: formData.lane_type,
         hiring_needs: formData.hiring_needs
       };
-      const response = await fetch("https://cdlnetworkllc.vercel.app/api/lead", {
+      const response = await fetch("https://api.cdlnetworkllc.com/api/lead", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
