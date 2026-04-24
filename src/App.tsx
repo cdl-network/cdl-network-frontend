@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -19,6 +20,35 @@ const GAPageTracker = () => {
   return null;
 };
 
+//
+// ✅ NEW THANK YOU PAGE COMPONENT (WITH META LEAD EVENT)
+//
+const ThankYou = () => {
+  useEffect(() => {
+    if (typeof window !== "undefined" && (window as any).fbq) {
+      (window as any).fbq("track", "Lead");
+    }
+  }, []);
+
+  return (
+    <div
+      style={{
+        textAlign: "center",
+        marginTop: "120px",
+        padding: "20px",
+      }}
+    >
+      <h1 style={{ fontSize: "32px", fontWeight: "700", color: "#132a46" }}>
+        Thank you. Your application has been received.
+      </h1>
+
+      <p style={{ marginTop: "16px", fontSize: "18px", color: "#6b7280" }}>
+        Our team will contact you shortly.
+      </p>
+    </div>
+  );
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -33,7 +63,11 @@ const App = () => (
           <Route path="/partners" element={<Partners />} />
           <Route path="/terms" element={<TermsOfUse />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+
+          {/* ✅ ADD THANK YOU ROUTE HERE */}
+          <Route path="/thank-you" element={<ThankYou />} />
+
+          {/* KEEP THIS LAST */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
